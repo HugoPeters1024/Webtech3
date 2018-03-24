@@ -47,6 +47,23 @@ body {
     grid-area: footer;
   }
 
+  @media screen and (max-width: 800px) {
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "header"
+          "main"
+          "side"
+          "footer";
+        justify-content: center;
+    }
+
+    .content-container {
+        width: 100%;
+    }
+}
+
 /* Page CSS */
 section.page {
     font-family: Arial, Helvetica, sans-serif;
