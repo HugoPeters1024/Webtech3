@@ -1,0 +1,155 @@
+body {
+    font-family: "SansSerif";
+    padding: 0px;
+    margin: 0px;
+    background-color: #c6c5b9;
+}
+
+/* Grid CSS */
+.content-container {
+    width: 70%;
+    margin: auto;
+    background-color: #c6c5b9;
+    padding: 0px 20px;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-row-gap: 10px;
+    grid-column-gap: 25px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+      "header header header"
+      "main main side"
+      "footer footer footer";
+    justify-content: center;
+  }
+  
+  /* Grid Items */
+  .nav-item {
+    grid-area: header;
+  }
+  
+  .main-item {
+    grid-area: main;
+  }
+  
+  .page-item {
+      grid-column-start: main-start;
+      grid-column-end: side-end;
+  }
+  
+  .side-item {
+    grid-area: side;
+  }
+  
+  .footer-item {
+    grid-area: footer;
+  }
+
+/* Page CSS */
+section.page {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+    color: #393d3f;
+}
+
+section.page header {
+    text-align: center;
+}
+
+section.page article {
+    background-color: #f3f3f3;
+    border: 1px solid #e7e7e7;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+section.page article.sub-article {
+    margin-left: 40px;
+    background-color: #f3f3f3;
+}
+
+section.side {
+    background-color: #f3f3f3;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #e7e7e7;
+}
+
+section.side img {
+    width: 100%;
+    max-width: 300px;
+}
+
+section header p {
+    padding: 10px;
+    background-color: unset;
+    text-align: left;
+    font-size: 16px;
+    color: #393d3f;
+}
+
+h1 {
+    font-size: 18pt;
+    margin-bottom: 0px;
+}
+
+h2 {
+    font-size: 14pt;
+    margin-bottom: 0px;
+}
+
+h3 {
+    font-size: 12pt;
+    margin-bottom: 0px;
+}
+
+
+  /* Navigation */
+nav ul {
+    list-style-type: none; /* No bullet points */
+    border: 1px solid #e7e7e7;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #f3f3f3;
+}
+
+nav li {
+    float: left;
+}
+
+nav li.right {
+    float: right;
+}
+
+nav li a {
+    display: block;
+    color: #666;
+    padding: 14px 16px;
+    text-decoration: none; /* Get rid of unline etc */
+}
+
+/* Hover colors unless it's the active page */
+nav li a:hover:not(.active) {
+    background-color: #393d3f;
+    color: #f3f3f3;
+}
+
+nav .active {
+    background-color: #62929e;
+    color: #f3f3f3;
+}
+
+/* Footer CSS */
+footer p {
+    bottom: 0px;
+    margin: 0px;
+    text-align: center;
+    padding: 14px 0px;
+    width: 100%;
+    background-color: #f3f3f3;
+    border: 1px solid #e7e7e7;
+    color: #666;
+}
