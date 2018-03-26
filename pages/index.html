@@ -3,19 +3,20 @@
 <head>
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
     <script src="js/ajax.js"></script>
+    <script src="js/sql.js"></script>
 </head>
 
 <body onload="build()">
     <div class="content-container">
     <div class="grid-container">
-        
+
     <nav class="nav-item">
         <ul>
             <li><a href="#a">Home</a></li>
             <li class="right"><a href="#a">About</a></li>
         </ul>
     </nav>
-    
+
     <section class="main-item page" id="page">
         <article>
             Hello World
@@ -35,7 +36,7 @@
 </div>
 </div>
 
-<footer class="footer-item">
+<footer class="footer-item" onload="testConnect()">
     <p>A website by Hugo Peters, Robin Sikkens and Wouter Ubbink</p>
 </footer>
 

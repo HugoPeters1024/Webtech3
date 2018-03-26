@@ -1,7 +1,7 @@
 const sqlite3 = require('sqlite3').verbose();
 
 function testConnect(){
-  let db = new sqlite3.Database('./db/test.db', (err) => {
+  let db = new sqlite3.Database('db/test.db', (err) => {
     if (err) {
       return console.error('There was an error connecting to the database');
     }
