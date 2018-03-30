@@ -18,9 +18,13 @@ function test() {
     req.addEventListener("loadend", function() { alert(this.responseText) });
     req.open("POST", "post", true);
     req.setRequestHeader("Content-Type", "application/json");
-   // req.setRequestHeader("Access-Control-Allow-Origin", "*");
-    //req.setRequestHeader("Access-Control-Allow-Methods", "GET, POST");
-    //req.setRequestHeader("Allow", "GET POST");
-    //req.setRequestHeader("Access-Control-Allow-Headers", "Content-Type, Accept");
+    req.send(`{"method": "SELECT", "table" : "Users"}`); 
+}
+
+function getUserProfile() {
+    var req = new XMLHttpRequest();
+    req.addEventListener("loadend", function() { return JSON.parse(this.responseText); });
+    req.open("POST", "post", true);
+    req.setRequestHeader("Content-Type", "application/json");
     req.send(`{"method": "SELECT", "table" : "Users"}`); 
 }
