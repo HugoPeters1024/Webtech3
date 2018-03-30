@@ -1,3 +1,4 @@
+/* Profile */
 table.profile tr td {
     padding: 20px;
     border-bottom: 1px solid #d3d3d3;
@@ -6,4 +7,18 @@ table.profile tr td {
 table.profile tr td {
     width: 100%;
 }
-  
+
+table.profile tr td.info {
+    color: #9393B3;
+    padding: 0px;
+    border: none;
+    padding: 20px;
+    font-size: 18pt;
+    font-style: italic;
+}
+
+/* Login */
+table.login tr td {
+    padding: 5px;
+    width: 20%;
+}

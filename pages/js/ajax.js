@@ -1,4 +1,4 @@
-function build(file) {
+function build(file) {  
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() { 
         var page= document.getElementById("page");
