@@ -21,7 +21,8 @@ function test() {
     req.send(`{"method": "SELECT", "table" : "Users"}`); 
 }
 
-function buildUserProfile() {
+function buildUserProfile(button){
+    button.disabled = true;
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() { 
         var obj = JSON.parse(this.responseText);
@@ -32,6 +33,7 @@ function buildUserProfile() {
                 element.innerHTML = obj[item];
             }
         }
+        button.disabled = false;
      });
     req.open("POST", "post", true);
     req.setRequestHeader("Content-Type", "application/json");

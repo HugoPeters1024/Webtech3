@@ -6,7 +6,7 @@ function config_buttons() {
     var but_profile = document.getElementById("but_profile");
     but_profile.addEventListener("click", function() { 
         build("profile.html")
-        buildUserProfile();
+        buildUserProfile(but_profile);
     });
 
     var but_login = document.getElementById("but_login");
