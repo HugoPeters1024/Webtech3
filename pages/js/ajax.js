@@ -1,8 +1,9 @@
-function build(file) {  
+function build(file, callback) {  
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() { 
         var page= document.getElementById("page");
         page.innerHTML = this.responseText;
+        callback();
     })
 
     req.addEventListener("error", function() {
@@ -21,8 +22,7 @@ function test() {
     req.send(`{"method": "SELECT", "table" : "Users"}`); 
 }
 
-function buildUserProfile(button){
-    button.disabled = true;
+function buildUserProfile(){
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() { 
         var obj = JSON.parse(this.responseText);
@@ -33,7 +33,6 @@ function buildUserProfile(button){
                 element.innerHTML = obj[item];
             }
         }
-        button.disabled = false;
      });
     req.open("POST", "post", true);
     req.setRequestHeader("Content-Type", "application/json");
