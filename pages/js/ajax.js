@@ -3,7 +3,7 @@ function build(file, callback) {
     req.addEventListener("loadend", function() { 
         var page= document.getElementById("page");
         page.innerHTML = this.responseText;
-        callback();
+        if (callback) callback();
     })
 
     req.addEventListener("error", function() {
