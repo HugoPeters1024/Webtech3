@@ -23,7 +23,13 @@ function test() {
 
 function getUserProfile() {
     var req = new XMLHttpRequest();
-    req.addEventListener("loadend", function() { return JSON.parse(this.responseText); });
+    req.addEventListener("loadend", function() { 
+        var obj = JSON.parse(this.responseText);
+        for(var item in obj)
+        {
+            alert(item);
+        }
+     });
     req.open("POST", "post", true);
     req.setRequestHeader("Content-Type", "application/json");
     req.send(`{"method": "SELECT", "table" : "Users"}`); 
