@@ -2,18 +2,20 @@
 <HTML>
 <head>
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="css/pages.css"/>
     <script src="js/ajax.js"></script>
-    <script src="js/sql.js"></script>
 </head>
 
-<body onload="build()">
+<body onload="build('home.html')">
     <div class="content-container">
     <div class="grid-container">
 
     <nav class="nav-item">
         <ul>
-            <li><a href="#a">Home</a></li>
-            <li class="right"><a href="#a">About</a></li>
+            <li><a href="#a" onclick="build('home.html')">Home</a></li>
+            <li class="right"><a href="#a" onclick="build('profile.html')">Profile</a></li>
+            <li class="right"><a href="#a">Shopping Cart</a></li>
+            <li class="right"><a href="#a">Login</a></li>
         </ul>
     </nav>
 
@@ -22,9 +24,6 @@
             Hello World
         </article>
 
-        <article>
-            Another item
-        </article>
     </section>
 
     <section class="side-item side">

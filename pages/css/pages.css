@@ -1,0 +1,9 @@
+table.profile tr td {
+    padding: 20px;
+    border-bottom: 1px solid #d3d3d3;
+}
+
+table.profile tr td {
+    width: 100%;
+}
+  

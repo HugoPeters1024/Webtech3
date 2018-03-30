@@ -17,18 +17,18 @@ body {
     display: grid;
     grid-row-gap: 10px;
     grid-column-gap: 25px;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-areas:
-      "header header header"
-      "main main side"
-      "footer footer footer";
+      "header header header header"
+      "side main main main"
+      "footer footer footer footer";
     justify-content: center;
   }
   
   /* Grid Items */
   .nav-item {
     grid-area: header;
-  }
+  } 
   
   .main-item {
     grid-area: main;
@@ -135,6 +135,7 @@ nav ul {
 
 nav li {
     float: left;
+    font-size: 14pt;
 }
 
 nav li.right {
@@ -146,6 +147,7 @@ nav li a {
     color: #666;
     padding: 14px 16px;
     text-decoration: none; /* Get rid of unline etc */
+    background-color: #f3f3f3;
 }
 
 /* Hover colors unless it's the active page */
