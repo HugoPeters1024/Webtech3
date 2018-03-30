@@ -4,18 +4,19 @@
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
     <link rel="stylesheet" type="text/css" href="css/pages.css"/>
     <script src="js/ajax.js"></script>
+    <script src="js/buttons.js"></script>
 </head>
 
-<body onload="build('home.html')">
+<body onload="build('home.html');config_buttons()">
     <div class="content-container">
     <div class="grid-container">
 
     <nav class="nav-item">
         <ul>
-            <li><a href="#a" onclick="build('home.html')">Home</a></li>
-            <li class="right"><a href="#a" onclick="build('profile.html')">Profile</a></li>
-            <li class="right"><a href="#a">Shopping Cart</a></li>
-            <li class="right"><a href="#a" onclick="build('login.html')">Login</a></li>
+            <li><a href="#a" id="but_home">Home</a></li>
+            <li class="right"><a href="#a" id="but_profile">Profile</a></li>
+            <li class="right"><a href="#a" id="but_cart">Shopping Cart</a></li>
+            <li class="right"><a href="#a" id="but_login">Login</a></li>
         </ul>
     </nav>
 

@@ -21,7 +21,7 @@ function test() {
     req.send(`{"method": "SELECT", "table" : "Users"}`); 
 }
 
-function getUserProfile() {
+function buildUserProfile() {
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() { 
         var obj = JSON.parse(this.responseText);
