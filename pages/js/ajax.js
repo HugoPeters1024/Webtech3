@@ -27,7 +27,7 @@ function getUserProfile() {
         var obj = JSON.parse(this.responseText);
         for(var item in obj)
         {
-            alert(item);
+            document.getElementById(item).innerHTML = obj[item];
         }
      });
     req.open("POST", "post", true);
