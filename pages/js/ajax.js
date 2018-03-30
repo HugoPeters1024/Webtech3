@@ -16,8 +16,7 @@ function build(file) {
 function test() {
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() { alert(this.responseText) });
-
-    req.open("POST", "/post", true);
+    req.open("POST", "post", true);
     req.setRequestHeader("Content-Type", "application/json");
     req.send(`{"method": "INSERT"}`); 
 }
