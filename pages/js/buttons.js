@@ -9,6 +9,15 @@ function config_buttons() {
         build("profile.html", buildUserProfile)
     });
 
+    AddStateListener("LoggedIn", function(value) {
+        var but = document.getElementById("but_login");
+        if (value)
+            but.innerHTML = "Log out";
+        else
+            but.innerHTML = "Log in";
+
+        console.log("Login changed!");
+    }, true);
     var but_login = document.getElementById("but_login");
     but_login.addEventListener("click", function() { build("login.html");});
 }

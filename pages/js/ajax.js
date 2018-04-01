@@ -38,3 +38,21 @@ function buildUserProfile(){
     req.setRequestHeader("Content-Type", "application/json");
     req.send(`{"method": "SELECT", "table" : "Users"}`); 
 }
+
+function sendLoginRequest() {
+    var username = document.getElementById("username");
+    var password = document.getElementById("password")
+    if (username && password)
+    {
+        var req = new XMLHttpRequest();
+        req.addEventListener("loadend", function () {
+            alert("Login request send!");
+        })
+        req.open("POST", "login", true);
+        req.send(`{"username" : ${username.value}, "password" : ${password.value}`);
+    }
+    else
+    {
+        console.log("Could not find login input fields");
+    }
+}
