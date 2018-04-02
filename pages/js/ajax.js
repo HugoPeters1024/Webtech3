@@ -44,7 +44,7 @@ function buildUserProfile(){
     req.send(`{
         "method": "SELECT", 
         "table" : "Users",
-        "username": "admin"}`); 
+        "username": "jfdaskl"}`); 
 }
 
 function buildProductPage()
@@ -113,7 +113,5 @@ function sendRegisterRequest() {
             obj.password = password.value;
             req.send(JSON.stringify(obj));
         }
-
-        
     }
 }
