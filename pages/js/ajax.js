@@ -118,7 +118,7 @@ function sendRegisterRequest() {
             obj.last_name = lastname.value;
             obj.address = address.value;
             req.setRequestHeader("Content-Type", "application/json");
-            req.send(JSON.stringify(JSON.stringify(obj)));
+            req.send(JSON.stringify(obj));
         }
     }
 }
