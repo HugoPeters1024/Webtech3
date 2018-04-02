@@ -90,11 +90,27 @@ function sendRegisterRequest() {
     var email = document.getElementById("email")
     var password = document.getElementById("password");
     var password2 = document.getElementById("password_confirm");
-    if (username && email && password && password2)
+    var warning = document.getElementById("warning");
+    warning.innerHTML = "";
+    
+    if (username && password && email && password2)
     {
-        if (!password.value == password2.value) {
-            alert("Passwords do not match!");
-            return;
+        if (password.value !== password2.value) {
+            warning.innerHTML += "Passwords do not match!<br>";
         }
+        if (password.value.length < 8)
+            warning.innerHTML += "Password must be at least 8 characters<br>"
+
+        
+        if (!warning.innerHTML)
+        {
+            var req = new XMLHttpRequest();
+            req.addEventListener("loadend", function() { alert(this.responseText) });
+            req.open("POST", "register", true);
+            var obj = {};
+            req.send(JSON.stringify(obj));
+        }
+
+        
     }
 }

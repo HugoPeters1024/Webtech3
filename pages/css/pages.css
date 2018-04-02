@@ -29,6 +29,7 @@ table.products tr td {
     padding-right: 100px;
 }
 
-p.warning {
+#warning {
+    margin-left: 7px;
     color: red;
 }
