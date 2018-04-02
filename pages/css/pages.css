@@ -22,3 +22,8 @@ table.login tr td {
     padding: 5px;
     width: 20%;
 }
+
+table.products tr td {
+    padding: 20px;
+    padding-right: 100px;
+}

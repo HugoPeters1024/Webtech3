@@ -1,8 +1,9 @@
 function config_buttons() {
-    //Home button
+    //HOME BUTTON
     var but_home = document.getElementById("but_home");
     but_home.addEventListener("click", function() { build("home.html")});
 
+    //PROFILE BUTTON
     var but_profile = document.getElementById("but_profile");
     but_profile.addEventListener("click", 
     function() {
@@ -16,6 +17,7 @@ function config_buttons() {
             but.style.display = "none";
     }, true)
 
+    //LOGIN BUTTON
     var but_login = document.getElementById("but_login");
     but_login.addEventListener("click", function() { 
         if (GetState("LoggedIn")) {
@@ -35,4 +37,10 @@ function config_buttons() {
 
         console.log("Login changed!");
     }, true);
+
+    //PRODUCTS BUTTON
+    var but_products = document.getElementById("but_products");
+    but_products.addEventListener("click", function() {
+        build("products.html"); 
+    });
 }
