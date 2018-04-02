@@ -7,7 +7,7 @@ function build(file, callback) {
         var page= document.getElementById("page");
         page.innerHTML = this.responseText;
         if (callback) { callback(); return; };
-        if (file == "login.html") buildUserProfile();
+        if (file == "profile.html") buildUserProfile();
         if (file == "products.html") buildProductPage();
     })
 
