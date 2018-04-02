@@ -68,8 +68,8 @@ function buildProductPage()
             table.appendChild(row);
         }
     });
-    req.open("POST", "post", true);
-    req.send();
+    req.open("POST", "products", true);
+    req.send("{}");
 }
 
 function sendLoginRequest() {

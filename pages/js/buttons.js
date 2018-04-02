@@ -55,5 +55,5 @@ function config_buttons() {
             but.style.display = "none";
         else
             but.style.display = "block";
-    })
+    }, true)
 }
