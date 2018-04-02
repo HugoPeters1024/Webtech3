@@ -90,6 +90,7 @@ function sendRegisterRequest() {
     var email = document.getElementById("email")
     var firstname = document.getElementById("firstname");
     var lastname = document.getElementById("lastname");
+    var address = document.getElementById("address");
     var password = document.getElementById("password");
     var password2 = document.getElementById("password_confirm");
     var warning = document.getElementById("warning");
@@ -115,6 +116,7 @@ function sendRegisterRequest() {
             obj.password = password.value;
             obj.first_name = firstname.value;
             obj.last_name = lastname.value;
+            obj.address = address.value;
             req.send(JSON.stringify(obj));
         }
     }
