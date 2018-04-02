@@ -1,4 +1,7 @@
 function build(file, callback) {  
+    if (!file)
+        file = GetState("CurrentPage");
+    SetState("CurrentPage", file);
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() { 
         var page= document.getElementById("page");

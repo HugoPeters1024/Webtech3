@@ -8,16 +8,31 @@ function config_buttons() {
     function() {
         build("profile.html", buildUserProfile)
     });
+    AddStateListener("LoggedIn", function(value) {
+        var but = document.getElementById("but_profile");
+        if (value)
+            but.style.display = "block";
+        else
+            but.style.display = "none";
+    }, true)
 
+    var but_login = document.getElementById("but_login");
+    but_login.addEventListener("click", function() { 
+        if (GetState("LoggedIn")) {
+            SetState("LoggedIn", false);
+            SetState("CurrentPage", "home.html");
+            build();
+        }
+        else
+            build("login.html");
+    });
     AddStateListener("LoggedIn", function(value) {
         var but = document.getElementById("but_login");
         if (value)
-            but.innerHTML = "Log out";
+            but.innerHTML = "Logout";
         else
-            but.innerHTML = "Log in";
+            but.innerHTML = "Login";
 
         console.log("Login changed!");
     }, true);
-    var but_login = document.getElementById("but_login");
-    but_login.addEventListener("click", function() { build("login.html");});
 }
