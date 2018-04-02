@@ -36,12 +36,40 @@ function buildUserProfile(){
                 element.innerHTML = obj[item];
             }
         }
-     });
+    });
     req.open("POST", "post", true);
     req.setRequestHeader("Content-Type", "application/json");
     req.send(`{
         "method": "SELECT", 
+        "table", "Users",
         "username": "admin"}`); 
+}
+
+function buildProductPage()
+{
+    var req = new XMLHttpRequest();
+    req.addEventListener("loadend", function() {
+        var list = JSON.parse(`[
+            { "name" : "Henlo", "mes" : "kill self" },
+            { "name" : "Fucker" }
+        ]`);
+        var table = document.getElementById("products_table");
+        for(var i=0; i<list.length; ++i)
+        {
+            var obj = list[i];
+           //alert(JSON.stringify(list));
+            var row = document.createElement("tr");
+            for(var item in obj)
+            {
+                var unit = document.createElement("td");
+                unit.innerHTML = obj[item];
+                row.appendChild(unit);
+            }
+            table.appendChild(row);
+        }
+    });
+    req.open("POST", "post", true);
+    req.send();
 }
 
 function sendLoginRequest() {
@@ -59,5 +87,19 @@ function sendLoginRequest() {
     else
     {
         console.log("Could not find login input fields");
+    }
+}
+
+function sendRegisterRequest() {
+    var username = document.getElementById("username");
+    var email = document.getElementById("email")
+    var password = document.getElementById("password");
+    var password2 = document.getElementById("password_confirm");
+    if (username && email && password && password2)
+    {
+        if (!password.value == password2.value) {
+            alert("Passwords do not match!");
+            return;
+        }
     }
 }

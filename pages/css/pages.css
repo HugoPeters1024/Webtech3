@@ -24,6 +24,11 @@ table.login tr td {
 }
 
 table.products tr td {
-    padding: 20px;
+    margin: 20px;
+    padding: 2px;
     padding-right: 100px;
+}
+
+p.warning {
+    color: red;
 }

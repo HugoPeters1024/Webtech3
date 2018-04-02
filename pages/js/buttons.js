@@ -41,6 +41,19 @@ function config_buttons() {
     //PRODUCTS BUTTON
     var but_products = document.getElementById("but_products");
     but_products.addEventListener("click", function() {
-        build("products.html"); 
+        build("products.html", buildProductPage); 
     });
+
+    //REGISTER BUTTON
+    var but_register = document.getElementById("but_register");
+    but_register.addEventListener("click", function() {
+        build("register.html");
+    })
+    AddStateListener("LoggedIn", function(value) {
+        var but = document.getElementById("but_register");
+        if (value)
+            but.style.display = "none";
+        else
+            but.style.display = "block";
+    })
 }
