@@ -49,10 +49,7 @@ function buildProductPage()
 {
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() {
-        var list = JSON.parse(`[
-            { "name" : "Henlo", "mes" : "kill self" },
-            { "name" : "Fucker" }
-        ]`);
+        var list = JSON.parse(this.responseText);
         var table = document.getElementById("products_table");
         for(var i=0; i<list.length; ++i)
         {
