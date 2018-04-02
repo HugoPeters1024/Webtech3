@@ -88,6 +88,8 @@ function sendLoginRequest() {
 function sendRegisterRequest() {
     var username = document.getElementById("username");
     var email = document.getElementById("email")
+    var firstname = document.getElementById("firstname");
+    var lastname = document.getElementById("lastname");
     var password = document.getElementById("password");
     var password2 = document.getElementById("password_confirm");
     var warning = document.getElementById("warning");
@@ -111,6 +113,8 @@ function sendRegisterRequest() {
             obj.username = username.value;
             obj.email = email.value;
             obj.password = password.value;
+            obj.first_name = firstname.value;
+            obj.last_name = lastname.value;
             req.send(JSON.stringify(obj));
         }
     }
