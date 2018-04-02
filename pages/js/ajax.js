@@ -49,8 +49,8 @@ function buildProductPage()
 {
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() {
+        alert(this.responseText);
         var list = JSON.parse(this.responseText);
-        alert(JSON.stringify(list));
         var table = document.getElementById("products_table");
         for(var i=0; i<list.length; ++i)
         {
