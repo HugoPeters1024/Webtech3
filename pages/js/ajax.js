@@ -22,7 +22,7 @@ function test() {
     req.addEventListener("loadend", function() { alert(this.responseText) });
     req.open("POST", "post", true);
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(`{"method": "SELECT", "table" : "Users"}`); 
+    req.send(`{"method": "SELECT", "username" : "admin"}`); 
 }
 
 function buildUserProfile(){
@@ -39,7 +39,9 @@ function buildUserProfile(){
      });
     req.open("POST", "post", true);
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(`{"method": "SELECT", "table" : "Users"}`); 
+    req.send(`{
+        "method": "SELECT", 
+        "username": "admin"}`); 
 }
 
 function sendLoginRequest() {
