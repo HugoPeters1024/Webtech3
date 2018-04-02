@@ -41,7 +41,7 @@ function buildUserProfile(){
     req.setRequestHeader("Content-Type", "application/json");
     req.send(`{
         "method": "SELECT", 
-        "table", "Users",
+        "table" : "Users",
         "username": "admin"}`); 
 }
 
