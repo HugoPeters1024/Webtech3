@@ -57,12 +57,7 @@ function buildProductPage()
            // alert(JSON.stringify(list[i]));
             var obj = list[i];
             var row = document.createElement("tr");
-            for(var item in obj)
-            {
-                var unit = document.createElement("td");
-                unit.innerHTML = obj[item];
-                row.appendChild(unit);
-            }
+            row.innerHTML = `<td>${obj.name}</td><td>${obj.image}</td><td>${obj.maker_id}</td><td>${obj.price}</td>`
             table.appendChild(row);
         }
     });
