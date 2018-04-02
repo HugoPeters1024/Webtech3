@@ -108,6 +108,9 @@ function sendRegisterRequest() {
             req.addEventListener("loadend", function() { alert(this.responseText) });
             req.open("POST", "register", true);
             var obj = {};
+            obj.username = username.value;
+            obj.email = email.value;
+            obj.password = password.value;
             req.send(JSON.stringify(obj));
         }
 
