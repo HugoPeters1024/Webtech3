@@ -59,7 +59,7 @@ function buildProductPage()
            // alert(JSON.stringify(list[i]));
             var obj = list[i];
             var row = document.createElement("tr");
-            row.innerHTML = `<td>${obj.name}</td><td> <img src="${obj.image}" alt="Nothing" height="42" width="42"> </td><td>${obj.maker}</td><td>${obj.price}</td>`
+            row.innerHTML = `<td>${obj.name}</td> <td class="image"> <img src="${obj.image}" alt="Image not found"> </td> <td>${obj.maker}</td><td>${obj.price}</td>`
             table.appendChild(row);
         }
     });
