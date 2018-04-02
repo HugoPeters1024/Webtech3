@@ -116,8 +116,8 @@ function sendRegisterRequest() {
             obj.password = password.value;
             obj.first_name = firstname.value;
             obj.last_name = lastname.value;
-            obj.address = address.value;
-            req.send(JSON.stringify(obj));
+            obj.address = address.valu
+            req.send(JSON.stringify(JSON.stringify(obj)));
         }
     }
 }
