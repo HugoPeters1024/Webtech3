@@ -77,7 +77,10 @@ function sendLoginRequest() {
             alert("Login request send!");
         })
         req.open("POST", "login", true);
-        req.send(`{"username" : ${username.value}, "password" : ${password.value}`);
+        var obj = {};
+        obj.username = username.value;
+        obj.password = password.value;
+        req.send(JSON.stringify(obj));
     }
     else
     {
