@@ -80,6 +80,7 @@ function sendLoginRequest() {
         var obj = {};
         obj.username = username.value;
         obj.password = password.value;
+        req.setRequestHeader("Content-Type", "application/json");
         req.send(JSON.stringify(obj));
     }
     else
