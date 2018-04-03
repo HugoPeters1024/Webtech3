@@ -74,7 +74,17 @@ function sendLoginRequest() {
     {
         var req = new XMLHttpRequest();
         req.addEventListener("loadend", function () {
-            alert("Login request send!");
+            var ret;
+            try { 
+                ret = JSON.parse(this.responseText);
+            }
+            catch(err) {
+                alert("Illegal response, not a JSON object.");
+                return;
+            }
+            if (!ret.err) {
+                SetState("LoggedIn", true);
+            }
         })
         req.open("POST", "login", true);
         var obj = {};
