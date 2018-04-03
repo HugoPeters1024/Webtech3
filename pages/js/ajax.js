@@ -30,7 +30,19 @@ function test() {
 function buildUserProfile(){
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() { 
-        var obj = JSON.parse(this.responseText);
+        var obj;
+        try {
+            obj = JSON.parse(this.responseText);
+        }
+        catch(err) {
+            alert("invalid response, not a JSON object");
+            return;
+        }
+        if (obj.err) {
+            alert(obj.err);
+            return;
+        }
+
         for(var item in obj)
         {
             element = document.getElementById(item);
@@ -39,7 +51,7 @@ function buildUserProfile(){
             }
         }
     });
-    req.open("POST", "post", true);
+    req.open("POST", "user", true);
     req.setRequestHeader("Content-Type", "application/json");
     req.send(`{
         "method": "SELECT", 
