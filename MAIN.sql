@@ -1,5 +1,5 @@
 --
--- File generated with SQLiteStudio v3.1.1 on ma apr 2 23:21:07 2018
+-- File generated with SQLiteStudio v3.1.1 on wo apr 4 13:57:34 2018
 --
 -- Text encoding used: System
 --
@@ -75,10 +75,15 @@ INSERT INTO Products (product_id, name, Categorie, maker_id, price, image) VALUE
 
 -- Table: Sessions
 CREATE TABLE Sessions (user_id INTEGER REFERENCES Users (user_id), session_token STRING UNIQUE ON CONFLICT ROLLBACK NOT NULL, expired DATETIME NOT NULL);
+INSERT INTO Sessions (user_id, session_token, expired) VALUES (0, 'FFDJSAKF', 0);
+
+-- Table: Transactions
+CREATE TABLE Transactions (product_id INTEGER REFERENCES Products (product_id), user_id INTEGER REFERENCES Users (user_id), date STRING);
 
 -- Table: Users
-CREATE TABLE Users (user_id INTEGER PRIMARY KEY UNIQUE NOT NULL, username STRING UNIQUE, first_name STRING, last_name STRING, address STRING, email STRING);
-INSERT INTO Users (user_id, username, first_name, last_name, address, email) VALUES (0, 'admin', 'admin', 'hackerman', 'om de hoek', 'spam@robdewit.nl');
+CREATE TABLE Users (user_id INTEGER PRIMARY KEY UNIQUE NOT NULL, username STRING UNIQUE, first_name STRING, last_name STRING, address STRING, email STRING, password STRING NOT NULL);
+INSERT INTO Users (user_id, username, first_name, last_name, address, email, password) VALUES (0, 'wouter', 'mr.', 'hackerman', 'om de hoek', 'spam@robdewit.nl', 12345);
+INSERT INTO Users (user_id, username, first_name, last_name, address, email, password) VALUES (1, 'hugo', 'the', 'beast', 'in de goot', 'nee', 'drugsdrugs');
 
 COMMIT TRANSACTION;
 PRAGMA foreign_keys = on;
