@@ -13,10 +13,10 @@ class Product {
 
     GetHtml() {
         return `<td>${this.name}</td> 
-        <td> <img class="image" src="${this.image}" alt="Image not found"> </td> 
+        <td><img class="image" src="${this.image}" alt="Image not found"> </td> 
         <td>${this.maker}</td>
         <td>$ ${this.price}</td>
-        <td><button onclick=${this.AddToCart}>Add to cart</button>`
+        <td>Add to cart</button>`
     };
 }
 class Cart {
