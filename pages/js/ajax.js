@@ -121,8 +121,8 @@ function buyProduct(productId) {
       obj.user_id = 0;
       req.setRequestHeader("Content-Type", "application/json");
       req.send(JSON.stringify(obj));
+    }
 }
-
 
 function sendRegisterRequest() {
     var username = document.getElementById("username");
