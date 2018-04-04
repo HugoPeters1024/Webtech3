@@ -3,7 +3,7 @@ if (!window.localStorage.getItem("StateWrapper")) {
     `{
       "LoggedIn" : { "value" : "true", "actions" : [] },
       "CurrentPage" : { "value" : "home.html", "actions" : [] },
-      "CheckoutCart" : ${JSON.stringify(new Cart)}
+      "CheckoutCart" : { value: ${JSON.stringify(new Cart)}}
       }`)  
 }
 
