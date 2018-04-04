@@ -69,7 +69,7 @@ function buildProductPage()
         for(var i=0; i<list.length; ++i)
         {
             var obj = list[i];
-            var product = new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id);
+            var product = new Product(obj.name, obj.image, obj.price, obj.maker);
             var row = document.createElement("tr");
             row.innerHTML = product.GetHtml();
             table.appendChild(row);
@@ -114,7 +114,7 @@ function sendLoginRequest() {
 function buyProduct(productId) {
     if (productId) {
       var eq = new XMLHttpRequest();
-      req.addEventListener("loadend", () => { return "Product Bought" });
+      req.addEventListener("loadend", () => {alert(this.responseText});
       req.open("POST", "buy", true);
       var obj = {};
       obj.product_id = productId;
