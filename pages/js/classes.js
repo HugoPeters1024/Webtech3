@@ -17,7 +17,7 @@ class Product {
         <td><img class="image" src="${this.image}" alt="Image not found"> </td>
         <td>${this.maker}</td>
         <td>$ ${this.price}</td>
-        <td><button onclick="${buyProduct(this.product_id)}">Add to cart</button>`
+        <td><button onclick="buyProduct(${this.product_id})">Add to cart</button>`
     };
 }
 class Cart {
