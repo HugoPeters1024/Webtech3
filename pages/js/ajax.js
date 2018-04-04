@@ -76,7 +76,7 @@ function buildProductPage()
         }
     });
     req.open("POST", "products", true);
-    req.send("{}");
+    req.send(`{"token" : "hackme"}`);
 }
 
 function sendLoginRequest() {
