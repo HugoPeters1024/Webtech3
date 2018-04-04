@@ -96,6 +96,8 @@ function sendLoginRequest() {
             }
             if (!ret.err) {
                 SetState("LoggedIn", true);
+                build("profile.html", buildUserProfile);
+                SetState("token", ret.token);
             }
         })
         req.open("POST", "login", true);
