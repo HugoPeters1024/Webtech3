@@ -118,7 +118,7 @@ function buyProduct(productId) {
       req.open("POST", "buy", true);
       var obj = {};
       obj.product_id = productId;
-      obj.user_id = 0;
+      obj.session_token = 1;
       req.setRequestHeader("Content-Type", "application/json");
       req.send(JSON.stringify(obj));
     }
