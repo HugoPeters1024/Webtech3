@@ -6,15 +6,15 @@ class Product {
         this.price = price;
         this.image = image;
         this.maker = maker;
-    }
+    };
 
-    AddToCart = () => {
+    AddToCart() {
         CheckoutCard.add(this);
-    }
+    };
 
-    GetHtml = () => {
+    GetHtml() {
         return `<td>${this.name}</td> <td> <img class="image" src="${this.image}" alt="Image not found"> </td> <td>${this.maker}</td><td>$ ${this.price}</td>`
-    }
+    };
 }
 
 class Card {

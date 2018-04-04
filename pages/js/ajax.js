@@ -65,13 +65,13 @@ function buildProductPage()
     req.addEventListener("loadend", function() {
         //alert(this.responseText);
         var list = JSON.parse(this.responseText);
-        var table = document.getElementById("products_table");
+        var table = document.getElementById("products_table")
         for(var i=0; i<list.length; ++i)
         {
-           // alert(JSON.stringify(list[i]));
             var obj = list[i];
+            var product = new Product(obj.name, obj.image, obj.price, obj.maker);
             var row = document.createElement("tr");
-            row.innerHTML = `<td>${obj.name}</td> <td> <img class="image" src="${obj.image}" alt="Image not found"> </td> <td>${obj.maker}</td><td>$ ${obj.price}</td>`
+            row.innerHTML = product.GetHtml();
             table.appendChild(row);
         }
     });
