@@ -114,7 +114,7 @@ function sendLoginRequest() {
 function buyProduct(productId) {
     if (productId) {
       var req = new XMLHttpRequest();
-      req.addEventListener("loadend", () => {alert(this.responseText)});
+      req.addEventListener("loadend", function() {alert(this.responseText)});
       req.open("POST", "buy", true);
       var obj = {};
       obj.product_id = productId;
