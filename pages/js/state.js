@@ -1,4 +1,3 @@
-window.localStorage.removeItem("StateWrapper");
 if (!window.localStorage.getItem("StateWrapper")) {
     window.localStorage.setItem("StateWrapper",
     `{
@@ -6,7 +5,6 @@ if (!window.localStorage.getItem("StateWrapper")) {
       "CurrentPage" : { "value" : "home.html", "actions" : [] },
       "CheckoutCart" : { "value" : ${JSON.stringify(new Cart)} }
      }`)  
-     alert(window.localStorage.getItem("StateWrapper"));
 }
 
 var StateWrapper = JSON.parse(window.localStorage.getItem("StateWrapper")); 

@@ -6,10 +6,6 @@ class Product {
         this.maker = maker;
     };
 
-    AddToCart() {
-        GetState("CheckoutCart").add(this);
-    };
-
     GetHtml() {
         return `<td>${this.name}</td> 
         <td> <img class="image" src="${this.image}" alt="Image not found"> </td> 
@@ -18,6 +14,9 @@ class Product {
         <td><button onclick=${this.AddToCart()}>Add to cart</button>`
     };
 }
+Product.prototype.AddToCart = () => {
+    GetState("CheckoutCart").add(this);
+};
 
 class Cart {
     constructor() {
