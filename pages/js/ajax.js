@@ -53,10 +53,7 @@ function buildUserProfile(){
     });
     req.open("POST", "user", true);
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(`{
-        "method": "SELECT",
-        "table" : "Users",
-        "username": "jfdaskl"}`);
+    req.send(`{"token" : "1234"}`);
 }
 
 function buildProductPage()
@@ -76,7 +73,7 @@ function buildProductPage()
         }
     });
     req.open("POST", "products", true);
-    req.send(`{"token" : "hackme"}`);
+    req.send();
 }
 
 function sendLoginRequest() {
