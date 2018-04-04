@@ -69,7 +69,7 @@ function buildProductPage()
         for(var i=0; i<list.length; ++i)
         {
             var obj = list[i];
-            var product = new Product(obj.name, obj.image, obj.price, obj.maker);
+            var product = new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id);
             var row = document.createElement("tr");
             row.innerHTML = product.GetHtml();
             table.appendChild(row);
