@@ -53,7 +53,7 @@ function buildUserProfile(){
     });
     req.open("POST", "user", true);
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(`{"token" : "1234"}`);
+    req.send(`{"token" : ${GetState("token")}}`);
 }
 
 function buildProductPage()
