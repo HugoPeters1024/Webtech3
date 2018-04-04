@@ -1,5 +1,3 @@
-var CheckoutCart = new Cart();
-
 class Product {
     constructor(name, image, price, maker) {
         this.name = name;
@@ -9,7 +7,7 @@ class Product {
     };
 
     AddToCart() {
-        CheckoutCart.add(this);
+        GetState("CheckoutCart").add(this);
     };
 
     GetHtml() {
