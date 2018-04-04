@@ -1,9 +1,10 @@
-window.localStorage.removeItem("StateWrapper");
 if (!window.localStorage.getItem("StateWrapper")) {
-    window.localStorage.setItem("StateWrapper", 
-    `{"LoggedIn" : { "value" : "true", "actions" : [] },
-      "CurrentPage" : { "value" : "home.html", "actions" : [] }
-      "CheckoutCart" : ${new Cart}}`)  
+    window.localStorage.setItem("StateWrapper",
+    `{
+      "LoggedIn" : { "value" : "true", "actions" : [] },
+      "CurrentPage" : { "value" : "home.html", "actions" : [] },
+      "CheckoutCart" : ${JSON.stringify(new Cart)}
+      }`)  
 }
 
 var StateWrapper = JSON.parse(window.localStorage.getItem("StateWrapper")); 
@@ -36,6 +37,8 @@ function AddStateListener(state, action, initUpdate) {
         StateWrapper[state] = {};
         StateWrapper[state].actions = [];
     }
+    if (!StateWrapper[state].actions)
+        StateWrapper[state].action = [];
     StateWrapper[state].actions.push(action);
     if (initUpdate)
         action(GetState(state));
