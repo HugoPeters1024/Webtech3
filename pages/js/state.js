@@ -1,3 +1,4 @@
+window.localStorage.removeItem("StateWrapper");
 if (!window.localStorage.getItem("StateWrapper")) {
     window.localStorage.setItem("StateWrapper",
     `{
