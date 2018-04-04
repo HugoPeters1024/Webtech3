@@ -1,4 +1,4 @@
-var CheckoutCard = new Card();
+var CheckoutCart = new Cart();
 
 class Product {
     constructor(name, image, price, maker) {
@@ -9,20 +9,24 @@ class Product {
     };
 
     AddToCart() {
-        CheckoutCard.add(this);
+        CheckoutCart.add(this);
     };
 
     GetHtml() {
-        return `<td>${this.name}</td> <td> <img class="image" src="${this.image}" alt="Image not found"> </td> <td>${this.maker}</td><td>$ ${this.price}</td>`
+        return `<td>${this.name}</td> 
+        <td> <img class="image" src="${this.image}" alt="Image not found"> </td> 
+        <td>${this.maker}</td>
+        <td>$ ${this.price}</td>
+        <td><button onclick=${AddToCart}>Add to cart</button>`
     };
 }
 
-class Card {
+class Cart {
     constructor() {
         this.productList = [];
     }
 
-    AddProduct = (product) => {
+    AddProduct(product) {
         this.productList.add(product);
     }
 }
