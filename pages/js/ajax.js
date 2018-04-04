@@ -1,9 +1,9 @@
-function build(file, callback) {  
+function build(file, callback) {
     if (!file)
         file = GetState("CurrentPage");
     SetState("CurrentPage", file);
     var req = new XMLHttpRequest();
-    req.addEventListener("loadend", function() { 
+    req.addEventListener("loadend", function() {
         var page= document.getElementById("page");
         page.innerHTML = this.responseText;
         if (callback) { callback(); return; };
@@ -24,12 +24,12 @@ function test() {
     req.addEventListener("loadend", function() { alert(this.responseText) });
     req.open("POST", "post", true);
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(`{"method": "SELECT", "username" : "admin"}`); 
+    req.send(`{"method": "SELECT", "username" : "admin"}`);
 }
 
 function buildUserProfile(){
     var req = new XMLHttpRequest();
-    req.addEventListener("loadend", function() { 
+    req.addEventListener("loadend", function() {
         var obj;
         try {
             obj = JSON.parse(this.responseText);
@@ -54,9 +54,9 @@ function buildUserProfile(){
     req.open("POST", "user", true);
     req.setRequestHeader("Content-Type", "application/json");
     req.send(`{
-        "method": "SELECT", 
+        "method": "SELECT",
         "table" : "Users",
-        "username": "jfdaskl"}`); 
+        "username": "jfdaskl"}`);
 }
 
 function buildProductPage()
@@ -69,7 +69,7 @@ function buildProductPage()
         for(var i=0; i<list.length; ++i)
         {
             var obj = list[i];
-            var product = new Product(obj.name, obj.image, obj.price, obj.maker);
+            var product = new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id);
             var row = document.createElement("tr");
             row.innerHTML = product.GetHtml();
             table.appendChild(row);
@@ -87,7 +87,7 @@ function sendLoginRequest() {
         var req = new XMLHttpRequest();
         req.addEventListener("loadend", function () {
             var ret;
-            try { 
+            try {
                 ret = JSON.parse(this.responseText);
             }
             catch(err) {
@@ -111,6 +111,19 @@ function sendLoginRequest() {
     }
 }
 
+function buyProduct(productId) {
+    if (productId) {
+      var eq = new XMLHttpRequest();
+      req.addEventListener("loadend", () => { return "Product Bought" });
+      req.open("POST", "buy", true);
+      var obj = {};
+      obj.product_id = productId;
+      obj.user_id = 0;
+      req.setRequestHeader("Content-Type", "application/json");
+      req.send(JSON.stringify(obj));
+}
+
+
 function sendRegisterRequest() {
     var username = document.getElementById("username");
     var email = document.getElementById("email")
@@ -121,7 +134,7 @@ function sendRegisterRequest() {
     var password2 = document.getElementById("password_confirm");
     var warning = document.getElementById("warning");
     warning.innerHTML = "";
-    
+
     if (username && password && email && password2)
     {
         if (password.value !== password2.value) {
@@ -130,7 +143,7 @@ function sendRegisterRequest() {
         if (password.value.length < 8)
             warning.innerHTML += "Password must be at least 8 characters<br>"
 
-        
+
         if (!warning.innerHTML)
         {
             var req = new XMLHttpRequest();
