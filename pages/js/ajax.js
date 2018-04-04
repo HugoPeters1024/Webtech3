@@ -113,7 +113,7 @@ function sendLoginRequest() {
 
 function buyProduct(productId) {
     if (productId) {
-      var eq = new XMLHttpRequest();
+      var req = new XMLHttpRequest();
       req.addEventListener("loadend", () => {alert(this.responseText)});
       req.open("POST", "buy", true);
       var obj = {};
