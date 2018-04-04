@@ -113,11 +113,20 @@ function sendLoginRequest() {
 function buyProduct(productId) {
     if (productId) {
       var req = new XMLHttpRequest();
-      req.addEventListener("loadend", function() {alert(this.responseText)});
+      req.addEventListener("loadend", function() {
+          var res;
+          try {
+            res = JSON.parse(this.responseText);
+          }
+          catch(err) {
+              console.log("Invalid server response, not a JSON object: " + this.responseText);
+          }
+          alert("Product bought succesfully!");
+      });
       req.open("POST", "buy", true);
       var obj = {};
       obj.product_id = productId;
-      obj.session_token = 1;
+      obj.token = GetState("token");
       req.setRequestHeader("Content-Type", "application/json");
       req.send(JSON.stringify(obj));
     }

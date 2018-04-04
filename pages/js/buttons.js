@@ -32,8 +32,10 @@ function config_buttons() {
         var but = document.getElementById("but_login");
         if (value)
             but.innerHTML = "Logout";
-        else
+        else {
             but.innerHTML = "Login";
+            SetState("token", "");
+        }
 
         console.log("Login changed!");
     }, true);
