@@ -4,8 +4,9 @@ if (!window.localStorage.getItem("StateWrapper")) {
     `{
       "LoggedIn" : { "value" : "true", "actions" : [] },
       "CurrentPage" : { "value" : "home.html", "actions" : [] },
-      "CheckoutCart" : { value: ${JSON.stringify(new Cart)}}
-      }`)  
+      "CheckoutCart" : { "value" : ${JSON.stringify(new Cart)} }
+     }`)  
+     alert(window.localStorage.getItem("StateWrapper"));
 }
 
 var StateWrapper = JSON.parse(window.localStorage.getItem("StateWrapper")); 
