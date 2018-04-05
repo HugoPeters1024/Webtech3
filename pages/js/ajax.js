@@ -92,7 +92,7 @@ function buildHistoryPage() {
             var row = document.createElement("TR");
             row.innerHTML = `
             <td>${element.name}</td>
-            <td><img src="${element.image}"><td>
+            <td><img src="${element.image}" class="image"><td>
             <td>${element.price}</td>
             <td>${element.date}</td>`;
             table.appendChild(row);
