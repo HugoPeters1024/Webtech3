@@ -1,4 +1,4 @@
-if (!window.localStorage.getItem("StateWrapper")) {
+if (!window.localStorage.getItem("StateWrapper") || window.localStorage.getItem("StateWrapper") == "undefined") {
     window.localStorage.setItem("StateWrapper",
     `{
       "LoggedIn" : { "value" : "true", "actions" : [] },
