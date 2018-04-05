@@ -17,17 +17,7 @@ table.profile tr td.info {
     font-style: italic;
 }
 
-/* Login */
-table.login tr td {
-    padding: 5px;
-    width: 20%;
-}
-
-table.products tr td {
-    margin: 20px;
-    padding: 2px;
-    padding-right: 100px;
-}
+/* Tables */
 
 #warning {
     margin-left: 7px;
@@ -39,7 +29,7 @@ table.products tr td {
 	width: 60px;
 } 
 
-table.history tr td {
+table.std_table tr td {
     padding: 2px;
     padding-right: 20px;
     width: auto;
