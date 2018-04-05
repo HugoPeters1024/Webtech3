@@ -76,9 +76,9 @@ function buildProductPage()
             var product = new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id);
             var row = document.createElement("tr");
             row.innerHTML = product.GetHtml();
+            table.appendChild(row);
             var but = document.getElementById("product_button");
             but.addEventListener("click", build('confirm_product.html', buildProductConfirmPage(product)));
-            table.appendChild(row);
         }
     });
     req.open("POST", "products", true);
