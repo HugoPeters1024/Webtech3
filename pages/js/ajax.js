@@ -40,7 +40,7 @@ function buildUserProfile(){
             return;
         }
         if (obj.err) {
-            console.log(err);
+            console.log(obj.err);
             if (obj.errcode == 32)
             {
                 alert("Invalid login!");
