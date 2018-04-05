@@ -7,25 +7,12 @@ class Product {
         this.product_id = pid;
     };
 
-    AddToCart() {
-        GetState("CheckoutCart").add(this);
-    };
-
 
     GetHtml() {
         return `<td>${this.name}</td>
         <td><img class="image" src="${this.image}" alt="Image not found"> </td>
         <td>${this.maker}</td>
         <td>$ ${this.price}</td>
-        <td><button onclick="build('confirm_product.html', buildProductConfirmPage('` + JSON.stringify(this) + `')">Buy</button>`
+        <td><button id = "product_button">Buy</button>`
     };
-}
-class Cart {
-    constructor() {
-        this.productList = [];
-    }
-
-    AddProduct(product) {
-        this.productList.add(product);
-    }
 }

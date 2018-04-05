@@ -76,6 +76,8 @@ function buildProductPage()
             var product = new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id);
             var row = document.createElement("tr");
             row.innerHTML = product.GetHtml();
+            var but = document.getElementById("product_button");
+            but.addEventListener("click", build('confirm_product.html', buildProductConfirmPage(product)));
             table.appendChild(row);
         }
     });
@@ -189,9 +191,8 @@ function buyProduct(productId) {
     }
 }
 
-function buildProductConfirmPage(product_s) 
+function buildProductConfirmPage(product) 
 {
-    var product = JSON.parse(product_s);
     if (!product)
         product = GetState("ViewProduct");
     SetState("ViewProduct", product);
