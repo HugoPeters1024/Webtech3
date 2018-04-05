@@ -221,6 +221,12 @@ exports.dbHistory = (req, res) => {
     res.send(ret);
   }
   ValidateSession(req.body.token, function(err, user_id) {
+    if (err) {
+      ret.err = "Invalid session!";
+      ret.errcode = 32;
+      res.send(ret);
+      return;
+    }
     var result = [];
     var db = openDB();
     var statement = db.prepare("SELECT Products.name, Products.image, Products.price, Transactions.Date FROM Products, Transactions WHERE Products.product_id = Transactions.product_id AND Transactions.user_id = ? ORDER BY Transactions.date DESC");
@@ -228,8 +234,7 @@ exports.dbHistory = (req, res) => {
     {
       if (err) {
         console.log(err)
-        ret.err = "Could not validate session";
-        ret.errcode = 32;
+        ret.err = "Could load history data";
         res.send(ret);
         return;
       }
