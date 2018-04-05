@@ -67,8 +67,8 @@ function config_buttons() {
     AddStateListener("LoggedIn", function(value) {
         var but = document.getElementById("but_history");
         if (value)
-            but.style.display = "none";
-        else
             but.style.display = "block";
+        else
+            but.style.display = "none";
     }, true);
 }
