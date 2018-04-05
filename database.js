@@ -220,9 +220,10 @@ exports.dbHistory = (req, res) => {
     res.send(ret);
   }
   ValidateSession(req.body.token, function(err, user_id) {
+    var result = [];
     var db = openDB();
     var statement = db.prepare("SELECT Products.name, Products.image, Products.price, Transactions.Date FROM Products, Transactions WHERE Products.product_id = Transactions.product_id AND Transactions.user_id = ?");
-    statement.get(user_id, function(err, row)
+    statement.all(user_id, function(err, rows)
     {
       if (err) {
         console.log(err)
@@ -230,7 +231,7 @@ exports.dbHistory = (req, res) => {
         res.send(ret);
         return;
       }
-      res.send(row);
+      res.send(rows);
     });
     statement.finalize();
     closeDB(db);
