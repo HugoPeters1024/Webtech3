@@ -90,7 +90,8 @@ exports.dbRegister = (req, res) => {
                 res.send(ret);
                 return; 
           }
-          res.send("You registred succesfully!"); 
+          ret.message = "You registred succesfully!"
+          res.send(ret); 
       });
    closeDB(db);
 }

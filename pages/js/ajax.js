@@ -221,10 +221,15 @@ function sendRegisterRequest() {
                 catch(err) {
                     console.log(err);
                     document.getElementById("warning").innerHTML = "Something went wrong, please report this."
+                    return;
                 }
                 if (obj.err) {
                     document.getElementById("warning").innerHTML = obj.err;
+                    return;
                 }
+
+                //Registration was succesful
+                build("login.html");
             });
             req.open("POST", "register", true);
             var obj = {};
