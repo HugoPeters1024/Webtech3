@@ -80,7 +80,7 @@ function buildProductPage()
             var but = document.getElementById(`product_button${product.product_id}`);
             alert(`product_button${product.product_id}`);
             alert(JSON.stringify(product));
-            but.addEventListener("click", function() { build("confirm_product.html", buildProductConfirmPage, JSON.stringify(product)) });
+            but.addEventListener("click", function() { build("confirm_product.html", buildProductConfirmPage, product) });
         }
     });
     req.open("POST", "products", true);
