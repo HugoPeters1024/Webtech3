@@ -1,3 +1,4 @@
+window.localStorage.removeItem("StateWrapper");
 if (!window.localStorage.getItem("StateWrapper")) {
     window.localStorage.setItem("StateWrapper",
     `{
@@ -8,6 +9,7 @@ if (!window.localStorage.getItem("StateWrapper")) {
 }
 
 var StateWrapper = JSON.parse(window.localStorage.getItem("StateWrapper")); 
+alert(JSON.stringify(StateWrapper));
 
 function SaveState() {
     window.localStorage.setItem("StateWrapper", JSON.stringify(StateWrapper));
