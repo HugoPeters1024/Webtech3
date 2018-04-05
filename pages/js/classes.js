@@ -17,7 +17,7 @@ class Product {
         <td><img class="image" src="${this.image}" alt="Image not found"> </td>
         <td>${this.maker}</td>
         <td>$ ${this.price}</td>
-        <td><button onclick="build('confirm_product.html', buildProductConfirmPage(${JSON.stringify(this)})">Buy</button>`
+        <td><button onclick='build("confirm_product.html", buildProductConfirmPage("${JSON.stringify(this)}")'>Buy</button>`
     };
 }
 class Cart {
