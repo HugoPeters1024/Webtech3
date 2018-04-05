@@ -1,4 +1,4 @@
-function build(file, callback) {
+function build(file, callback, arg) {
     if (!file)
         file = GetState("CurrentPage");
     SetState("CurrentPage", file);
@@ -6,7 +6,7 @@ function build(file, callback) {
     req.addEventListener("loadend", function() {
         var page= document.getElementById("page");
         page.innerHTML = this.responseText;
-        if (callback) { callback(); return; };
+        if (callback) { callback(arg); return; };
         if (file == "profile.html") buildUserProfile();
         if (file == "products.html") buildProductPage();
         if (file == "history.html") buildHistoryPage();
@@ -74,11 +74,8 @@ function buildProductPage()
         {
             var obj = list[i];
             var product = new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id);
-            var row = document.createElement("tr");
-            row.innerHTML = product.GetHtml();
+            var row = product.GetRowEntry()
             table.appendChild(row);
-            var but = document.getElementById(`product_button${product.product_id}`);
-            but.addEventListener("click", function() { SetState("ViewProduct", JSON.stringify(product)); build("confirm_product.html", buildProductConfirmPage) });
         }
     });
     req.open("POST", "products", true);

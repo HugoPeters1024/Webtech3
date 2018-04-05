@@ -8,11 +8,27 @@ class Product {
     };
 
 
-    GetHtml() {
-        return `<td>${this.name}</td>
-        <td><img class="image" src="${this.image}" alt="Image not found"> </td>
-        <td>${this.maker}</td>
-        <td>$ ${this.price}</td>
-        <td><button id = "product_button${this.product_id}">Buy</button>`
+    GetRowEntry() {
+        var row = document.createElement("TR");
+        var tdname = document.createElement("TD");
+        tdname.innerHTML = this.name;
+        var tdimage = document.createElement("TD");
+        tdimage.innerHTML = `img class="image" src="${this.image} alt="Image not found">`
+        var tdmaker = document.createElement("TD");
+        tdmaker.innerHTML = this.maker;
+        var tdprice = document.createElement("TD");
+        tdprice.innerHTML = this.price;
+        var tdbutton = document.createElement("TD");
+        var but = document.createElement("BUTTON");
+        tdbutton.appendChild(but);
+        but.innerHTML = "Buy";
+        but.addEventListener("click", function() { build("confirm_product.html", buildProductConfirmPage, this) });
+
+        row.appendChild(tdname);
+        row.appendChild(tdimage);
+        row.appendChild(tdmaker);
+        row.appendChild(tdprice);
+        row.appendChild(tdbutton);
+        return row;
     };
 }
