@@ -40,3 +40,8 @@ table.std_table tr td {
     padding-right: 20px;
     width: auto;
 }
+
+table.confirm_product tr td {
+    text-align: center;
+    align-content: center;
+}
