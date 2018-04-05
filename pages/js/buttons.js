@@ -62,6 +62,6 @@ function config_buttons() {
     //HISTORY BUTTON
     var but_history = document.getElementById("but_history");
     but_history.addEventListener("click", function() {
-        build("history.html");
+        build("history.html", buildHistoryPage);
     });
 }
