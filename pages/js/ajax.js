@@ -78,8 +78,7 @@ function buildProductPage()
             row.innerHTML = product.GetHtml();
             table.appendChild(row);
             var but = document.getElementById("product_button");
-            but.addEventListener("click", function() { build("confirm_product.html", buildProductConfirmPage, product) 
-            });
+            but.addEventListener("click", function() { build("confirm_product.html", buildProductConfirmPage, product) });
         }
     });
     req.open("POST", "products", true);
@@ -194,6 +193,7 @@ function buyProduct(productId) {
 
 function buildProductConfirmPage(product) 
 {
+    alert(JSON.stringify(product));
     if (!product)
         product = GetState("ViewProduct");
     SetState("ViewProduct", product);
