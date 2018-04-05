@@ -202,7 +202,7 @@ function buildProductConfirmPage(product)
         document.getElementById("product_image").innerHTML = `<img class="large_image" src="${product.image}">`;
         document.getElementById("product_price").innerHTML = product.price;
         document.getElementById("product_maker").innerHTML = product.maker;
-        document.getElementById("product_button").innerHTML = `<button onclick="buyProduct(${product.id})">buy</button>`;
+        document.getElementById("product_button").innerHTML = `<button onclick="buyProduct(${product.product_id})">buy</button>`;
     }
     else {
         document.getElementById("product_name").innerHTML = `This seems to be the wrong page, click <a onclick="build('home.html')">here</a> to return to the home page.`;
