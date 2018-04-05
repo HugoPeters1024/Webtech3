@@ -13,6 +13,6 @@ class Product {
         <td><img class="image" src="${this.image}" alt="Image not found"> </td>
         <td>${this.maker}</td>
         <td>$ ${this.price}</td>
-        <td><button id = "product_button">Buy</button>`
+        <td><button id = "product_button${this.product_id}">Buy</button>`
     };
 }
