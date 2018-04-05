@@ -43,6 +43,10 @@ table.std_table tr td {
 
 /* CONFIRM PRODUCT PAGE */
 
+table.confirm_product {
+    width: 100%;
+}
+
 table.confirm_product tr td {
     text-align: center;
     align-content: center;
