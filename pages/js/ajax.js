@@ -80,7 +80,23 @@ function buildProductPage()
 function buildHistoryPage() {
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() {
-        alert(this.responseText);
+        var response;
+        try {
+            response = JSON.parse(this.responseText);
+        }
+        catch(err) {
+            alert("Invalid server response, not a JSON object")
+        }
+        var table = document.getElementById("history");
+        response.forEach(element => {
+            var row = document.createElement("TR");
+            row.innerHTML = `
+            <td>${element.name}</td>
+            <td><img src="${element.image}"><td>
+            <td>${element.price}</td>
+            <td>${element.date}</td>`;
+            table.appendChild(row);
+        });
     })
     req.open("POST", "history", true);
     req.setRequestHeader("Content-Type", "application/json");
