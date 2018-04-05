@@ -10,6 +10,7 @@ function build(file, callback, arg) {
         if (file == "profile.html") buildUserProfile();
         if (file == "products.html") buildProductPage();
         if (file == "history.html") buildHistoryPage();
+        if (file == "confirm_product.html") buildProductConfirmPage();
     })
 
     req.addEventListener("error", function() {
