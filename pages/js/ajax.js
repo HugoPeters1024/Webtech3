@@ -74,7 +74,7 @@ function buildProductPage()
         for(var i=0; i<list.length; ++i)
         {
             var obj = list[i];
-            productlist.add(new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id));
+            productlist.push(new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id));
             var row = productlist[productlist.length-1].GetRowEntry()
             table.appendChild(row);
         }
