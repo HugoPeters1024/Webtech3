@@ -198,7 +198,7 @@ function buildProductConfirmPage(product)
     SetState("ViewProduct", product);
     if (product) {
         document.getElementById("product_name").innerHTML = product.name;
-        document.getElementById("product.image").innerHTML = `<img class="large_image" src="${product.image}">`;
+        document.getElementById("product_image").innerHTML = `<img class="large_image" src="${product.image}">`;
         document.getElementById("product_price").innerHTML = product.price;
         document.getElementById("product_maker").innerHTML = product.maker;
         document.getElementById("product_button").innerHTML = `<button onclick="buyProduct(${product.id})">buy</button>`;
