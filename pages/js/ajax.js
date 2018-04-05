@@ -93,8 +93,8 @@ function buildHistoryPage() {
             alert("Invalid server response, not a JSON object")
         }
         if (response.err) {
+            console.log(response.err);
             if (response.errcode == "32") { //Token no longer valid. 
-                alert(response.err);
                 SetState("LoggedIn", false);
                 build("login.html");
             }
