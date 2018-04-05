@@ -79,7 +79,6 @@ function buildProductPage()
             var row = productlist[productlist.length-1].GetRowEntry()
             table.appendChild(row);
         }
-        alert(JSON.stringify(productlist));
     });
     req.open("POST", "products", true);
     req.send();
