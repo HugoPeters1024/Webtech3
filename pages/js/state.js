@@ -8,14 +8,13 @@ if (!window.localStorage.getItem("StateWrapper")) {
 }
 
 var StateWrapper = JSON.parse(window.localStorage.getItem("StateWrapper")); 
-alert(JSON.stringify(StateWrapper));
 
 function SaveState() {
     window.localStorage.setItem("StateWrapper", JSON.stringify(StateWrapper));
 }
 
 function GetState(state) {
-    
+
     if (StateWrapper[state])
         return StateWrapper[state].value;
     else
