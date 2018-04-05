@@ -78,7 +78,7 @@ function buildProductPage()
             row.innerHTML = product.GetHtml();
             table.appendChild(row);
             var but = document.getElementById("product_button"+product.product_id);
-            but.addEventListener("click", function() { build("confirm_product.html", buildProductConfirmPage, product) });
+            but.addEventListener("click", function() { build("confirm_product.html", buildProductConfirmPage, JSON.stringify(product)) });
         }
     });
     req.open("POST", "products", true);
@@ -191,8 +191,9 @@ function buyProduct(productId) {
     }
 }
 
-function buildProductConfirmPage(product) 
+function buildProductConfirmPage(product_s) 
 {
+    var product = JSON.parse(product_s);
     alert(JSON.stringify(product));
     if (!product)
         product = GetState("ViewProduct");
