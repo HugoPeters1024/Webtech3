@@ -25,28 +25,28 @@ app.set('json spaces', 40);
 //app.get('/', function(req, res) {
 //  res.send("Boem jo");
 //});
-app.post('/group12/post', function(req, res) {
+app.post('/post', function(req, res) {
   databaseQuery(req, res)
 });
 
-app.post('/group12/products', function(req, res) {
+app.post('/products', function(req, res) {
    data.dbProducts(req, res);
 });
 
-app.post('/group12/register', function(req, res) {
+app.post('/register', function(req, res) {
    data.dbRegister(req, res);
 });
 
-app.post('/group12/login', function(req, res) {
+app.post('/login', function(req, res) {
    //res.redirect('/profile');
    data.dbLogin(req, res);
 });
 
-app.post('/group12/user', function(req, res) {
+app.post('/user', function(req, res) {
    data.dbUserInfo(req, res);
 });
 
-app.post('/group12/buy', function(req, res) {
+app.post('/buy', function(req, res) {
    console.log("Got a buy request: " +  req.body.product_id);
    data.dbBuy(req, res);
 });
