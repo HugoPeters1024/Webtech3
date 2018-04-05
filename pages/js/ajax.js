@@ -212,7 +212,20 @@ function sendRegisterRequest() {
         if (!warning.innerHTML)
         {
             var req = new XMLHttpRequest();
-            req.addEventListener("loadend", function() { alert(this.responseText) });
+            req.addEventListener("loadend", function() {
+                document.getElementById("warning").innerHTML = ""; //reset warning
+                var obj;
+                try {
+                    obj = JSON.parse(this.responseText);
+                }
+                catch(err) {
+                    console.log(err);
+                    document.getElementById("warning").innerHTML = "Something went wrong, please report this."
+                }
+                if (obj.err) {
+                    document.getElementById("warning").innerHTML = obj.err;
+                }
+            });
             req.open("POST", "register", true);
             var obj = {};
             obj.username = username.value;

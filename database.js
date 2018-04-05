@@ -66,12 +66,14 @@ exports.dbProducts = (req, res) => {
 }
 
 exports.dbRegister = (req, res) => {
+   var ret = {};
    console.log("Got a request for a registration.");
    console.log(JSON.stringify(req.body));
    if (!req.body.username || !req.body.email || !req.body.first_name || !req.body.last_name || !req.body.address || !req.body.password) {
-	console.log("Illegal register request");
-        res.send("You  fucked up!" + JSON.stringify(req.body));
-	return;
+      	console.log("Illegal register request: " + req.body);
+        ret.err = "Not all parameters where provided for a registration";
+        res.send(ret);
+       	return;
    }
    var username = xss(req.body.username);
    var first_name = xss(req.body.first_name);
@@ -84,7 +86,8 @@ exports.dbRegister = (req, res) => {
    db.run("INSERT INTO Users (username, first_name, last_name, address, email, password, salt) VALUES ('"+username+"',' "+first_name+"','"+last_name+"','"+address+"', '"+email+"', '"+password+"', '"+salt+"')", err => {
           if (err) {
                 console.log(err); 
-                res.send("registration failed! An error occured!");
+                ret.err = "Username is already taken"
+                res.send(ret);
                 return; 
           }
           res.send("You registred succesfully!"); 
