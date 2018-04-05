@@ -22,8 +22,7 @@ class Product {
         var but = document.createElement("BUTTON");
         tdbutton.appendChild(but);
         but.innerHTML = "Buy";
-        but.addEventListener("click", function() { build("confirm_product.html", buildProductConfirmPage) });
-        alert(JSON.stringify(this));
+        but.addEventListener("click", function() { build("confirm_product.html", buildProductConfirmPage, this) });
 
         row.appendChild(tdname);
         row.appendChild(tdimage);
