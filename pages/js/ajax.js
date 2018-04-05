@@ -87,7 +87,7 @@ function buildProductPage()
 
     //get the manufacturers
     var manu_req = new XMLHttpRequest();
-    req.addEventListener("loadend", function() {
+    manu_req.addEventListener("loadend", function() {
         var ret = JSON.parse(this.responseText);
         var search = document.getElementById("search_maker");
         if (search) {
@@ -98,7 +98,9 @@ function buildProductPage()
                 search.appendChild(node);
             });
         }
-    })
+    });
+    manu_req.open("POST", "makers", true);
+    manu_req.send()
 }
 
 function buildHistoryPage() {
