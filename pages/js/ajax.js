@@ -131,13 +131,13 @@ function sendLoginRequest() {
     {
         var req = new XMLHttpRequest();
         req.addEventListener("loadend", function () {
-            document.getElementById("warning").innerHTML = "" //clear the warning
+            document.getElementById("warning").innerHTML = "hoi" //clear the warning
             var ret;
             try {
                 ret = JSON.parse(this.responseText);
             }
             catch(err) {
-                document.getElementById("waring").innerHTML = "Illegal response, not a JSON object.";
+                document.getElementById("warning").innerHTML = "Illegal response, not a JSON object.";
                 return;
             }
             if (ret.err) {
