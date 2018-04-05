@@ -94,7 +94,7 @@ function buildHistoryPage() {
             <td>${element.name}</td>
             <td><img src="${element.image}" class="image"><td>
             <td>${element.price}</td>
-            <td>${element.date}</td>`;
+            <td>${new Date(element.date)}</td>`;
             table.appendChild(row);
         });
     })
