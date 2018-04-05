@@ -8,6 +8,12 @@ table.profile tr td {
     border-bottom: 1px solid #d3d3d3;
 }
 
+table.profile tr td:last-child {
+    text-align: right;
+    align-content: right;
+}
+
+
 table.profile tr td.info {
     color: #9393B3;
     padding: 0px;
