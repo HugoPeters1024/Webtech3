@@ -78,7 +78,8 @@ function buildProductPage()
             row.innerHTML = product.GetHtml();
             table.appendChild(row);
             var but = document.getElementById("product_button");
-            but.addEventListener("click", build("confirm_product.html", buildProductConfirmPage, product));
+            but.addEventListener("click", function() { build("confirm_product.html", buildProductConfirmPage, product) 
+            });
         }
     });
     req.open("POST", "products", true);
