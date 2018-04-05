@@ -214,7 +214,7 @@ function sendRegisterRequest() {
             var req = new XMLHttpRequest();
             req.addEventListener("loadend", function() {
                 document.getElementById("warning").innerHTML = ""; //reset warning
-                var obj;
+                var obj = {};
                 try {
                     obj = JSON.parse(this.responseText);
                 }
