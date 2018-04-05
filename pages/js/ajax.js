@@ -44,6 +44,7 @@ function buildUserProfile(){
             if (obj.errcode == 32)
             {
                 alert("Invalid login!");
+                SetState("LoggedIn", false);
                 build("login.html");
             }
             return;
