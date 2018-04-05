@@ -1,4 +1,4 @@
-function build(file, callback, arg) {
+function build(file, callback) {
     if (!file)
         file = GetState("CurrentPage");
     SetState("CurrentPage", file);
@@ -6,7 +6,7 @@ function build(file, callback, arg) {
     req.addEventListener("loadend", function() {
         var page= document.getElementById("page");
         page.innerHTML = this.responseText;
-        if (callback) { callback(arg); return; };
+        if (callback) { callback(); return; };
         if (file == "profile.html") buildUserProfile();
         if (file == "products.html") buildProductPage();
         if (file == "history.html") buildHistoryPage();
