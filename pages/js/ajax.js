@@ -191,10 +191,8 @@ function buyProduct(productId) {
     }
 }
 
-function buildProductConfirmPage(product_s) 
+function buildProductConfirmPage(product) 
 {
-    var product = JSON.parse(product_s);
-    alert(JSON.stringify(product));
     if (!product)
         product = GetState("ViewProduct");
     SetState("ViewProduct", product);
