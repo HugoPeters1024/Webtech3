@@ -1,4 +1,4 @@
-function build(file, callback) {
+function build(file, callback, arg) {
     if (!file)
         file = GetState("CurrentPage");
     SetState("CurrentPage", file);
@@ -6,7 +6,7 @@ function build(file, callback) {
     req.addEventListener("loadend", function() {
         var page= document.getElementById("page");
         page.innerHTML = this.responseText;
-        if (callback) { callback(); return; };
+        if (callback) { callback(arg); return; };
         if (file == "profile.html") buildUserProfile();
         if (file == "products.html") buildProductPage();
         if (file == "history.html") buildHistoryPage();
@@ -78,7 +78,7 @@ function buildProductPage()
             row.innerHTML = product.GetHtml();
             table.appendChild(row);
             var but = document.getElementById("product_button");
-            but.addEventListener("click", build('confirm_product.html', (product) => buildProductConfirmPage));
+            but.addEventListener("click", build("confirm_product.html", buildProductConfirmPage, product));
         }
     });
     req.open("POST", "products", true);
