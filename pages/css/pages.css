@@ -51,6 +51,7 @@ table.confirm_product tr td {
     text-align: center;
     align-content: center;
     width: 100%;
+    padding: 10px;
 }
 
 #product_name {
