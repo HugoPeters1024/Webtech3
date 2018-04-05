@@ -60,9 +60,22 @@ exports.dbProducts = (req, res) => {
       else {
         res.send(rows);
      }
-    statement.finalize();
    });
+   statement.finalize();
    closeDB(db);
+}
+
+exports.dbMakers = (req, res) => {
+  var db = openDB();
+  db.all("SELECT * FROM Manufacturers WHERE 1", function(err, rows) {
+    if (err) {
+      console.log(err);
+      res.send("An error occured");
+      return;
+    }
+    res.send(rows);
+  });
+  closeDB(db);
 }
 
 exports.dbRegister = (req, res) => {

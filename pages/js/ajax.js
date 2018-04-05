@@ -69,7 +69,6 @@ function buildProductPage()
     var productlist = [];
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() {
-        //alert(this.responseText);
         var list = JSON.parse(this.responseText);
         var table = document.getElementById("products_table")
         var maker_search = document.getElementById("search_maker").value
@@ -85,6 +84,21 @@ function buildProductPage()
     });
     req.open("POST", "products", true);
     req.send();
+
+    //get the manufacturers
+    var manu_req = new XMLHttpRequest();
+    req.addEventListener("loadend", function() {
+        var ret = JSON.parse(this.responseText);
+        var search = document.getElementById("search_maker");
+        if (search) {
+            ret.forEach(element => {
+                var node = document.createElement("OPTION")
+                node.setAttribute("value", element.maker_id);
+                node.innerHTML = element.name;
+                search.appendChild(node);
+            });
+        }
+    })
 }
 
 function buildHistoryPage() {
