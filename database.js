@@ -179,7 +179,6 @@ exports.dbUserInfo = (req, res) => {
 
 exports.dbBuy = (req, res) => {
    var ret = {};
-/*
    if (!req.body.token) {
       ret.err = "No session token provided!";
       res.send(ret);
@@ -211,7 +210,7 @@ exports.dbBuy = (req, res) => {
       });
       statement.finalize();
       closeDB(db);
-   }); */
+   }); 
 }
 
 CreateSession = (user_id, callback) =>  {
