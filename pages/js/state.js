@@ -2,8 +2,7 @@ if (!window.localStorage.getItem("StateWrapper")) {
     window.localStorage.setItem("StateWrapper",
     `{
       "LoggedIn" : { "value" : "true", "actions" : [] },
-      "CurrentPage" : { "value" : "home.html", "actions" : [] },
-      "CheckoutCart" : { "value" : ${JSON.stringify(new Cart)} }
+      "CurrentPage" : { "value" : "home.html", "actions" : [] }
      }`)  
 }
 
