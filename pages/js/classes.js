@@ -5,7 +5,13 @@ class Product {
         this.image = image;
         this.maker = maker;
         this.product_id = pid;
+        this.clicker = function(event) {
+            build("confirm_product.html", buildProductConfirmPage, this);
+        };
     };
+    
+
+
 
 
     GetRowEntry() {
@@ -22,7 +28,7 @@ class Product {
         var but = document.createElement("BUTTON");
         tdbutton.appendChild(but);
         but.innerHTML = "Buy";
-        but.addEventListener("click", function() { build("confirm_product.html", buildProductConfirmPage, this) });
+        but.addEventListener("click", this.clicker.bind(this), false);
 
         row.appendChild(tdname);
         row.appendChild(tdimage);
