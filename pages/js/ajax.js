@@ -111,11 +111,12 @@ function buildHistoryPage() {
         
         response.forEach(element => {
             var row = document.createElement("TR");
+            var product = new Product(element.name, element.image, element.price, element.maker);
             row.innerHTML = `
-            <td>${element.name}</td>
-            <td><img src="${element.image}" class="image"></td>
-            <td>${element.price}</td>
-            <td>${new Date(element.date).toLocaleTimeString("en-us", options)}</td>`;
+            <td>${product.name}</td>
+            <td><img src="${product.image}" class="image"></td>
+            <td>${product.price}</td>
+            <td>${new Date(product.date).toLocaleTimeString("en-us", options)}</td>`;
             table.appendChild(row);
         });
     })
