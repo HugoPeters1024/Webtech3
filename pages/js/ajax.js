@@ -190,6 +190,7 @@ function buyProduct(productId) {
 
 function buildProductConfirmPage(product) 
 {
+    alert(JSON.stringify(product));
     if (!product)
         product = GetState("ViewProduct");
     SetState("ViewProduct", product);
