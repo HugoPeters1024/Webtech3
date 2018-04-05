@@ -1,4 +1,3 @@
-window.localStorage.removeItem("StateWrapper");
 if (!window.localStorage.getItem("StateWrapper")) {
     window.localStorage.setItem("StateWrapper",
     `{
@@ -16,6 +15,7 @@ function SaveState() {
 }
 
 function GetState(state) {
+    
     if (StateWrapper[state])
         return StateWrapper[state].value;
     else
