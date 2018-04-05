@@ -65,6 +65,7 @@ function buildUserProfile(){
 
 function buildProductPage()
 {
+    var productlist = [];
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() {
         //alert(this.responseText);
@@ -73,8 +74,8 @@ function buildProductPage()
         for(var i=0; i<list.length; ++i)
         {
             var obj = list[i];
-            var product = new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id);
-            var row = product.GetRowEntry()
+            productlist.add(new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id));
+            var row = productlist[productlist.length-1].GetRowEntry()
             table.appendChild(row);
         }
     });
