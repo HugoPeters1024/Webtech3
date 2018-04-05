@@ -188,6 +188,7 @@ exports.dbBuy = (req, res) => {
       if (err) {
         console.log(err);
         ret.err = "Could not validate session";
+        ret.errcode = 32;
         res.send(ret);
         return;
       }
@@ -227,7 +228,8 @@ exports.dbHistory = (req, res) => {
     {
       if (err) {
         console.log(err)
-        ret.err = "Could not load history data";
+        ret.err = "Could not validate session";
+        ret.errcode = 32;
         res.send(ret);
         return;
       }

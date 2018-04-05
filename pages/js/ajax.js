@@ -40,7 +40,12 @@ function buildUserProfile(){
             return;
         }
         if (obj.err) {
-            alert(obj.err);
+            console.log(err);
+            if (obj.errcode == 32)
+            {
+                alert("Invalid login!");
+                build("login.html");
+            }
             return;
         }
 
@@ -87,6 +92,15 @@ function buildHistoryPage() {
         catch(err) {
             alert("Invalid server response, not a JSON object")
         }
+        if (response.err) {
+            alert(response.err);
+            if (reponse.errcode == 32) { //Token no longer valid. {
+                SetState("LoggedIn", false);
+                build("login.html");
+            }
+            return;
+        }
+
         var table = document.getElementById("history");
         var options = {  
             weekday: "long", year: "numeric", month: "short",  
