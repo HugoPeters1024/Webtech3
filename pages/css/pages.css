@@ -41,7 +41,19 @@ table.std_table tr td {
     width: auto;
 }
 
+/* CONFIRM PRODUCT PAGE */
+
 table.confirm_product tr td {
     text-align: center;
     align-content: center;
 }
+
+table.confirm_product tr {
+    width: 100%;
+}
+
+#product_name {
+    font-weight: bold;
+    font-size: 18pt;
+}
+
