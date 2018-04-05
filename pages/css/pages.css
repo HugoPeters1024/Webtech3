@@ -41,6 +41,8 @@ table.std_table tr td {
     width: auto;
 }
 
+.dollars:before { content:'$'; }
+
 /* CONFIRM PRODUCT PAGE */
 
 table.confirm_product {

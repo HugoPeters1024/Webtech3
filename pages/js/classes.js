@@ -1,7 +1,7 @@
 class Product {
     constructor(name, image, price, maker, pid) {
         this.name = name;
-        this.price = price;
+        this.price = `<span class="dollars">${price}</span>`;
         this.image = image;
         this.maker = maker;
         this.product_id = pid;
@@ -21,7 +21,7 @@ class Product {
         var tdimage = document.createElement("TD");
         tdimage.innerHTML = `<img class="image" src="${this.image}" alt="Image not found">`
         var tdmaker = document.createElement("TD");
-        tdmaker.innerHTML = this.maker;
+        tdmaker.innerHTML = `Manufacturer: ${this.maker}`;
         var tdprice = document.createElement("TD");
         tdprice.innerHTML = this.price;
         var tdbutton = document.createElement("TD");
