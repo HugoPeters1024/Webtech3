@@ -46,9 +46,6 @@ table.std_table tr td {
 table.confirm_product tr td {
     text-align: center;
     align-content: center;
-}
-
-table.confirm_product tr {
     width: 100%;
 }
 
