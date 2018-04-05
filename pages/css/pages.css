@@ -41,5 +41,5 @@ table.products tr td {
 
 table.history tr td {
     padding: 2px;
-    padding-right: 100px;
+    width: auto;
 }
