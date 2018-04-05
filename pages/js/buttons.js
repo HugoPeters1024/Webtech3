@@ -57,11 +57,18 @@ function config_buttons() {
             but.style.display = "none";
         else
             but.style.display = "block";
-    }, true)
+    }, true);
 
     //HISTORY BUTTON
     var but_history = document.getElementById("but_history");
     but_history.addEventListener("click", function() {
         build("history.html", buildHistoryPage);
     });
+    AddStateListener("LoggedIn", function(value) {
+        var but = document.getElementById("but_history");
+        if (value)
+            but.style.display = "none";
+        else
+            but.style.display = "block";
+    }, true);
 }
