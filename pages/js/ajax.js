@@ -72,12 +72,15 @@ function buildProductPage()
         //alert(this.responseText);
         var list = JSON.parse(this.responseText);
         var table = document.getElementById("products_table")
+        var maker_search = document.getElementById("search_maker").value
         for(var i=0; i<list.length; ++i)
         {
             var obj = list[i];
             productlist.push(new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id));
-            var row = productlist[productlist.length-1].GetRowEntry()
-            table.appendChild(row);
+            var product = productlist[productlist.length-1];
+            var row = product.GetRowEntry()
+            if (product.maker == maker_search || maker_search == -1)
+                table.appendChild(row);
         }
     });
     req.open("POST", "products", true);
