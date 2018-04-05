@@ -9,6 +9,7 @@ function build(file, callback) {
         if (callback) { callback(); return; };
         if (file == "profile.html") buildUserProfile();
         if (file == "products.html") buildProductPage();
+        if (file == "history.html") buildHistoryPage();
     })
 
     req.addEventListener("error", function() {

@@ -220,8 +220,20 @@ exports.dbHistory = (req, res) => {
     res.send(ret);
   }
   ValidateSession(req.body.token, function(err, user_id) {
-    ret.message = "Cool dude";
-    res.send(ret);
+    var db = openDB();
+    var statement = db.prepare("SELECT Products.name, Products.image, Products.price, Transactions.Date FROM Products, Transactions WHERE Products.product_id = Transactions.product_id AND Transactions.user_id = ?");
+    statement.get(user_id, function(err, row)
+    {
+      if (err) {
+        console.log(err)
+        ret.err = "Could not load history data";
+        res.send(ret);
+        return;
+      }
+      res.send(row);
+    });
+    statement.finalize();
+    closeDB(db);
   });
 }
 
