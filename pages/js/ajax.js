@@ -229,7 +229,6 @@ function sendRegisterRequest() {
                 }
 
                 //Registration was succesful
-                alert(obj.message);
                 build("login.html");
             });
             req.open("POST", "register", true);
