@@ -85,7 +85,7 @@ function buildHistoryPage() {
     req.setRequestHeader("Content-Type", "application/json");
     var obj = {};
     obj.token = GetState("token");
-    req.send(obj);
+    req.send(JSON.stringify(obj));
 }
 
 function sendLoginRequest() {
