@@ -86,9 +86,10 @@ exports.dbRegister = (req, res) => {
    var last_name = xss(req.body.last_name);
    var address = xss(req.body.address);
    var email = xss(req.body.email);
-   var password = xss(req.body.password);
+   var salt = sha256(Math.random());
+   var password = sha256(req.body.password + salt);
    var db = openDB();
-   db.run("INSERT INTO Users (username, first_name, last_name, address, email, password) VALUES ('"+username+"',' "+first_name+"','"+last_name+"','"+address+"', '"+email+"', '"+password+"')", err => {
+   db.run("INSERT INTO Users (username, first_name, last_name, address, email, password, salt) VALUES ('"+username+"',' "+first_name+"','"+last_name+"','"+address+"', '"+email+"', '"+password+"', '"+salt+"')", err => {
           if (err) {
                 console.log(err); 
                 res.send("registration failed! An error occured!");
@@ -126,7 +127,7 @@ exports.dbLogin = (req, res) => {
          return;
        }
 
-       if (row.password !== xss(req.body.password)) {
+       if (row.password !== sha256(req.body.password + salt)) {
          ret.err = "Wrong password!";
          res.send(ret);
          return;
