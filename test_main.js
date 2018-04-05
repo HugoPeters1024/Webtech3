@@ -9,7 +9,7 @@ var app = express();
 const sqlite3 = require('sqlite3').verbose();
 
 //Make sure that the root directory of our git repo is mapped to /group12
-var rootdir = __dirname + '/webtech3/pages'
+var rootdir = __dirname + '/pages'
 app.use('/', express.static(rootdir));
 
 
