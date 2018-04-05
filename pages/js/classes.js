@@ -1,7 +1,7 @@
 class Product {
     constructor(name, image, price, maker, pid) {
         this.name = name;
-        this.price = `<span class="dollars">${price}</span>`;
+        this.price = `<span class="dollars">${Number(price).toLocaleString('en')}</span>`;
         this.image = image;
         this.maker = maker;
         this.product_id = pid;
