@@ -13,7 +13,7 @@ class Product {
         var tdname = document.createElement("TD");
         tdname.innerHTML = this.name;
         var tdimage = document.createElement("TD");
-        tdimage.innerHTML = `img class="image" src="${this.image} alt="Image not found">`
+        tdimage.innerHTML = `img class="image" src="${this.image}" alt="Image not found">`
         var tdmaker = document.createElement("TD");
         tdmaker.innerHTML = this.maker;
         var tdprice = document.createElement("TD");
