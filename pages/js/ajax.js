@@ -98,6 +98,19 @@ function buildProductPage()
                 search.appendChild(node);
             });
         }
+
+        search.addEventListener("change", function(event) {
+            var maker_search = document.getElementById("search_maker").value
+            for(var i=0; i<list.length; ++i)
+            {
+                var obj = list[i];
+                productlist.push(new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id));
+                var product = productlist[productlist.length-1];
+                var row = product.GetRowEntry()
+                if (product.maker == maker_search || maker_search == -1)
+                    table.appendChild(row);
+            }
+        });
     });
     manu_req.open("POST", "makers", true);
     manu_req.send()

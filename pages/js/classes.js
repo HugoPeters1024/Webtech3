@@ -21,7 +21,7 @@ class Product {
         var tdimage = document.createElement("TD");
         tdimage.innerHTML = `<img class="image" src="${this.image}" alt="Image not found">`
         var tdmaker = document.createElement("TD");
-        tdmaker.innerHTML = `Manufacturer: ${this.maker}`;
+        tdmaker.innerHTML = this.maker;
         var tdprice = document.createElement("TD");
         tdprice.innerHTML = this.price;
         var tdbutton = document.createElement("TD");
