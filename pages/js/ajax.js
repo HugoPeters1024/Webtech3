@@ -121,6 +121,11 @@ function buyProduct(productId) {
           catch(err) {
               console.log("Invalid server response, not a JSON object: " + this.responseText);
           }
+          if (res.err) {
+              console.log(err);
+              return;
+          }
+
           alert("Product bought succesfully!");
       });
       req.open("POST", "buy", true);
