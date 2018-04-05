@@ -88,13 +88,18 @@ function buildHistoryPage() {
             alert("Invalid server response, not a JSON object")
         }
         var table = document.getElementById("history");
+        var options = {  
+            weekday: "long", year: "numeric", month: "short",  
+            day: "numeric", hour: "2-digit", minute: "2-digit"  
+        };  
+        
         response.forEach(element => {
             var row = document.createElement("TR");
             row.innerHTML = `
             <td>${element.name}</td>
             <td><img src="${element.image}" class="image"><td>
             <td>${element.price}</td>
-            <td>${new Date(element.date)}</td>`;
+            <td>${new Date(element.date).toLocaleTimeString("en-us", options)}</td>`;
             table.appendChild(row);
         });
     })
