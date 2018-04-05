@@ -116,7 +116,7 @@ function buildHistoryPage() {
             <td>${product.name}</td>
             <td><img src="${product.image}" class="image"></td>
             <td>${product.price}</td>
-            <td>${new Date(product.date).toLocaleTimeString("en-us", options)}</td>`;
+            <td>${new Date(element.date).toLocaleTimeString("en-us", options)}</td>`;
             table.appendChild(row);
         });
     })
