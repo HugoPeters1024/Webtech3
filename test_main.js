@@ -8,9 +8,9 @@ var app = express();
 //var bodyParser = require('body-parser');
 const sqlite3 = require('sqlite3').verbose();
 
-//Make sure that the root directory of our git repo is mapped to /group12 
-var rootdir = __dirname + '/webtech3/pages' 
-app.use('/group12', express.static(rootdir));
+//Make sure that the root directory of our git repo is mapped to /group12
+var rootdir = __dirname + '/webtech3/pages'
+app.use('/', express.static(rootdir));
 
 
 //sanitize user input
@@ -22,9 +22,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.set('json spaces', 40);
 
-app.get('/', function(req, res) {
-  res.send("Boem jo");
-});
+//app.get('/', function(req, res) {
+//  res.send("Boem jo");
+//});
 app.post('/group12/post', function(req, res) {
   databaseQuery(req, res)
 });
