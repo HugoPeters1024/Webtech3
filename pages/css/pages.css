@@ -38,3 +38,8 @@ table.products tr td {
 	height: 60px;
 	width: 60px;
 } 
+
+table.history tr td {
+    padding: 2px;
+    padding-right: 100px;
+}
