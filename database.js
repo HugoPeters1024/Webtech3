@@ -58,15 +58,7 @@ exports.dbProducts = (req, res) => {
        res.send("An error has occured, check the logs for more info");
       }
       else {
-	var result = "[";
-        var delim = ""; //stupid hack to prevent trailing comma
-        rows.forEach(row => {
-	console.log(row);
-	result += delim + JSON.stringify(row);
-        delim = ',';
-      });
-      result += "]";
-      res.send(result);
+        res.send(rows);
      }
     statement.finalize();
    });
