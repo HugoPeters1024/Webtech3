@@ -131,19 +131,22 @@ function sendLoginRequest() {
     {
         var req = new XMLHttpRequest();
         req.addEventListener("loadend", function () {
+            document.getElementById("warning").innerHTML = "" //clear the warning
             var ret;
             try {
                 ret = JSON.parse(this.responseText);
             }
             catch(err) {
-                alert("Illegal response, not a JSON object.");
+                document.getElementById("waring").innerHTML = "Illegal response, not a JSON object.";
                 return;
             }
-            if (!ret.err) {
-                SetState("LoggedIn", true);
-                build("profile.html", buildUserProfile);
-                SetState("token", ret.token);
+            if (ret.err) {
+                document.getElementById("warning").innerHTML = ret.err;
+                return;
             }
+            SetState("LoggedIn", true);
+            build("profile.html", buildUserProfile);
+            SetState("token", ret.token);
         })
         req.open("POST", "login", true);
         var obj = {};
