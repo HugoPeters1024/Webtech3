@@ -67,7 +67,7 @@ exports.dbProducts = (req, res) => {
 
 exports.dbMakers = (req, res) => {
   var db = openDB();
-  db.all("SELECT * FROM Manufacturers WHERE 1", function(err, rows) {
+  db.all("SELECT * FROM Manufactures WHERE 1", function(err, rows) {
     if (err) {
       console.log(err);
       res.send("An error occured");
