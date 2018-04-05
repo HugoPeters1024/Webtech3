@@ -180,7 +180,8 @@ function buyProduct(productId) {
               return;
           }
 
-          alert("Product bought succesfully!");
+          console.log("Product bought succesfully!");
+          build("products.html");
       });
       req.open("POST", "buy", true);
       var obj = {};
