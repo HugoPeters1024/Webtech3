@@ -76,6 +76,18 @@ function buildProductPage()
     req.send();
 }
 
+function buildHistoryPage() {
+    var req = new XMLHttpRequest();
+    req.addEventListener("loadend", function() {
+        alert(this.responseText);
+    })
+    req.open("POST", "history", true);
+    req.setRequestHeader("Content-Type", "application/json");
+    var obj = {};
+    obj.token = GetState("token");
+    req.send(obj);
+}
+
 function sendLoginRequest() {
     var username = document.getElementById("username");
     var password = document.getElementById("password")

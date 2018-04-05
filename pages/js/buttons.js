@@ -58,4 +58,10 @@ function config_buttons() {
         else
             but.style.display = "block";
     }, true)
+
+    //HISTORY BUTTON
+    var but_history = document.getElementById("but_history");
+    but_history.addEventListener("click", function() {
+        build("history.html");
+    });
 }

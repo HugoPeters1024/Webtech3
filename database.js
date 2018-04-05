@@ -213,6 +213,18 @@ exports.dbBuy = (req, res) => {
    }); 
 }
 
+exports.dbHistory = (req, res) => {
+  var ret = {};
+  if (!req.body.token) {
+    ret.err = "No token provided";
+    res.send(ret);
+  }
+  ValidateSession(req.body.token, function(err, user_id) {
+    ret.message = "Cool dude";
+    res.send(ret);
+  });
+}
+
 CreateSession = (user_id, callback) =>  {
    console.log("Creating a new session");
    var err_message;
