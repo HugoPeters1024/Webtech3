@@ -1,6 +1,7 @@
 function build(file, callback, arg) {
     if (!file)
         file = GetState("CurrentPage");
+    alert(JSON.stringify(arg));
     SetState("CurrentPage", file);
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() {
