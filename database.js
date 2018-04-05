@@ -163,6 +163,7 @@ exports.dbUserInfo = (req, res) => {
       if (err) {
         console.log(err);
         ret.err = "Could not validate session";
+        ret.errcode = 32;
         res.send(ret);
         return;
       }
