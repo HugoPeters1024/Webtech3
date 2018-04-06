@@ -15,7 +15,6 @@ class Product {
 
 
     GetRowEntry() {
-        var outer = document.createElement("A");
         var row = document.createElement("TR");
         var tdname = document.createElement("TD");
         tdname.innerHTML = this.name;
@@ -36,8 +35,6 @@ class Product {
         row.appendChild(tdmaker);
         row.appendChild(tdprice);
         row.appendChild(tdbutton);
-        outer.appendChild(row);
-        outer.href = "www.google.com";
-        return outer;
+        return row;
     };
 }

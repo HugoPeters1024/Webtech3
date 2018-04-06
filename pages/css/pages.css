@@ -49,6 +49,11 @@ table.std_table tr td {
 
 .dollars:before { content:'$'; }
 
+/* PRODUCTS PAGE */
+#products_table tr {
+
+}
+
 /* CONFIRM PRODUCT PAGE */
 
 table.confirm_product {
