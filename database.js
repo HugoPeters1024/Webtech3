@@ -50,7 +50,7 @@ exports.dbSelect = (req, res, table, value) => {
 
 exports.dbProducts = (req, res) => {
     var db = openDB();
-    console.log('Searching for products ' + req.body);
+    console.log('Searching for products ' + JSON.stringify(req.body);
     var order_id = req.body.order_id;
     if (!order_id)
       order_id = 0;
