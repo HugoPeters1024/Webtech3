@@ -135,6 +135,7 @@ function buildProductPage(maker_id, order_id)
         })
     });
     manu_req.open("POST", "makers", true);
+    req.setRequestHeader("Content-Type", "application/json");
     manu_req.send()
 }
 
