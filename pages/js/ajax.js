@@ -104,10 +104,7 @@ function buildProductPage(maker_id)
         }
 
         var state = GetState("SearchMaker");
-        if (state)
-            this.value = state;
-        else
-            this.value = -1;
+        this.value = 1;
 
         search.addEventListener("change", function() {
            SetState("SearchMaker", this.value);
