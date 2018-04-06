@@ -64,8 +64,8 @@ exports.dbProducts = (req, res) => {
     }
     if (!req.body.maker_id)
     {
-      var statement = db.prepare('SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id ' + orderClausule);
-      statement.all(function(err, rows) {
+      var statement = 'SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id ' + orderClausule;
+      db.all(statement, function(err, rows) {
         if(err) {
         console.log(err);
         res.send("An error has occured, check the logs for more info");
@@ -77,8 +77,8 @@ exports.dbProducts = (req, res) => {
    }
    else
    {
-     var statement = db.prepare('SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Manufactures.maker_id = ? ' + orderClausule);
-     statement.all(req.body.maker_id, function(err, rows) {
+     var statement = "SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Manufactures.maker_id = " + req.body.maker_id + " " + orderClausule;
+     db.all(statement, function(err, rows) {
        if(err) {
          console.log(err)
          res.send("An error has occured");
@@ -88,7 +88,6 @@ exports.dbProducts = (req, res) => {
        }
      });
    }
-   statement.finalize();
    closeDB(db);
 }
 
