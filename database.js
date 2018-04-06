@@ -52,15 +52,15 @@ exports.dbProducts = (req, res) => {
     var db = openDB();
     console.log('Searching for products');
     if (!req.body.order_id)
-      req.body.order_id = 0;
+      req.body.order_id = "0";
 
     var orderClausule = "";
     switch(req.body.order_id)
     {
-      case 0: orderClausule = "ORDER BY Manufactures.name"; break;
-      case 1: orderClausule = "ORDER BY Products.name ASC"; break;
-      case 2: orderClausule = "ORDER BY Products.price ASC"; break;
-      case 3: orderClausule = "ORDER BY Products.price DESC"; break;
+      case "0": orderClausule = "ORDER BY Manufactures.name"; break;
+      case "1": orderClausule = "ORDER BY Products.name ASC"; break;
+      case "2": orderClausule = "ORDER BY Products.price ASC"; break;
+      case "3": orderClausule = "ORDER BY Products.price DESC"; break;
     }
     console.log("orderClausule: " + orderClausule);
     if (!req.body.maker_id)
