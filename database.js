@@ -296,7 +296,7 @@ CreateSession = (user_id, callback) =>  {
    var db = openDB();
    var statement = db.prepare("INSERT INTO Sessions (user_id, session_token, expired) VALUES (?, ?, ?)");
    statement.run(user_id, token, new Date(), function(err) {
-      console.log(err);
+      if (err) console.log(err);
    });
    statement.finalize();
    closeDB(db);
