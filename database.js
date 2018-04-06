@@ -324,6 +324,12 @@ ValidateSession = (token, callback) => {
      }
      else {
        user_id = row.user_id;
+       var extendSession = db.prepare("UPDATE Sessions SET Sessions.date = ? WHERE Sessions.token = ?");
+       extendSession.run(new Date() + 1000 * 60 * 60 * 6, token, function(err) {
+         if (err) {
+           console.log("Could not extend session! " + err);
+         }
+       });
        console.log("User " + user_id + " succesfully validated");
        callback(error, row.user_id);
      }
