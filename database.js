@@ -75,7 +75,7 @@ exports.dbProducts = (req, res) => {
           res.send(rows);
         }
     });
-   }
+    }
    else
    {
      var statement = "SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Manufactures.maker_id = " + req.body.maker_id + " " + orderClausule;
