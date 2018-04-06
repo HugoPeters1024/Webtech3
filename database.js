@@ -330,19 +330,19 @@ ValidateSession = (token, callback) => {
           callback(error, user_id);
         }
       });
-      statement.finalize();
-
-      console.log("Valided but not yet extended... user_id: " + user_id);
-
-        extendSession.run(new Date() + 1000 * 60 * 60 * 6, token, function(err) {
-        if (err) {
-          console.log("Could not extend session! " + err);
-        }
-        else {
-          console.log("Succesfully extend user " + user_id + " sessiont token");
-        }
-      });
-      extendSession.finalize();
+      statement.finalize(function(err) {
+         if (err) {return}
+         console.log("Valided but not yet extended... user_id: " + user_id);
+          extendSession.run(new Date() + 1000 * 60 * 60 * 6, token, function(err) {
+            if (err) {
+              console.log("Could not extend session! " + err);
+            }
+            else {
+              console.log("Succesfully extend user " + user_id + " sessiont token");
+            }
+          });
+          extendSession.finalize();
+        });
   });
   
    closeDB(db);
