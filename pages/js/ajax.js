@@ -1,4 +1,4 @@
-function build(file, callback, arg1, arg2) {
+function build(file, callback, arg1, arg2, arg3) {
     if (!file)
         file = GetState("CurrentPage");
     SetState("CurrentPage", file);
@@ -6,7 +6,7 @@ function build(file, callback, arg1, arg2) {
     req.addEventListener("loadend", function() {
         var page= document.getElementById("page");
         page.innerHTML = this.responseText;
-        if (callback) { callback(arg1, arg2); return; };
+        if (callback) { callback(arg1, arg2, arg3); return; };
         if (file == "profile.html") buildUserProfile();
         if (file == "products.html") { 
             var search_text = document.getElementById("search_text").value;
