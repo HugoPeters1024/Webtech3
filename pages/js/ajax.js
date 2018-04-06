@@ -78,7 +78,7 @@ function buildProductPage(maker_id)
             productlist.push(new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id));
             var product = productlist[productlist.length-1];
             var row = product.GetRowEntry()
-            if (row.maker_id == maker_search || maker_search == -1)
+            if (row.maker_id == maker_search || maker_search == -1 || !maker_search)
                 table.appendChild(row);
         }
     });
