@@ -324,7 +324,7 @@ ValidateSession = (token, callback) => {
         callback("Invalid token");
       }
       else {
-        if (new Date() > row.expired) {
+        if ( + new Date() > row.expired) {
            console.log("Session expired");
            callback("Session expired");
         } else {
@@ -336,7 +336,7 @@ ValidateSession = (token, callback) => {
     statement.finalize(function(err) {
         if (err | !user_id) {return}
         console.log("Valided but not yet extended... user_id: " + user_id);
-        extendSession.run(new Date() + 10, token, function(err) {
+        extendSession.run( + new Date() + 10, token, function(err) {
           if (err) {
             console.log("Could not extend session! " + err);
           }
