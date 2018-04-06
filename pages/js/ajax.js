@@ -64,7 +64,7 @@ function buildUserProfile(){
     req.send(`{"token" : "${GetState("token")}"}`);
 }
 
-function buildProductPage(maker_id)
+function buildProductPage(maker_id, order_id)
 {
     var productlist = [];
     var req = new XMLHttpRequest();
@@ -83,9 +83,12 @@ function buildProductPage(maker_id)
         }
     });
     req.open("POST", "products", true);
+    var ret = {};
     if (!maker_id)
         maker_id = -1;
-    var ret = {};
+    if (!order_id)
+        oder_id = 0;
+    ret.order_id = order_id;
     ret.maker_id = maker_id;
     req.send(JSON.stringify(ret));
 
@@ -96,18 +99,30 @@ function buildProductPage(maker_id)
         var search = document.getElementById("search_maker");
         if (search) {
             ret.forEach(element => {
-                var node = document.createElement("OPTION")
+                var node = document.createElement("OPTION");
                 node.setAttribute("value", element.maker_id);
                 node.innerHTML = element.name;
                 search.appendChild(node);
             });
         }
 
+        //Recover the search for manufacturer option
         var state = GetState("SearchMaker");
         if (state)
             search.value = state;
         else
             search.value = -1;
+
+        //Recover the orer option
+        var order = document.getElementById("search_order");
+        state = GetState("OrderProducts");
+        if (state)
+            order.value = state;
+        else
+            order.value = 0;
+
+
+            
 
         search.addEventListener("change", function() {
            SetState("SearchMaker", this.value);
