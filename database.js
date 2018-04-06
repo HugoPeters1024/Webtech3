@@ -55,6 +55,8 @@ exports.dbProducts = (req, res) => {
     if (!order_id)
       order_id = "0";
 
+    console.log("order_id: " + order_id);
+
     var orderClausule = "";
     switch(order_id)
     {
@@ -63,7 +65,6 @@ exports.dbProducts = (req, res) => {
       case "2": orderClausule = "ORDER BY Products.price ASC"; break;
       case "3": orderClausule = "ORDER BY Products.price DESC"; break;
     }
-    console.log("orderClausule: " + orderClausule);
     if (!req.body.maker_id)
     {
       var statement = 'SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id ' + orderClausule;
