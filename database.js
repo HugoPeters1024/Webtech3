@@ -53,17 +53,17 @@ exports.dbProducts = (req, res) => {
     console.log('Searching for products ' + JSON.stringify(req.body));
     var order_id = req.body.order_id;
     if (!order_id)
-      order_id = 0;
+      order_id = "0";
 
     console.log("order_id: " + order_id);
 
     var orderClausule = "";
     switch(order_id)
     {
-      case 0: orderClausule = "ORDER BY Manufactures.name"; break;
-      case 1: orderClausule = "ORDER BY Products.name ASC"; break;
-      case 2: orderClausule = "ORDER BY Products.price ASC"; break;
-      case 3: orderClausule = "ORDER BY Products.price DESC"; break;
+      case "0": orderClausule = "ORDER BY Manufactures.name"; break;
+      case "1": orderClausule = "ORDER BY Products.name ASC"; break;
+      case "2": orderClausule = "ORDER BY Products.price ASC"; break;
+      case "3": orderClausule = "ORDER BY Products.price DESC"; break;
     }
     console.log("order clausule: " + orderClausule);
     if (!req.body.maker_id)
