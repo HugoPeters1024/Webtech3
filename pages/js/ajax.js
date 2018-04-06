@@ -8,7 +8,10 @@ function build(file, callback, arg1, arg2) {
         page.innerHTML = this.responseText;
         if (callback) { callback(arg1, arg2); return; };
         if (file == "profile.html") buildUserProfile();
-        if (file == "products.html") buildProductPage(GetState("SearchMaker"), GetState("OrderProducts"));
+        if (file == "products.html") { 
+            var search_text = document.getElementById("search_text").value;
+            buildProductPage(GetState("SearchMaker"), GetState("OrderProducts"), search_text); 
+        }
         if (file == "history.html") buildHistoryPage();
         if (file == "confirm_product.html") buildProductConfirmPage();
     })
@@ -122,17 +125,23 @@ function buildProductPage(maker_id, order_id)
         else
             order.value = 0;
 
+        
+        var go_search = document.getElementById("go_search_text");
+        go_search.addEventListener("click", function() {
+            build("products.html")
+        });
+
 
             
 
         search.addEventListener("change", function() {
            SetState("SearchMaker", this.value);
-           build("products.html", buildProductPage, GetState("SearchMaker"), GetState("OrderProducts"));
+           build("products.html");
         });
 
         order.addEventListener("change", function() {
             SetState("OrderProducts", this.value);
-            build("products.html", buildProductPage, GetState("SearchMaker"), GetState("OrderProducts"))
+            build("products.html")
         })
     });
     manu_req.open("POST", "makers", true);
