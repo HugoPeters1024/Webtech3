@@ -67,7 +67,7 @@ function buildUserProfile(){
     req.send(`{"token" : "${GetState("token")}"}`);
 }
 
-function buildProductPage(maker_id, order_id)
+function buildProductPage(maker_id, order_id, search_text)
 {
     var productlist = [];
     var req = new XMLHttpRequest();
