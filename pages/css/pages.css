@@ -54,7 +54,7 @@ table.std_table tr td {
 .dollars:before { content:'$'; }
 
 /* PRODUCTS PAGE */
-#products_table tr:hover td {
+#products_table tr:hover:not(:first-child) td {
     background-color: #393d3f;
     color: white;
 }

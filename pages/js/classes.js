@@ -10,10 +10,6 @@ class Product {
         };
     };
     
-
-
-
-
     GetRowEntry() {
         var row = document.createElement("TR");
         var tdname = document.createElement("TD");
@@ -28,6 +24,7 @@ class Product {
         var but = document.createElement("BUTTON");
         tdbutton.appendChild(but);
         but.innerHTML = "Buy";
+        //Just make the entire row clickable
         row.addEventListener("click", this.clicker.bind(this), false);
 
         row.appendChild(tdname);
