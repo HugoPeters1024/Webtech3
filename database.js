@@ -205,7 +205,7 @@ exports.dbUserInfo = (req, res) => {
    ValidateSession(req.body.token, function(err, user_id) {
       if (err) {
         console.log(err);
-        ret.err = "Could not validate session";
+        ret.err = err;
         ret.errcode = 32;
         res.send(ret);
         return;
@@ -231,7 +231,7 @@ exports.dbBuy = (req, res) => {
    ValidateSession(req.body.token, function(err, user_id) {
       if (err) {
         console.log(err);
-        ret.err = "Could not validate session";
+        ret.err = err;
         ret.errcode = 32;
         res.send(ret);
         return;
@@ -266,7 +266,7 @@ exports.dbHistory = (req, res) => {
   }
   ValidateSession(req.body.token, function(err, user_id) {
     if (err) {
-      ret.err = "Invalid session!";
+      ret.err = err;
       ret.errcode = 32;
       res.send(ret);
       return;
