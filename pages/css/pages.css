@@ -41,8 +41,12 @@ table.profile tr td.info {
     max-width: 300;
 }
 
+table.std_table {
+    width: 100%;
+}
+
 table.std_table tr td {
-    padding: 2px;
+    padding: 10px;
     padding-right: 20px;
     width: auto;
 }
@@ -50,8 +54,9 @@ table.std_table tr td {
 .dollars:before { content:'$'; }
 
 /* PRODUCTS PAGE */
-#products_table tr {
-
+#products_table tr:hover td {
+    background-color: #393d3f;
+    color: white;
 }
 
 /* CONFIRM PRODUCT PAGE */
