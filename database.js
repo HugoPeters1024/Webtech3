@@ -178,13 +178,13 @@ exports.dbLogin = (req, res) => {
 
        //Entry point for creating sessions
        CreateSession(row.user_id, function(err, token) {
-          console.log("callback hell!");
           if (err) {
             console.log(err);
             ret.err = "Error creating session";
             res.send(ret);
             return;
           }
+          console.log("Succesfully created a session: " + token);
           ret.token = token;
           res.send(ret);
        });
