@@ -320,6 +320,7 @@ ValidateSession = (token, callback) => {
      }
      else {
        user_id = row.user_id;
+       console.log("User " + user_id + " succesfully validated");
        callback(error, row.user_id);
      }
    });
