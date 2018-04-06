@@ -315,8 +315,8 @@ ValidateSession = (token, callback) => {
        callback("database error");
      }
      if (!row) {
-       error = "Invalid Token";
-       callback(error, user_id);
+       console.log("Session could not be validated");
+       callback("invalid token");
      }
      else {
        user_id = row.user_id;
