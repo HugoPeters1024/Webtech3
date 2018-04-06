@@ -310,6 +310,10 @@ ValidateSession = (token, callback) => {
    var db = openDB();
    var statement = db.prepare("SELECT Users.user_id FROM Users, Sessions WHERE Users.user_id = Sessions.user_id AND Sessions.session_token = ?");
    statement.get(token, function(err, row) {
+     if (err) {
+       conosole.log(err);
+       callback("database error");
+     }
      if (!row) {
        error = "Invalid Token";
        callback(error, user_id);
