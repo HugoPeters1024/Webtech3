@@ -324,6 +324,7 @@ ValidateSession = (token, callback) => {
      }
      else {
        user_id = row.user_id;
+       /*
        var extendSession = db.prepare("UPDATE Sessions SET expired = ? WHERE session_token = ?");
        extendSession.run(new Date() + 1000 * 60 * 60 * 6, token, function(err) {
          if (err) {
@@ -333,7 +334,7 @@ ValidateSession = (token, callback) => {
            console.log("Succesfully extend user " + user_id + " sessiont token");
          }
        });
-       extendSession.finalize();
+       extendSession.finalize(); */
        console.log("User " + user_id + " succesfully validated");
        callback(error, user_id);
      }
