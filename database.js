@@ -327,10 +327,10 @@ ValidateSession = (token, callback) => {
         if (new Date() > row.expired) {
            console.log("Session expired");
            callback("Session expired");
-           return;
+        } else {
+          user_id = row.user_id;
+          console.log("User " + user_id + " succesfully validated");
         }
-        user_id = row.user_id;
-        console.log("User " + user_id + " succesfully validated");
       }
     });
     statement.finalize(function(err) {
