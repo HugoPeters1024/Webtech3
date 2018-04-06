@@ -53,7 +53,7 @@ exports.dbProducts = (req, res) => {
     console.log('Searching for products');
     if (!req.body.maker_id)
     {
-      var statement = db.prepare('SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id');
+      var statement = db.prepare('SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id');
       statement.all(function(err, rows) {
         if(err) {
         console.log(err);
@@ -66,7 +66,7 @@ exports.dbProducts = (req, res) => {
    }
    else
    {
-     var statement = db.prepare('SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Manufactures.maker_id = ?');
+     var statement = db.prepare('SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Manufactures.maker_id = ?');
      statement.all(req.body.maker_id, function(err, rows) {
        if(err) {
          console.log(err)
