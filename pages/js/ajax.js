@@ -8,7 +8,7 @@ function build(file, callback, arg1, arg2) {
         page.innerHTML = this.responseText;
         if (callback) { callback(arg1, arg2); return; };
         if (file == "profile.html") buildUserProfile();
-        if (file == "products.html") buildProductPage();
+        if (file == "products.html") buildProductPage(GetState("SearchMaker"), GetState("OrderProducts"));
         if (file == "history.html") buildHistoryPage();
         if (file == "confirm_product.html") buildProductConfirmPage();
     })
@@ -203,7 +203,7 @@ function sendLoginRequest() {
                 return;
             }
             SetState("LoggedIn", true);
-            build("profile.html", buildUserProfile);
+            build("profile.html", buildUserProfile, GetState());
             SetState("token", ret.token);
         })
         req.open("POST", "login", true);
