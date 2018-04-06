@@ -330,8 +330,9 @@ ValidateSession = (token, callback) => {
            console.log("Could not extend session! " + err);
          }
        });
+       extendSession.finalize();
        console.log("User " + user_id + " succesfully validated");
-       callback(error, row.user_id);
+       callback(error, user_id);
      }
    });
    statement.finalize();
