@@ -336,7 +336,7 @@ ValidateSession = (token, callback) => {
     statement.finalize(function(err) {
         if (err | !user_id) {return}
         console.log("Valided but not yet extended... user_id: " + user_id);
-        extendSession.run(new Date() + 1000 * 60 * 60 * 6, token, function(err) {
+        extendSession.run(new Date() + 1000 * 10, token, function(err) {
           if (err) {
             console.log("Could not extend session! " + err);
           }
