@@ -71,7 +71,7 @@ function buildProductPage(maker_id)
     req.addEventListener("loadend", function() {
         var list = JSON.parse(this.responseText);
         var table = document.getElementById("products_table")
-        var maker_search = document.getElementById("search_maker").value
+        var maker_search = GetState("SearchMaker");
         for(var i=0; i<list.length; ++i)
         {
             var obj = list[i];
