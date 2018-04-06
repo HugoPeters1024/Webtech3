@@ -1,4 +1,4 @@
-function build(file, callback, arg) {
+function build(file, callback, arg1, arg2) {
     if (!file)
         file = GetState("CurrentPage");
     SetState("CurrentPage", file);
@@ -6,7 +6,7 @@ function build(file, callback, arg) {
     req.addEventListener("loadend", function() {
         var page= document.getElementById("page");
         page.innerHTML = this.responseText;
-        if (callback) { callback(arg); return; };
+        if (callback) { callback(arg1, arg2); return; };
         if (file == "profile.html") buildUserProfile();
         if (file == "products.html") buildProductPage();
         if (file == "history.html") buildHistoryPage();
@@ -126,7 +126,7 @@ function buildProductPage(maker_id, order_id)
 
         search.addEventListener("change", function() {
            SetState("SearchMaker", this.value);
-           build("products.html", buildProductPage, this.value);
+           build("products.html", buildProductPage, GetState("SearchMaker"), GetState("OrderProducts"));
         });
     });
     manu_req.open("POST", "makers", true);
