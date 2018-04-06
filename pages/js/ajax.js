@@ -131,12 +131,12 @@ function buildProductPage(maker_id, order_id)
         });
 
         order.addEventListener("change", function() {
+            alert("Changed!");
             SetState("OrderProducts", this.value);
             build("products.html", buildProductPage, GetState("SearchMaker"), GetState("OrderProducts"))
         })
     });
     manu_req.open("POST", "makers", true);
-    req.setRequestHeader("Content-Type", "application/json");
     manu_req.send()
 }
 
