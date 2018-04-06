@@ -295,7 +295,7 @@ CreateSession = (user_id, callback) =>  {
    var token = sha256(Math.random().toString() + new Date());
    var db = openDB();
    var statement = db.prepare("INSERT INTO Sessions (user_id, session_token, expired) VALUES (?, ?, ?)");
-   statement.run(user_id, token, new Date(), function(err) {
+   statement.run(user_id, token, new Date() + 1000*60, function(err) {
       if (err) console.log(err);
    });
    statement.finalize();
