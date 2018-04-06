@@ -160,7 +160,7 @@ function buildHistoryPage() {
             response = JSON.parse(this.responseText);
         }
         catch(err) {
-            alert("Invalid server response, not a JSON object")
+            alert("Invalid server response, not a JSON object: " + this.responseText);
         }
         if (response.err) {
             console.log(response.err);

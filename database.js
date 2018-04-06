@@ -37,7 +37,7 @@ exports.dbSelect = (req, res, table, value) => {
     statement.get(value, function(err, row) {
  	if (err) {
         console.error(JSON.stringify(err));
-	res.send('An error has occured, check the logs for more info');
+      //	res.send('An error has occured, check the logs for more info');
       }
       else  {
         console.log(row);
@@ -75,7 +75,7 @@ exports.dbProducts = (req, res) => {
       db.all(statement, function(err, rows) {
         if(err) {
         console.log(err);
-        res.send("An error has occured, check the logs for more info");
+        res.send({}.err = 'An error has occured, check the logs.');
         }
         else {
           res.send(rows);
@@ -88,7 +88,7 @@ exports.dbProducts = (req, res) => {
      db.all(statement, function(err, rows) {
        if(err) {
          console.log(err)
-         res.send("An error has occured");
+         res.send({}.err = "An error has occured");
        }
        else {
          res.send(rows);
@@ -103,7 +103,7 @@ exports.dbMakers = (req, res) => {
   db.all("SELECT * FROM Manufactures WHERE 1", function(err, rows) {
     if (err) {
       console.log(err);
-      res.send("An error occured");
+      res.send({}.err = "An error occured");
       return;
     }
     res.send(rows);
