@@ -313,7 +313,6 @@ ValidateSession = (token, callback) => {
    var error;
    var db = openDB();
     var statement = db.prepare("SELECT Users.user_id, Sessions.expired FROM Users, Sessions WHERE Users.user_id = Sessions.user_id AND Sessions.session_token = ?");
-    var extendSession = db.prepare("UPDATE Sessions SET expired = ? WHERE session_token = ?");
     statement.get(token, function(err, row) {
       if (err) {
         conosole.log(err);
@@ -335,6 +334,7 @@ ValidateSession = (token, callback) => {
     });
     statement.finalize(function(err) {
         if (err | !user_id) {return}
+        var extendSession = db.prepare("UPDATE Sessions SET expired = ? WHERE session_token = ?");
         console.log("Valided but not yet extended... user_id: " + user_id);
         extendSession.run( + new Date() + 1000 * 60 * 10, token, function(err) {
           if (err) {
