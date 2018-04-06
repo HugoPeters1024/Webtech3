@@ -154,7 +154,7 @@ exports.dbLogin = (req, res) => {
    var user_id;
    var db = openDB();
    var statement = db.prepare("SELECT * FROM Users WHERE Users.username = ?");
-   statement.get(req.body.username, function(err, row) {
+   statement.get(xss(req.body.username), function(err, row) {
        var ret = {};
        if (err) {
          console.log(err);
