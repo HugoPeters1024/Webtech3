@@ -131,7 +131,8 @@ function buildProductPage(maker_id, order_id, search_text)
         
         var go_search = document.getElementById("go_search_text");
         go_search.addEventListener("click", function() {
-            build("products.html")
+            var val = document.getElementById("search_text").value;
+            build("products.html", buildProductPage, GetState("SearchMaker"), GetState("OrderProducts"), val);
         });
 
 
