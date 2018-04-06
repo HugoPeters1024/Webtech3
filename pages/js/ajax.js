@@ -91,7 +91,6 @@ function buildProductPage(maker_id, order_id)
         order_id = 0;
     ret.order_id = order_id;
     ret.maker_id = maker_id;
-    alert(JSON.stringify(ret));
     req.send(JSON.stringify(ret));
 
     //get the manufacturers
