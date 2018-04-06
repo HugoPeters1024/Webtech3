@@ -40,7 +40,7 @@ function buildUserProfile(){
             obj = JSON.parse(this.responseText);
         }
         catch(err) {
-            alert("invalid response, not a JSON object");
+            alert("invalid response, not a JSON object: " + this.responseText);
             return;
         }
         if (obj.err) {
