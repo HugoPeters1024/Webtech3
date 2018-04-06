@@ -28,7 +28,7 @@ class Product {
         var but = document.createElement("BUTTON");
         tdbutton.appendChild(but);
         but.innerHTML = "Buy";
-        but.addEventListener("click", this.clicker.bind(this), false);
+        row.addEventListener("click", this.clicker.bind(this), false);
 
         row.appendChild(tdname);
         row.appendChild(tdimage);
