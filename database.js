@@ -52,8 +52,11 @@ exports.dbProducts = (req, res) => {
     var db = openDB();
     console.log('Searching for products ' + JSON.stringify(req.body));
     var order_id = req.body.order_id;
+    var search_text = req.body.search_text;
     if (!order_id)
       order_id = "0";
+    if (!search_text)
+      search_text = "";
 
     console.log("order_id: " + order_id);
 
@@ -68,7 +71,7 @@ exports.dbProducts = (req, res) => {
     console.log("order clausule: " + orderClausule);
     if (!req.body.maker_id || req.body.maker_id == "-1")
     {
-      var statement = 'SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id ' + orderClausule;
+      var statement = "SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Products.name LIKE '%"+search_text+"%'" + orderClausule;
       db.all(statement, function(err, rows) {
         if(err) {
         console.log(err);
@@ -81,7 +84,7 @@ exports.dbProducts = (req, res) => {
     }
    else
    {
-     var statement = "SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Manufactures.maker_id = " + req.body.maker_id + " " + orderClausule;
+     var statement = "SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Products.name LIKE '%"+search_text+"%' AND Manufactures.maker_id = " + req.body.maker_id + " " + orderClausule;
      db.all(statement, function(err, rows) {
        if(err) {
          console.log(err)
