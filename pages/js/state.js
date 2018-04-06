@@ -1,7 +1,7 @@
 if (!window.localStorage.getItem("StateWrapper") || window.localStorage.getItem("StateWrapper") == "undefined") {
     window.localStorage.setItem("StateWrapper",
     `{
-      "LoggedIn" : { "value" : "true", "actions" : [] },
+      "LoggedIn" : { "value" : "false", "actions" : [] },
       "CurrentPage" : { "value" : "home.html", "actions" : [] }
      }`)  
 }
@@ -9,6 +9,10 @@ if (!window.localStorage.getItem("StateWrapper") || window.localStorage.getItem(
 var StateWrapper = JSON.parse(window.localStorage.getItem("StateWrapper")); 
 
 function SaveState() {
+    for(item in StateWrapper)
+    {
+        item.actions = [];
+    }
     window.localStorage.setItem("StateWrapper", JSON.stringify(StateWrapper));
 }
 
