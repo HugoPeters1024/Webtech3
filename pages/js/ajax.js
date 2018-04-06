@@ -114,7 +114,7 @@ function buildProductPage(maker_id, order_id)
         else
             search.value = -1;
 
-        //Recover the orer option
+        //Recover the order option
         var order = document.getElementById("search_order");
         state = GetState("OrderProducts");
         if (state)
