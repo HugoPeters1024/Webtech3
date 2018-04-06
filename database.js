@@ -303,7 +303,7 @@ CreateSession = (user_id, callback) =>  {
    callback(err_message, token);
 }
 
-ValidateSession = (token, callback) => {
+ValidateSession = async (token, callback) => {
    console.log("Validating session...");
    if (!token) { //SQL query won't execute otherwise
     callback("Invalid token");
@@ -314,7 +314,7 @@ ValidateSession = (token, callback) => {
    var db = openDB();
    var statement = db.prepare("SELECT Users.user_id FROM Users, Sessions WHERE Users.user_id = Sessions.user_id AND Sessions.session_token = ?");
    var extendSession = db.prepare("UPDATE Sessions SET expired = ? WHERE session_token = ?");
-   statement.get(token, function(err, row) {
+   await statement.get(token, function(err, row) {
      if (err) {
        conosole.log(err);
        callback("database error");
@@ -333,7 +333,7 @@ ValidateSession = (token, callback) => {
 
    console.log("Valided but not yet extended...");
 
-   extendSession.run(new Date() + 1000 * 60 * 60 * 6, token, function(err) {
+   await extendSession.run(new Date() + 1000 * 60 * 60 * 6, token, function(err) {
     if (err) {
       console.log("Could not extend session! " + err);
     }
