@@ -314,7 +314,6 @@ ValidateSession = (token, callback) => {
    var db = openDB();
    var statement = db.prepare("SELECT Users.user_id FROM Users, Sessions WHERE Users.user_id = Sessions.user_id AND Sessions.session_token = ?");
    var extendSession = db.prepare("UPDATE Sessions SET expired = ? WHERE session_token = ?");
-   d
    statement.get(token, function(err, row) {
      if (err) {
        conosole.log(err);
