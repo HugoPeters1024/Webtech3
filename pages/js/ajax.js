@@ -128,6 +128,11 @@ function buildProductPage(maker_id, order_id)
            SetState("SearchMaker", this.value);
            build("products.html", buildProductPage, GetState("SearchMaker"), GetState("OrderProducts"));
         });
+
+        order.addEventListener("change", function() {
+            SetState("OrderProducts", this.value);
+            build("products.html", buildProductPage, GetState("SearchMaker"), GetState("OrderProducts"))
+        })
     });
     manu_req.open("POST", "makers", true);
     manu_req.send()

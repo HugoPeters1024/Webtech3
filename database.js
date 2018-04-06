@@ -58,8 +58,9 @@ exports.dbProducts = (req, res) => {
     switch(req.body.order_id)
     {
       case 0: orderClausule = "ORDER BY Manufactures.name"; break;
-      case 1: orderClausule = "ORDER BY Products.price ASC"; break;
-      case 1: orderClausule = "ORDER BY Products.price DESC"; break;
+      case 1: orderClausule = "ORDER BY Products.name ASC"; break;
+      case 2: orderClausule = "ORDER BY Products.price ASC"; break;
+      case 3: orderClausule = "ORDER BY Products.price DESC"; break;
     }
     if (!req.body.maker_id)
     {
