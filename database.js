@@ -6,7 +6,7 @@ var sha256 = require("js-sha256");
 function openDB() {
   let db = new sqlite3.Database('./db/test.db', (err) => {
     if (err) {
-      console.log('Database connection could not be established');
+      console.log('Database connection could not be established: ' + err);
       return null;
     }
     console.log('Database connection has been established');
