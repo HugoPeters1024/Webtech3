@@ -40,7 +40,7 @@ function buildUserProfile(){
             obj = JSON.parse(this.responseText);
         }
         catch(err) {
-            alert("invalid response, not a JSON object: " + this.responseText);
+            console.log("invalid response, not a JSON object: " + this.responseText);
             return;
         }
         if (obj.err) {
@@ -160,7 +160,7 @@ function buildHistoryPage() {
             response = JSON.parse(this.responseText);
         }
         catch(err) {
-            alert("Invalid server response, not a JSON object: " + this.responseText);
+            console.log("Invalid server response, not a JSON object: " + this.responseText);
         }
         if (response.err) {
             console.log(response.err);
