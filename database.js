@@ -66,7 +66,7 @@ exports.dbProducts = (req, res) => {
       case "3": orderClausule = "ORDER BY Products.price DESC"; break;
     }
     console.log("order clausule: " + orderClausule);
-    if (!req.body.maker_id)
+    if (!req.body.maker_id || req.body.maker_id == "-1")
     {
       var statement = 'SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id ' + orderClausule;
       db.all(statement, function(err, rows) {
