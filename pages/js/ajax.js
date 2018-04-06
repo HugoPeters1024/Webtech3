@@ -64,7 +64,7 @@ function buildUserProfile(){
     req.send(`{"token" : "${GetState("token")}"}`);
 }
 
-function buildProductPage()
+function buildProductPage(maker_id)
 {
     var productlist = [];
     var req = new XMLHttpRequest();
@@ -83,7 +83,9 @@ function buildProductPage()
         }
     });
     req.open("POST", "products", true);
-    req.send();
+    if (!maker_id)
+        maker_id = -1;
+    req.send({}.maker_id = maker_id);
 
     //get the manufacturers
     var manu_req = new XMLHttpRequest();
@@ -99,17 +101,9 @@ function buildProductPage()
             });
         }
 
-        search.addEventListener("change", function(event) {
-            var maker_search = document.getElementById("search_maker").value
-            for(var i=0; i<list.length; ++i)
-            {
-                var obj = list[i];
-                productlist.push(new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id));
-                var product = productlist[productlist.length-1];
-                var row = product.GetRowEntry()
-                if (product.maker == maker_search || maker_search == -1)
-                    table.appendChild(row);
-            }
+        search.addEventListener("change", function() {
+           SetState("SearchMaker", this.value);
+           build("products.html", buildProductPage, this.value);
         });
     });
     manu_req.open("POST", "makers", true);

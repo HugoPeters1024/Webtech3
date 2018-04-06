@@ -51,16 +51,32 @@ exports.dbSelect = (req, res, table, value) => {
 exports.dbProducts = (req, res) => {
     var db = openDB();
     console.log('Searching for products');
-    var statement = db.prepare('SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id');
-    statement.all(function(err, rows) {
-      if(err) {
-       console.error(JSON.stringify(err));
-       res.send("An error has occured, check the logs for more info");
-      }
-      else {
-        res.send(rows);
-     }
-   });
+    if (!req.body.maker_id)
+    {
+      var statement = db.prepare('SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id');
+      statement.all(function(err, rows) {
+        if(err) {
+        console.log(err);
+        res.send("An error has occured, check the logs for more info");
+        }
+        else {
+          res.send(rows);
+        }
+    });
+   }
+   else
+   {
+     var statement = db.prepare('SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Manufactures.maker_id = ?');
+     statement.all(req.body.maker_id, function(err, rows) {
+       if(err) {
+         console.log(err)
+         res.send("An error has occured");
+       }
+       else {
+         res.send(rows);
+       }
+     });
+   }
    statement.finalize();
    closeDB(db);
 }
