@@ -87,7 +87,7 @@ function buildProductPage(maker_id)
         maker_id = -1;
     var ret = {};
     ret.maker_id = maker_id;
-    req.send(ret);
+    req.send(JSON.stringify(ret));
 
     //get the manufacturers
     var manu_req = new XMLHttpRequest();
