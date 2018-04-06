@@ -51,11 +51,12 @@ exports.dbSelect = (req, res, table, value) => {
 exports.dbProducts = (req, res) => {
     var db = openDB();
     console.log('Searching for products');
-    if (!req.body.order_id)
-      req.body.order_id = "0";
+    var order_id = req.body.order_id;
+    if (!order_id)
+      order_id = "0";
 
     var orderClausule = "";
-    switch(req.body.order_id)
+    switch(order_id)
     {
       case "0": orderClausule = "ORDER BY Manufactures.name"; break;
       case "1": orderClausule = "ORDER BY Products.name ASC"; break;
