@@ -87,7 +87,7 @@ function buildProductPage(maker_id, order_id)
     if (!maker_id)
         maker_id = -1;
     if (!order_id)
-        oder_id = 0;
+        order_id = 0;
     ret.order_id = order_id;
     ret.maker_id = maker_id;
     req.send(JSON.stringify(ret));
