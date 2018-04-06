@@ -305,7 +305,7 @@ CreateSession = (user_id, callback) =>  {
 
 ValidateSession = (token, callback) => {
    console.log("Validating session...");
-   if (!token) //SQL query won't execute otherwise {
+   if (!token) { //SQL query won't execute otherwise
      callback("Invalid token");
    }
    var user_id;
