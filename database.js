@@ -327,11 +327,11 @@ ValidateSession = (token, callback) => {
         else {
           user_id = row.user_id;
           console.log("User " + user_id + " succesfully validated");
-          callback(error, user_id);
         }
       });
       statement.finalize(function(err) {
          if (err) {return}
+         callback(error, user_id);
          console.log("Valided but not yet extended... user_id: " + user_id);
           extendSession.run(new Date() + 1000 * 60 * 60 * 6, token, function(err) {
             if (err) {
@@ -342,7 +342,7 @@ ValidateSession = (token, callback) => {
             }
           });
           extendSession.finalize();
-        });
+      });
   });
   
    closeDB(db);
