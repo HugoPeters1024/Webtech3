@@ -83,6 +83,7 @@ function buildProductPage(maker_id, order_id)
         }
     });
     req.open("POST", "products", true);
+    req.setRequestHeader("Content-Type", "application/json");
     var ret = {};
     if (!maker_id)
         maker_id = -1;
