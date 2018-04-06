@@ -305,19 +305,21 @@ CreateSession = (user_id, callback) =>  {
 
 ValidateSession = (token, callback) => {
    console.log("Validating session...");
+   if (!token) //SQL query won't execute otherwise {
+     callback("Invalid token");
+   }
    var user_id;
    var error;
    var db = openDB();
    var statement = db.prepare("SELECT Users.user_id FROM Users, Sessions WHERE Users.user_id = Sessions.user_id AND Sessions.session_token = ?");
    statement.get(token, function(err, row) {
-     console.log("DEBUG: " + JSON.stringify(row));
      if (err) {
        conosole.log(err);
        callback("database error");
      }
      if (!row) {
        console.log("Session could not be validated");
-       callback("invalid token");
+       callback("Invalid token");
      }
      else {
        user_id = row.user_id;
