@@ -268,6 +268,20 @@ function buildProductConfirmPage(product_id)
     if (product_id) {
         var req = new XMLHttpRequest();
         req.addEventListener("loadend", function() {
+            var obj;
+            try {
+                obj = JSON.parse(this.responseText);
+            }
+            catch(err) {
+                console.log("Invalid server response, not a JSON object: " + this.responseText);
+                return;
+            }
+            if (obj.err) {
+                console.log(err)
+                if (obj.errcode == 32)
+                    build("login.html");
+                return;
+            }
             /*
             document.getElementById("product_name").innerHTML = product.name;
             document.getElementById("product_image").innerHTML = `<img class="large_image" src="${product.image}">`;
