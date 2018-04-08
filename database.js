@@ -111,6 +111,9 @@ exports.dbProductInfo = (req, res) => {
       res.send({"err" : "Error getting product info"});
       return;
     }
+    if (!row) {
+      res.send({"err" : "No product found!"});
+    }
     res.send(row);
   }
   statement.finalize();
