@@ -88,8 +88,7 @@ exports.dbProducts = (req, res) => {
      db.all(statement, function(err, rows) {
        if(err) {
          console.log(err)
-         var ret = {};
-         res.send((ret.err = "An error has occured"));
+         res.send({}.err = "An error has occured");
        }
        else {
          res.send(rows);
@@ -101,7 +100,7 @@ exports.dbProducts = (req, res) => {
 
 exports.dbProductInfo = (req, res) => {
   if (!req.body.product_id) {
-    res.send({}.err = "No product_id provided!");
+    res.send({ "err" : "No product_id provided!" });
     return;
   }
 
