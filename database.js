@@ -105,20 +105,19 @@ exports.dbProductInfo = (req, res) => {
   }
   var db = openDB();
   var statement = db.prepare("SELECT Products.product_id, Products.name, Manufactures.name as maker, Products.image, Products.price FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Products.product_id = ?");
-  statement.get(req.body.product_id), function(err, row) {
+  statement.get(req.body.product_id, function(err, row) {
     if (err) {
       console.write(err);
       res.send({"err" : "Error getting product info"});
       return;
     }
     if (!row) {
-      res.send({"err" : "No product found!"});
+      res.send({"err" : "Product not found!"});
     }
     res.send(row);
-  }
+  });
   statement.finalize();
   closeDB(db);
-
 }
 
 exports.dbMakers = (req, res) => {
