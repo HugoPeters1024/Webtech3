@@ -74,16 +74,17 @@ function buildUserProfile(){
         //var oldvals = nodes.map(x => x.innerHTML);
         if (this.innerHTML == "Edit") {
             nodes.forEach((element) => {
-                element.innerHTML = `<input type="text" id="${element.id}" value="${element.innerHTML}">`;
+                element.innerHTML = `<input type="text" name="${element.id}" value="${element.innerHTML}">`;
             });
             this.innerHTML = "Send";
         }
         else {
-            console.log(nodes.map(x => x.innerHTML));
-            nodes.forEach((element) => {
-                element.innerHTML = "";
+            var vals = nodes.map(x => x.childNodes[0].value);
+            var ret = {};
+            nodes.forEach((element, i) => {
+                ret[element.id] = vals[i];
             })
-            this.innerHTML = "Edit";
+            ret.token = GetState("token");
 
             var creq = new XMLHttpRequest();
             creq.addEventListener("loadend", function() {
@@ -94,6 +95,13 @@ function buildUserProfile(){
             })
             creq.open("POST", "edit_user", true);
             creq.setRequestHeader("Content-Type", "application/json");
+
+            nodes.forEach((element) => {
+                element.innerHTML = "";
+            })
+            console.log(ret);
+            this.innerHTML = "Edit";
+
             creq.send();
 
         }
