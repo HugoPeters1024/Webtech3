@@ -173,25 +173,12 @@ function buildHistoryPage() {
         }
 
         var table = document.getElementById("history");
-        var options = {  
-            weekday: "long", year: "numeric", month: "short",  
-            day: "numeric", hour: "2-digit", minute: "2-digit"  
-        };  
         
         response.forEach(element => {
-            var row = document.createElement("TR");
             product_list.push(new Product(element.name, element.image, element.price, element.maker, element.product_id));
             var product = product_list[product_list.length - 1];
 
-            row.addEventListener("click", function() {
-                build("confirm_product.html", buildProductConfirmPage, product.product_id);
-            })
-
-            row.innerHTML = `
-            <td>${product.name}</td>
-            <td><img src="${product.image}" class="image"></td>
-            <td>${product.price}</td>
-            <td>${new Date(element.date).toLocaleTimeString("en-us", options)}</td>`;
+            var row = product.GetHistoryRowEntry(element.date);
             table.appendChild(row);
         });
     })

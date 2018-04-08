@@ -34,4 +34,31 @@ class Product {
         row.appendChild(tdbutton);
         return row;
     };
+
+    GetHistoryRowEntry(date) {
+        var row = document.createElement("TR");
+        var tdname = document.createElement("TD");
+        tdname.innerHTML = this.name;
+        var tdimage = document.createElement("TD");
+        tdimage.innerHTML = `<img class="image" src="${this.image}" alt="Image not found">`
+        var tdprice = document.createElement("TD");
+        tdprice.innerHTML = this.price;
+        
+        var tddate = document.createElement("TD");
+
+        var options = {  
+            weekday: "long", year: "numeric", month: "short",  
+            day: "numeric", hour: "2-digit", minute: "2-digit"  
+        }; 
+        tddate.innerHTML = new Date(element.date).toLocaleTimeString("en-us", options);
+        //Just make the entire row clickable
+        row.addEventListener("click", this.clicker.bind(this), false);
+
+        row.appendChild(tdname);
+        row.appendChild(tdimage);
+        row.appendChild(tdmaker);
+        row.appendChild(tdprice);
+        row.appendChild(tdbutton);
+        return row;
+    }
 }
