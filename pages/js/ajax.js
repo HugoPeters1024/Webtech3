@@ -10,7 +10,8 @@ function build(file, callback, arg1, arg2, arg3, arg4) {
         if (file == "profile.html") buildUserProfile();
         if (file == "products.html") { 
             var search_text = document.getElementById("search_text").value;
-            buildProductPage(GetState("SearchMaker"), GetState("OrderProducts"), search_text); 
+            var limit = document.getElementById("limit").value;
+            buildProductPage(GetState("SearchMaker"), GetState("OrderProducts"), search_text, limit); 
         }
         if (file == "history.html") buildHistoryPage();
         if (file == "confirm_product.html") buildProductConfirmPage();
@@ -136,6 +137,11 @@ function buildProductPage(maker_id, order_id, search_text, limit)
             var val = document.getElementById("search_text").value.toString();
             build("products.html", buildProductPage, GetState("SearchMaker"), GetState("OrderProducts"), val);
         });
+
+        var limit = document.getElementById("limit");
+        limit.addEventListener("change", function() {
+            build("products.html");
+        })
 
 
             
