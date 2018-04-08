@@ -245,6 +245,8 @@ function buyProduct(productId) {
           }
           if (res.err) {
               console.log(err);
+              if (res.errcode == 32)
+                build("login.html");
               return;
           }
 
@@ -278,8 +280,6 @@ function buildProductConfirmPage(product_id)
             }
             if (obj.err) {
                 console.log(err)
-                if (obj.errcode == 32)
-                    build("login.html");
                 return;
             }
             /*
@@ -292,7 +292,7 @@ function buildProductConfirmPage(product_id)
 
         req.open("POST", "product_info", true);
         req.setRequestHeader("Content-Type", "application/json");
-        req.send();
+        req.send(product_id);
     }
     else {
         document.getElementById("product_name").innerHTML = `This seems to be the wrong page, click <a onclick="build('home.html')">here</a> to return to the home page.`;
