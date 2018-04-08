@@ -153,7 +153,7 @@ exports.dbPostComment = (req, res) => {
       res.send(ret);
       return;
     }
-    var db = OpenDB();
+    var db = openDB();
     var statement = db.prepare("INSERT INTO Comments (user_id, comment_id, product_id, comment) VALUES (?, ?, ?, ?)");
     statement.run(user_id, req.body.comment_id, req.body.product_id, xss(req.body.comment), function(err) {
       if (err) {
