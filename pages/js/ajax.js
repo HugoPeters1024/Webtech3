@@ -282,12 +282,13 @@ function buildProductConfirmPage(product_id)
                 console.log(err)
                 return;
             }
-            /*
-            document.getElementById("product_name").innerHTML = product.name;
-            document.getElementById("product_image").innerHTML = `<img class="large_image" src="${product.image}">`;
-            document.getElementById("product_price").innerHTML = product.price;
-            document.getElementById("product_maker").innerHTML = product.maker;
-            document.getElementById("product_button").innerHTML = `<button onclick="buyProduct(${product.product_id})">buy</button>`; */
+            var p = new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id);
+            
+            document.getElementById("product_name").innerHTML = p.name;
+            document.getElementById("product_image").innerHTML = `<img class="large_image" src="${p.image}">`;
+            document.getElementById("product_price").innerHTML = p.price;
+            document.getElementById("product_maker").innerHTML = p.maker;
+            document.getElementById("product_button").innerHTML = `<button onclick="buyProduct(${p.product_id})">buy</button>`;
         });
 
         req.open("POST", "product_info", true);
