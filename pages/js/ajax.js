@@ -187,7 +187,7 @@ function buildHistoryPage() {
             <td>${new Date(element.date).toLocaleTimeString("en-us", options)}</td>`;
 
             row.addEventListener("click", function() {
-                build("confirm_product.html", buildProductConfirmPage, product.product_id.toString());
+                build("confirm_product.html", buildProductConfirmPage, `${product.product_id}`);
             })
             table.appendChild(row);
         });
