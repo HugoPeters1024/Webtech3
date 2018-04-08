@@ -283,7 +283,7 @@ function buildProductConfirmPage(product_id)
                 return;
             }
             if (obj.err) {
-                console.log(err)
+                console.log(obj.err)
                 return;
             }
             var p = new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id);
