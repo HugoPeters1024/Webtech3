@@ -128,8 +128,8 @@ exports.dbComments = (req, res) => {
     return;
   }
   var db = openDB();
-  var statement = db.prepare("SELECT * FROM Comments WHERE 1");
-  statement.all(function(err, rows) {
+  var statement = db.prepare("SELECT * FROM Comments, Users WHERE Comments.product_id = ? AND Users.user_id = Comments.user_id");
+  statement.all(req.body.product_id, function(err, rows) {
     if (err) {
       console.log(err);
       ret.err = "Could not retrieve comments";
