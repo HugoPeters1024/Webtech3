@@ -294,7 +294,7 @@ function buildProductConfirmPage(product_id)
         //Comments
         var comreq = new XMLHttpRequest();
         comreq.addEventListener("loadend", function() {
-            var list = JSON.parse(comments);
+            var list = JSON.parse(this.responseText);
             var comments = document.getElementById("comments");
             for(var i=0; i<list.length; i++) {
                 var comment = list[i];
