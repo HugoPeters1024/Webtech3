@@ -33,6 +33,10 @@ app.post('/products', function(req, res) {
    data.dbProducts(req, res);
 });
 
+app.post('/product_info', function(req, res) {
+  data.dbProductInfo(req, res);
+});
+
 app.post('/makers', function(req, res) {
   data.dbMakers(req, res);
 });

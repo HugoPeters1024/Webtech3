@@ -260,17 +260,25 @@ function buyProduct(productId) {
     }
 }
 
-function buildProductConfirmPage(product) 
+function buildProductConfirmPage(product_id) 
 {
-    if (!product)
-        product = GetState("ViewProduct");
-    SetState("ViewProduct", product);
+    if (!product_id)
+        product_id = GetState("ViewProduct");
+    SetState("ViewProduct", product_id);
     if (product) {
-        document.getElementById("product_name").innerHTML = product.name;
-        document.getElementById("product_image").innerHTML = `<img class="large_image" src="${product.image}">`;
-        document.getElementById("product_price").innerHTML = product.price;
-        document.getElementById("product_maker").innerHTML = product.maker;
-        document.getElementById("product_button").innerHTML = `<button onclick="buyProduct(${product.product_id})">buy</button>`;
+        var req = new XMLHttpRequest();
+        req.addEventListener("loadend", function() {
+            /*
+            document.getElementById("product_name").innerHTML = product.name;
+            document.getElementById("product_image").innerHTML = `<img class="large_image" src="${product.image}">`;
+            document.getElementById("product_price").innerHTML = product.price;
+            document.getElementById("product_maker").innerHTML = product.maker;
+            document.getElementById("product_button").innerHTML = `<button onclick="buyProduct(${product.product_id})">buy</button>`; */
+        });
+
+        req.open("POST", "product_info", true);
+        req.setRequestHeader("Content-Type", "application/json");
+        res.send();
     }
     else {
         document.getElementById("product_name").innerHTML = `This seems to be the wrong page, click <a onclick="build('home.html')">here</a> to return to the home page.`;

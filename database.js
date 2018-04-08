@@ -98,6 +98,14 @@ exports.dbProducts = (req, res) => {
    closeDB(db);
 }
 
+exports.dbProductInfo = (req, res) => {
+  if (!req.body.product_id) {
+    res.send({}.err = "No product_id provided!");
+    return;
+  }
+
+}
+
 exports.dbMakers = (req, res) => {
   var db = openDB();
   db.all("SELECT * FROM Manufactures WHERE 1", function(err, rows) {
