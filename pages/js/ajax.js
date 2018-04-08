@@ -10,7 +10,7 @@ function build(file, callback, arg1, arg2, arg3, arg4) {
         if (file == "profile.html") buildUserProfile();
         if (file == "products.html") { 
             var search_text = document.getElementById("search_text").value;
-            var limit = document.getElementById("limit").value;
+            var limit = GetState("limit");
             buildProductPage(GetState("SearchMaker"), GetState("OrderProducts"), search_text, limit); 
         }
         if (file == "history.html") buildHistoryPage();
