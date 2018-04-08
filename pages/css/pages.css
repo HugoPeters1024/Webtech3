@@ -78,15 +78,28 @@ table.confirm_product tr td {
     padding: 10px;
 }
 
-#product_name {
+table#product_name {
     font-weight: bold;
     font-size: 18pt;
 }
 
-#comments {
+table#comments {
     width: 100%;
 }
 
-#comments tr td {
+table#comments tr td {
     width: 100%;
+    border-bottom: 1px solid #d3d3d3;
+}
+
+p#username {
+    font-size: 10pt;
+    color: grey;
+    margin: 0px;
+    padding: 0px;
+}
+
+p#comment {
+    margin: 0px;
+    padding: 0px;
 }
