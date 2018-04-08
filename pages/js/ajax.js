@@ -294,7 +294,14 @@ function buildProductConfirmPage(product_id)
         //Comments
         var comreq = new XMLHttpRequest();
         comreq.addEventListener("loadend", function() {
-            alert(this.responseText);
+            var list = JSON.parse(comments);
+            var comments = document.getElementById("comments");
+            for(var i=0; i<list.length; i++) {
+                var comment = list[i];
+                var element = document.createElement("TD");
+                element.innerHTML = `<p id="username">${comment.username}</p><p id="comment">${comment.comment}</p>`
+            }
+            
         })
         comreq.open("POST", "comments", true);
         comreq.setRequestHeader("Content-Type", "application/json");

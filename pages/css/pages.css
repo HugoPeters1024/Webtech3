@@ -83,3 +83,10 @@ table.confirm_product tr td {
     font-size: 18pt;
 }
 
+#comments {
+    width: 100%;
+}
+
+#comments tr td {
+    width: 100%;
+}
