@@ -321,6 +321,7 @@ function buildProductConfirmPage(product_id)
             var res = {};
             res.product_id = current_product.product_id;
             res.comment = text.value;
+            res.token = GetState("token");
 
             postreq.addEventListener("loadend", function() {
                 alert(this.responseText);

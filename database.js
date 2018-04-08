@@ -140,7 +140,34 @@ exports.dbComments = (req, res) => {
 }
 
 exports.dbPostComment = (req, res) => {
-  res.send(req.body);
+  var ret = {};
+  if (!req.body.token || !req.body.product_id || !req.body.comment) {
+    ret.err = "Invalid request!";
+    res.send(ret);
+    return;
+  }
+  ValidateSession(req.body.token, function(err, user_id) {
+    if (err) {
+      console.log(err);
+      ret.err = err;
+      res.send(ret);
+      return;
+    }
+    var db = OpenDB();
+    var statement = db.prepare("INSERT INTO Comments (user_id, comment_id, product_id, comment) VALUES (?, ?, ?, ?)");
+    statement.run(user_id, req.body.comment_id, req.body.product_id, xss(req.body.comment), function(err) {
+      if (err) {
+        console.log(err);
+        ret.err = err;
+        res.send(ret);
+        return;
+      }
+      ret.message = "Placed comment succesfully!"
+      res.send(ret);
+    });
+    statement.finalize();
+    closeDB(db);
+  });
 }
 
 exports.dbMakers = (req, res) => {
