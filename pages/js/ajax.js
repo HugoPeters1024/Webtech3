@@ -296,7 +296,7 @@ function buildProductConfirmPage(product_id)
         comreq.addEventListener("loadend", function() {
             alert(this.responseText);
         })
-        comreq.open("POST", "product_info", true);
+        comreq.open("POST", "comments", true);
         comreq.setRequestHeader("Content-Type", "application/json");
         comreq.send(`{ "product_id" : "${product_id}"}`);
     }
