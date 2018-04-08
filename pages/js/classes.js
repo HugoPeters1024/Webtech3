@@ -43,14 +43,14 @@ class Product {
         tdimage.innerHTML = `<img class="image" src="${this.image}" alt="Image not found">`
         var tdprice = document.createElement("TD");
         tdprice.innerHTML = this.price;
-        
+
         var tddate = document.createElement("TD");
 
         var options = {  
             weekday: "long", year: "numeric", month: "short",  
             day: "numeric", hour: "2-digit", minute: "2-digit"  
         }; 
-        tddate.innerHTML = new Date(element.date).toLocaleTimeString("en-us", options);
+        tddate.innerHTML = new Date(date).toLocaleTimeString("en-us", options);
         //Just make the entire row clickable
         row.addEventListener("click", this.clicker.bind(this), false);
 
