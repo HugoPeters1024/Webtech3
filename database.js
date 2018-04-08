@@ -316,11 +316,10 @@ exports.dbUserEdit = (req, res) => {
         res.send(err);
         return;
       }
-    });
-    statement.finalize(function() {
       ret.message = "Succesfully updated user info!";
       res.send(ret);
     });
+    statement.finalize();
     closeDB(db);
   });
 }
