@@ -72,7 +72,7 @@ exports.dbProducts = (req, res) => {
     if (!req.body.maker_id || req.body.maker_id == "-1")
     {
       var statement = db.prepare("SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Products.name LIKE '% ? %'" + orderClausule);
-      statement.all(statement, function(err, rows) {
+      statement.all(search_text, statement, function(err, rows) {
         if(err) {
         console.log(err);
         res.send({}.err = 'An error has occured, check the logs.');
@@ -86,7 +86,7 @@ exports.dbProducts = (req, res) => {
    else
    {
      var statement = db.prepare("SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Products.name LIKE '%?%' AND Manufactures.maker_id = ? " + orderClausule);
-     statement.all(statement, function(err, rows) {
+     statement.all(search_text, req.body.maker_id, statement, function(err, rows) {
        if(err) {
          console.log(err)
          res.send({}.err = "An error has occured");
