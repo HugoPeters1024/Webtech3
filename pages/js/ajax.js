@@ -244,7 +244,7 @@ function buyProduct(productId) {
               console.log("Invalid server response, not a JSON object: " + this.responseText);
           }
           if (res.err) {
-              console.log(err);
+              console.log(res.err);
               if (res.errcode == 32)
                 build("login.html");
               return;
