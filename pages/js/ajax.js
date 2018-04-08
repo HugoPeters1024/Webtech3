@@ -179,7 +179,7 @@ function buildHistoryPage() {
         
         response.forEach(element => {
             var row = document.createElement("TR");
-            var product = new Product(element.name, element.image, element.price, element.maker);
+            var product = new Product(element.name, element.image, element.price, element.maker, element.product_id);
             row.innerHTML = `
             <td>${product.name}</td>
             <td><img src="${product.image}" class="image"></td>
