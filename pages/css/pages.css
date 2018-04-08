@@ -52,6 +52,11 @@ table.std_table tr td {
     width: auto;
 }
 
+button.std_button {
+    padding: 10px;
+    margin: 5px;
+}
+
 .dollars:before { content:'$'; }
 
 /* PRODUCTS PAGE */
