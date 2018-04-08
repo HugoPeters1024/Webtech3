@@ -68,6 +68,8 @@ function buildUserProfile(){
     req.send(`{"token" : "${GetState("token")}"}`);
 
     var edit = document.getElementById("edit");
+    var cancel = document.getElementById("cancel");
+    cancel.addEventListener("click", function() { build("profile.html"); });
     edit.addEventListener("click", function() {
         var table = document.getElementById("profile");
         var nodes = [].slice.call(table.getElementsByTagName("TD")).filter(x => x.id).map(x => document.getElementById(x.id));
@@ -76,6 +78,7 @@ function buildUserProfile(){
                 element.innerHTML = `<input type="text" name="${element.id}" value="${element.innerHTML}">`;
             });
             this.innerHTML = "Send";
+            cancel.hidden = false;
         }
         else {
             var vals = nodes.map(x => x.childNodes[0].value);
