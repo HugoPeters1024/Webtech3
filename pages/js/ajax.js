@@ -265,7 +265,7 @@ function buildProductConfirmPage(product_id)
     if (!product_id)
         product_id = GetState("ViewProduct");
     SetState("ViewProduct", product_id);
-    if (product) {
+    if (product_id) {
         var req = new XMLHttpRequest();
         req.addEventListener("loadend", function() {
             /*
