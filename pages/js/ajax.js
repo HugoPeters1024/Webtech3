@@ -185,6 +185,12 @@ function buildHistoryPage() {
             <td><img src="${product.image}" class="image"></td>
             <td>${product.price}</td>
             <td>${new Date(element.date).toLocaleTimeString("en-us", options)}</td>`;
+
+            row.addEventListener("click", function() {
+                var st = {};
+                st.product_id = product.product_id;
+                build("confirm_product.html", buildProductConfirmPage, JSON.stringify(st));
+            })
             table.appendChild(row);
         });
     })
