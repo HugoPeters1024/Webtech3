@@ -300,6 +300,7 @@ function buildProductConfirmPage(product_id)
                 var comment = list[i];
                 var element = document.createElement("TD");
                 element.innerHTML = `<p id="username">${comment.username}</p><p id="comment">${comment.comment}</p>`
+                comments.appendChild(comment);
             }
             
         })
