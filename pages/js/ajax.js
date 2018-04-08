@@ -79,7 +79,7 @@ function buildUserProfile(){
             this.innerHTML = "Send";
         }
         else {
-            alert("about to change some things!");
+            alert(nodes.map(x => x.innerHTML));
             nodes.forEach((element) => {
                 element.innerHTML = "";
             })
