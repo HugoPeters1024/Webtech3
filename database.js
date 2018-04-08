@@ -313,7 +313,7 @@ exports.dbUserEdit = (req, res) => {
     statement.run(req.body.username, req.body.address, req.body.email, req.body.first_name, req.body.last_name, user_id, function(err) {
       if (err) {
         ret.err = "Username already taken!";
-        res.send(err);
+        res.send(ret);
         return;
       }
       ret.message = "Succesfully updated user info!";
