@@ -102,7 +102,7 @@ function buildUserProfile(){
             console.log(ret);
             this.innerHTML = "Edit";
 
-            creq.send(ret);
+            creq.send(JSON.parse(ret));
 
         }
     });
