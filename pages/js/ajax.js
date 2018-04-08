@@ -74,7 +74,7 @@ function buildUserProfile(){
         //var oldvals = nodes.map(x => x.innerHTML);
         if (this.innerHTML == "Edit") {
             nodes.forEach((element) => {
-                element.innerHTML = `<input type="text" id="${element.id}">${element.innerHTML}</input>`
+                element.innerHTML = `<input type="text" id="${element.id}" value="${element.innerHTML}">
             });
             this.innerHTML = "Send";
         }
