@@ -152,6 +152,7 @@ function buildProductPage(maker_id, order_id, search_text)
 }
 
 function buildHistoryPage() {
+    var product_list = [];
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() {
         var response;
@@ -172,9 +173,12 @@ function buildHistoryPage() {
 
         var table = document.getElementById("history");
         
-        var product = new Product(response.name, response.image, response.price, null, response.product_id);
-        var row = product.GetHistoryRowEntry(response.date);
-        table.appendChild(row);
+        response.forEach(element => {
+            product_list.push(new Product(element.name, element.image, element.price, null, element.product_id));
+            var product = product_list[product_list.length - 1];
+            var row = product.GetHistoryRowEntry(element.date);
+            table.appendChild(row);
+        });
     })
     req.open("POST", "history", true);
     req.setRequestHeader("Content-Type", "application/json");
