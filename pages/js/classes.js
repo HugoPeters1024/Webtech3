@@ -23,7 +23,6 @@ class Product {
         var tdbutton = document.createElement("TD");
         var but = document.createElement("BUTTON");
         tdbutton.appendChild(but);
-        but.id = "buy_button"
         but.innerHTML = "Buy";
         //Just make the entire row clickable
         row.addEventListener("click", this.clicker.bind(this), false);

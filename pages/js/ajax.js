@@ -286,7 +286,7 @@ function buildProductConfirmPage(product_id)
             document.getElementById("product_image").innerHTML = `<img class="large_image" src="${p.image}">`;
             document.getElementById("product_price").innerHTML = p.price;
             document.getElementById("product_maker").innerHTML = p.maker;
-            document.getElementById("product_button").innerHTML = `<button onclick="buyProduct(${p.product_id})">buy</button>`;
+            document.getElementById("product_button").innerHTML = `<button onclick="buyProduct(${p.product_id})" id="buy_button">buy</button>`;
         });
 
         req.open("POST", "product_info", true);
