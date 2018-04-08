@@ -302,9 +302,24 @@ exports.dbUserInfo = (req, res) => {
 
 exports.dbUserEdit = (req, res) => {
   var ret = {};
-  ret.err = "Test succesful";
-  res.send(ret);
-}
+  ValidateSession(req.body.token, function(err, user_id) {
+    if (err) {
+      ret.err = err;
+      res.send(err);
+      return;
+    }
+    var db = openDB();
+    var statement = db.prepare("UPDATE Users SET 'username' = ?, 'address' = ?, 'email' = ?, 'first_name' = ?, 'last_name' = ? WHERE user_id = ?");
+    statement.run(req.body.username, req.body.address, req.body.email, req.body.first_name, req.body.last_name, user_id, function(err) {
+      if (err) {
+        ret.err = "Could not update user info!";
+        ret.send(err);
+        return;
+      }
+    });
+    statement.finalize();
+    closeDB(db);
+  });
 
 exports.dbBuy = (req, res) => {
    var ret = {};
