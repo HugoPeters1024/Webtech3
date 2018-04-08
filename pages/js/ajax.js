@@ -153,6 +153,7 @@ function buildProductPage(maker_id, order_id, search_text)
 }
 
 function buildHistoryPage() {
+    var product_list = [];
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() {
         var response;
@@ -179,8 +180,12 @@ function buildHistoryPage() {
         
         response.forEach(element => {
             var row = document.createElement("TR");
-            var product = new Product(element.name, element.image, element.price, element.maker, element.product_id);
-            row.setAttribute("onclick", `build("confirm_product.html", buildProductConfirmPage, `+product.product_id)
+            product_list.push(new Product(element.name, element.image, element.price, element.maker, element.product_id));
+            var product = product_list[product_list.length - 1];
+
+            row.addEventListener("click", function() {
+                build("confirm_product.html", buildProductConfirmPage, product.product_id);
+            })
 
             row.innerHTML = `
             <td>${product.name}</td>
