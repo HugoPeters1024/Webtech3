@@ -324,7 +324,11 @@ function buildProductConfirmPage(product_id)
             res.token = GetState("token");
 
             postreq.addEventListener("loadend", function() {
-                alert(this.responseText);
+                var response = JSON.parse(this.responseText);
+                if (response.err)
+                    console.log(response.err);
+                else
+                    build("confirm_product.html");
             })
 
             postreq.open("POST", "post_comment", true);
