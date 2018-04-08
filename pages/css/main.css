@@ -161,6 +161,10 @@ nav .active {
     color: #f3f3f3;
 }
 
+textarea {
+    width: 100%;
+}
+
 /* Footer CSS */
 footer p {
     bottom: 0px;
@@ -172,3 +176,5 @@ footer p {
     border: 1px solid #e7e7e7;
     color: #666;
 }
+
+
