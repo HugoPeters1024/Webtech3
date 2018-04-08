@@ -53,10 +53,13 @@ exports.dbProducts = (req, res) => {
     console.log('Searching for products ' + JSON.stringify(req.body));
     var order_id = req.body.order_id;
     var search_text = req.body.search_text;
+    var limit = req.body.limit;
     if (!order_id)
       order_id = "0";
     if (!search_text)
       search_text = "";
+    if (!limit)
+      limit = 10;
 
     console.log("order_id: " + order_id);
 
@@ -71,8 +74,8 @@ exports.dbProducts = (req, res) => {
     console.log("order clausule: " + orderClausule);
     if (!req.body.maker_id || req.body.maker_id == "-1")
     {
-      var statement = db.prepare("SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Products.name LIKE '%' || ? || '%' " + orderClausule);
-      statement.all(search_text, function(err, rows) {
+      var statement = db.prepare("SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Products.name LIKE '%' || ? || '%' LIMIT ? " + orderClausule);
+      statement.all(search_text, limit, function(err, rows) {
         if(err) {
         console.log(err);
         res.send({}.err = 'An error has occured, check the logs.');
@@ -85,8 +88,8 @@ exports.dbProducts = (req, res) => {
     }
    else
    {
-     var statement = db.prepare("SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Products.name LIKE ? AND Manufactures.maker_id = '%' || ? || '%' " + orderClausule);
-     statement.all(search_text, req.body.maker_id, function(err, rows) {
+     var statement = db.prepare("SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Products.name LIKE ? AND Manufactures.maker_id = '%' || ? || '%' LIMIT ? " + orderClausule);
+     statement.all(search_text, req.body.maker_id, limit, function(err, rows) {
        if(err) {
          console.log(err)
          res.send({}.err = "An error has occured");
