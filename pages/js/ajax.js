@@ -131,6 +131,13 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         else
             order.value = 0;
 
+        var limit = document.getElementById("limit");
+        state = GetState("limit");
+        if (state)
+            limit.value = state;
+        else
+            limit.value = 10;
+
         
         var go_search = document.getElementById("go_search_text");
         go_search.addEventListener("click", function() {
@@ -140,11 +147,9 @@ function buildProductPage(maker_id, order_id, search_text, limit)
 
         var limit = document.getElementById("limit");
         limit.addEventListener("change", function() {
+            SetState("limit", this.value);
             build("products.html");
         })
-
-
-            
 
         search.addEventListener("change", function() {
            SetState("SearchMaker", this.value);
