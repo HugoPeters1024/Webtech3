@@ -93,9 +93,9 @@ function buildUserProfile(){
                     document.getElementById("warning").innerHTML = err;
                     return; }
             })
-            req.open("POST", "edit_user", true);
-            req.setRequestHeader("Content-Type", "application/json");
-            req.send();
+            creq.open("POST", "edit_user", true);
+            creq.setRequestHeader("Content-Type", "application/json");
+            creq.send();
 
         }
     });
