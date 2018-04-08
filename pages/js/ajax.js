@@ -187,9 +187,7 @@ function buildHistoryPage() {
             <td>${new Date(element.date).toLocaleTimeString("en-us", options)}</td>`;
 
             row.addEventListener("click", function() {
-                var st = {};
-                st.product_id = product.product_id;
-                build("confirm_product.html", buildProductConfirmPage, JSON.stringify(st));
+                build("confirm_product.html", buildProductConfirmPage, product.product_id);
             })
             table.appendChild(row);
         });
@@ -299,7 +297,7 @@ function buildProductConfirmPage(product_id)
 
         req.open("POST", "product_info", true);
         req.setRequestHeader("Content-Type", "application/json");
-        req.send(product_id);
+        req.send(`{ "product_id" : "${product_id}"}`);
     }
     else {
         document.getElementById("product_name").innerHTML = `This seems to be the wrong page, click <a onclick="build('home.html')">here</a> to return to the home page.`;
