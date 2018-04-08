@@ -103,6 +103,18 @@ exports.dbProductInfo = (req, res) => {
     res.send({ "err" : "No product_id provided!" });
     return;
   }
+  var db = openDB();
+  var statement = db.prepare("SELECT Products.product_id, Products_name, Manufacturers.name as maker, Products.image, Products.price FROM Products, Manufactures WHERE Products.product_id = Manufactures.product_id AND Products.product_id = ?");
+  statement.get(req.body.product_id), function(err, row) {
+    if (err) {
+      console.write(err);
+      res.send({"err" : "Error getting product info"});
+      return;
+    }
+    res.send(row);
+  }
+  statement.finalize();
+  closeDB(db);
 
 }
 
