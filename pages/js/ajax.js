@@ -278,7 +278,7 @@ function buildProductConfirmPage(product_id)
 
         req.open("POST", "product_info", true);
         req.setRequestHeader("Content-Type", "application/json");
-        res.send();
+        req.send();
     }
     else {
         document.getElementById("product_name").innerHTML = `This seems to be the wrong page, click <a onclick="build('home.html')">here</a> to return to the home page.`;
