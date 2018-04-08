@@ -88,7 +88,7 @@ exports.dbProducts = (req, res) => {
      db.all(statement, function(err, rows) {
        if(err) {
          console.log(err)
-         res.send({}.err = "An error has occured");
+         res.send(({}.err = "An error has occured"));
        }
        else {
          res.send(rows);
