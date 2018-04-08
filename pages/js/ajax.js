@@ -90,7 +90,7 @@ function buildUserProfile(){
             creq.addEventListener("loadend", function() {
                 var obj = JSON.parse(this.responseText);
                 if (obj.err) {
-                    document.getElementById("warning").innerHTML = err;
+                    document.getElementById("warning").innerHTML = obj.err;
                     return; }
             })
             creq.open("POST", "edit_user", true);
