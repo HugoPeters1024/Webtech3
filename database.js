@@ -128,7 +128,7 @@ exports.dbComments = (req, res) => {
     return;
   }
   var db = openDB();
-  var statement = db.prepare("SELECT * FROM Comments, Users WHERE Comments.product_id = ? AND Users.user_id = Comments.user_id");
+  var statement = db.prepare("SELECT Users.username, Comments.comment FROM Comments, Users WHERE Comments.product_id = ? AND Users.user_id = Comments.user_id");
   statement.all(req.body.product_id, function(err, rows) {
     if (err) {
       console.log(err);
