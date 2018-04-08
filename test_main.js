@@ -67,6 +67,10 @@ app.post('/comments', function(req, res) {
   data.dbComments(req, res);
 });
 
+app.post('/post_comment', function(req, res) {
+  data.dbPostComment(req, res);
+});
+
 // Listen on the port
 app.listen(8003, function() {
   console.log('Express listening to port 8003');

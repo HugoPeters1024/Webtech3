@@ -258,6 +258,7 @@ function buyProduct(productId) {
 
 function buildProductConfirmPage(product_id) 
 {
+    var current_product;
     if (!product_id)
         product_id = GetState("ViewProduct");
     SetState("ViewProduct", product_id);
@@ -278,7 +279,8 @@ function buildProductConfirmPage(product_id)
                 console.log(obj.err)
                 return;
             }
-            var p = new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id);
+            current_product = new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id);
+            var p = current_product;
             
             document.getElementById("product_name").innerHTML = p.name;
             document.getElementById("product_image").innerHTML = `<img class="large_image" src="${p.image}">`;
@@ -309,6 +311,25 @@ function buildProductConfirmPage(product_id)
         comreq.open("POST", "comments", true);
         comreq.setRequestHeader("Content-Type", "application/json");
         comreq.send(`{ "product_id" : "${product_id}"}`);
+
+        //Comment post
+        var text = document.getElementById("comment_text");
+        var button = document.getElementById("comment_button");
+        button.addEventListener("click", function() {
+            var postreq = new XMLHttpRequest();
+
+            var res = {};
+            res.product_id = current_product.product_id;
+            res.comment = text.innerHTML;
+
+            postreq.addEventListener("loadend", function() {
+                alert(this.responseText);
+            })
+
+            postreq.open("POST", "post_comment", true);
+            postreq.setRequestHeader("Content-Type", "application/json");
+            postreq.send(res);
+        })
     }
     else {
         document.getElementById("product_name").innerHTML = `This seems to be the wrong page, click <a onclick="build('home.html')">here</a> to return to the home page.`;

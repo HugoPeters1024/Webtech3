@@ -139,6 +139,10 @@ exports.dbComments = (req, res) => {
   });
 }
 
+exports.dbPostComment = (req, res) => {
+  res.send(req);
+}
+
 exports.dbMakers = (req, res) => {
   var db = openDB();
   db.all("SELECT * FROM Manufactures WHERE 1", function(err, rows) {
