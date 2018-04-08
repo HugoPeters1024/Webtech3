@@ -172,8 +172,8 @@ function buildHistoryPage() {
 
         var table = document.getElementById("history");
         
-        var product = new Product(element.name, element.image, element.price, element.maker, element.product_id);
-        var row = product.GetHistoryRowEntry(element.date);
+        var product = new Product(response.name, response.image, response.price, null, response.product_id);
+        var row = product.GetHistoryRowEntry(response.date);
         table.appendChild(row);
     })
     req.open("POST", "history", true);
