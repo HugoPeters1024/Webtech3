@@ -300,6 +300,12 @@ exports.dbUserInfo = (req, res) => {
    });
 }
 
+exports.dbEditUser = (req, res) => {
+  var ret = {};
+  ret.err = "Test succesful";
+  res.send(ret);
+}
+
 exports.dbBuy = (req, res) => {
    var ret = {};
    if (!req.body.token) {

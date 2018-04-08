@@ -66,6 +66,39 @@ function buildUserProfile(){
     req.open("POST", "user", true);
     req.setRequestHeader("Content-Type", "application/json");
     req.send(`{"token" : "${GetState("token")}"}`);
+
+    var edit = document.getElementById("edit");
+    edit.addEventListener("click", function() {
+        var table = document.getElementById("profile");
+        var nodes = [].slice.call(table.getElementsByTagName("TD"))
+            .filter((val) => val.id)
+            .map((val) => document.getElementById(val.id));
+        if (this.innerHTML == "Edit") {
+            nodes.forEach((element) => {
+                element.innerHTML = `<input type="text" id="${element.id}">`
+            });
+            this.innerHTML = "Send";
+        }
+        else {
+            alert("about to change some things!");
+            nodes.forEach((element) => {
+                element.innerHTML = "";
+            })
+            this.innerHTML = "Edit";
+
+            var creq = new XMLHttpRequest();
+            creq.addEventListener("loadend", function() {
+                var obj = JSON.parse(this.responseText);
+                if (obj.err) {
+                    document.getElementById("warning").innerHTML = err;
+                    return; }
+            })
+            req.open("POST", "edit_user", true);
+            req.setRequestHeader("Content-Type", "application/json");
+            req.send();
+
+        }
+    });
 }
 
 function buildProductPage(maker_id, order_id, search_text, limit)

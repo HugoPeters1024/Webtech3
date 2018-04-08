@@ -54,6 +54,10 @@ app.post('/user', function(req, res) {
    data.dbUserInfo(req, res);
 });
 
+app.post('/edit_user', function(req, res) {
+  data.dbUserEdit(req, res);
+});
+
 app.post('/buy', function(req, res) {
    console.log("Got a buy request: " +  req.body.product_id);
    data.dbBuy(req, res);
