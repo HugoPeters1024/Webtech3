@@ -79,7 +79,7 @@ function buildUserProfile(){
             this.innerHTML = "Send";
         }
         else {
-            alert(nodes.map(x => x.innerHTML));
+            console.log(nodes.map(x => x.innerHTML));
             nodes.forEach((element) => {
                 element.innerHTML = "";
             })
