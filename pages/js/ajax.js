@@ -90,16 +90,15 @@ function buildUserProfile(){
                 var obj = JSON.parse(this.responseText);
                 if (obj.err) {
                     document.getElementById("warning").innerHTML = obj.err;
-                    return; }
+                    return; 
+                }
                 document.getElementById("edit").innerHTML = "Edit";
+                nodes.forEach((element) => {
+                    element.innerHTML = "";
+                })
             })
             creq.open("POST", "edit_user", true);
             creq.setRequestHeader("Content-Type", "application/json");
-
-            nodes.forEach((element) => {
-                element.innerHTML = "";
-            })
-            console.log(ret);
 
             creq.send(JSON.stringify(ret));
 
