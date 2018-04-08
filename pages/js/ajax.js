@@ -77,7 +77,7 @@ function buildUserProfile(){
             nodes.forEach((element) => {
                 element.innerHTML = `<input type="text" name="${element.id}" value="${element.innerHTML}">`;
             });
-            this.innerHTML = "Send";
+            this.innerHTML = "Save";
             cancel.hidden = false;
         }
         else {
