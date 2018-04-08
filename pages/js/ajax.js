@@ -81,8 +81,7 @@ function buildProductPage(maker_id, order_id, search_text)
             productlist.push(new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id));
             var product = productlist[productlist.length-1];
             var row = product.GetRowEntry()
-            if (obj.maker_id == maker_search || maker_search == -1 || !maker_search)
-                table.appendChild(row);
+            table.appendChild(row);
         }
     });
     req.open("POST", "products", true);
