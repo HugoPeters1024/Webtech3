@@ -298,9 +298,11 @@ function buildProductConfirmPage(product_id)
             var comments = document.getElementById("comments");
             for(var i=0; i<list.length; i++) {
                 var comment = list[i];
+                var outer = document.createElement("TR");
                 var element = document.createElement("TD");
+                outer.appendChild(element);
                 element.innerHTML = `<p id="username">${comment.username}</p><p id="comment">${comment.comment}</p>`
-                comments.appendChild(comment);
+                comments.appendChild(outer);
             }
             
         })
