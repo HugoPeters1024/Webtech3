@@ -300,7 +300,7 @@ exports.dbUserInfo = (req, res) => {
    });
 }
 
-exports.dbEditUser = (req, res) => {
+exports.dbUserEdit = (req, res) => {
   var ret = {};
   ret.err = "Test succesful";
   res.send(ret);
