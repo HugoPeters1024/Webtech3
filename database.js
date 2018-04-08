@@ -121,7 +121,7 @@ exports.dbProductInfo = (req, res) => {
 }
 
 exports.dbComments = (req, res) => {
-  req.send("hello");
+  res.send("hello");
 }
 
 exports.dbMakers = (req, res) => {
