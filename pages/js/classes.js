@@ -6,7 +6,9 @@ class Product {
         this.maker = maker;
         this.product_id = pid;
         this.clicker = function(event) {
-            build("confirm_product.html", buildProductConfirmPage, this.product_id);
+            var st = {};
+            st.product_id = this.product_id;
+            build("confirm_product.html", buildProductConfirmPage, st);
         };
     };
     
