@@ -186,9 +186,11 @@ function buildHistoryPage() {
             <td>${product.price}</td>
             <td>${new Date(element.date).toLocaleTimeString("en-us", options)}</td>`;
 
-            row.addEventListener("click", function() {
-                build("confirm_product.html", buildProductConfirmPage, `${product.product_id}`);
-            })
+            row.addEventListener("click", function(arg1, arg2, arg3) {
+                return function() {
+                build(arg1, arg2, arg3);
+                }
+            }("confirm_product.html", buildProductConfirmPage, product.product_id));
             table.appendChild(row);
         });
     })
