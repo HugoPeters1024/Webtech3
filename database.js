@@ -310,7 +310,12 @@ exports.dbUserEdit = (req, res) => {
     }
     var db = openDB();
     var statement = db.prepare("UPDATE Users SET 'username' = ?, 'address' = ?, 'email' = ?, 'first_name' = ?, 'last_name' = ? WHERE user_id = ?");
-    statement.run(req.body.username, req.body.address, req.body.email, req.body.first_name, req.body.last_name, user_id, function(err) {
+    var username = xss(req.body.username);
+    var address = xss(req.body.address);
+    var email = xss(req.body.email);
+    var first_name = xss(req.body.first_name);
+    var last_name = xss(req.body.last_name);
+    statement.run(username, address, email, first_name, last_name, user_id, function(err) {
       if (err) {
         ret.err = "Username already taken!";
         res.send(ret);
