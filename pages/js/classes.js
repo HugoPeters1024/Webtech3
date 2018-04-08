@@ -8,7 +8,7 @@ class Product {
         this.clicker = function(event) {
             var st = {};
             st.product_id = this.product_id;
-            build("confirm_product.html", buildProductConfirmPage, st);
+            build("confirm_product.html", buildProductConfirmPage, JSON.stringify(st));
         };
     };
     
