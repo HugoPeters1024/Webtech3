@@ -68,7 +68,9 @@ table.std_table tr td {
 /* CONFIRM PRODUCT PAGE */
 
 #buy_button {
-    padding: 20px;
+    padding: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 table.confirm_product {
