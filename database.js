@@ -296,7 +296,7 @@ exports.dbHistory = (req, res) => {
     }
     var result = [];
     var db = openDB();
-    var statement = db.prepare("SELECT Products.name, Products.image, Products.price, Transactions.Date FROM Products, Transactions WHERE Products.product_id = Transactions.product_id AND Transactions.user_id = ? ORDER BY Transactions.date DESC");
+    var statement = db.prepare("SELECT Products.product_id, Products.name, Products.image, Products.price, Transactions.Date FROM Products, Transactions WHERE Products.product_id = Transactions.product_id AND Transactions.user_id = ? ORDER BY Transactions.date DESC");
     statement.all(user_id, function(err, rows)
     {
       if (err) {
