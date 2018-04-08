@@ -122,14 +122,14 @@ exports.dbProductInfo = (req, res) => {
 
 exports.dbComments = (req, res) => {
   var ret = {};
-  if (!product_id) {
+  if (!req.body.product_id) {
     ret.err = "No product_id provided";
     res.send(ret)
     return;
   }
   var db = openDB();
   var statement = db.prepare("SELECT * FROM Comments, Users WHERE Comments.product_id = ? AND Users.user_id = Comments.user_id");
-  statement.all(function(err, rows) {
+  statement.all(req.body.product_id, function(err, rows) {
     if (err) {
       console.log(err);
       ret.err = "Could not retrieve comments";
