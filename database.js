@@ -140,7 +140,7 @@ exports.dbComments = (req, res) => {
 }
 
 exports.dbPostComment = (req, res) => {
-  res.send(req);
+  res.send(req.body);
 }
 
 exports.dbMakers = (req, res) => {
