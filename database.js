@@ -71,8 +71,8 @@ exports.dbProducts = (req, res) => {
     console.log("order clausule: " + orderClausule);
     if (!req.body.maker_id || req.body.maker_id == "-1")
     {
-      var statement = "SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Products.name LIKE '%"+search_text+"%'" + orderClausule;
-      db.all(statement, function(err, rows) {
+      var statement = db.prepare("SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Products.name LIKE '% ? %'" + orderClausule);
+      statement.all(statement, function(err, rows) {
         if(err) {
         console.log(err);
         res.send({}.err = 'An error has occured, check the logs.');
@@ -80,12 +80,13 @@ exports.dbProducts = (req, res) => {
         else {
           res.send(rows);
         }
-    });
+     });
+     statement.finalize();
     }
    else
    {
-     var statement = "SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Products.name LIKE '%"+search_text+"%' AND Manufactures.maker_id = " + req.body.maker_id + " " + orderClausule;
-     db.all(statement, function(err, rows) {
+     var statement = db.prepare("SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Products.name LIKE '%?%' AND Manufactures.maker_id = ? " + orderClausule);
+     statement.all(statement, function(err, rows) {
        if(err) {
          console.log(err)
          res.send({}.err = "An error has occured");
@@ -94,6 +95,7 @@ exports.dbProducts = (req, res) => {
          res.send(rows);
        }
      });
+     statement.finalize();
    }
    closeDB(db);
 }

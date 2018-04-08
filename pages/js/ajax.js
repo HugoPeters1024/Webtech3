@@ -1,4 +1,4 @@
-function build(file, callback, arg1, arg2, arg3) {
+function build(file, callback, arg1, arg2, arg3, arg4) {
     if (!file)
         file = GetState("CurrentPage");
     SetState("CurrentPage", file);
@@ -6,7 +6,7 @@ function build(file, callback, arg1, arg2, arg3) {
     req.addEventListener("loadend", function() {
         var page= document.getElementById("page");
         page.innerHTML = this.responseText;
-        if (callback) { callback(arg1, arg2, arg3); return; };
+        if (callback) { callback(arg1, arg2, arg3, arg4); return; };
         if (file == "profile.html") buildUserProfile();
         if (file == "products.html") { 
             var search_text = document.getElementById("search_text").value;
@@ -14,7 +14,7 @@ function build(file, callback, arg1, arg2, arg3) {
         }
         if (file == "history.html") buildHistoryPage();
         if (file == "confirm_product.html") buildProductConfirmPage();
-    })
+    });
 
     req.addEventListener("error", function() {
         var page = document.getElementById("page");
@@ -67,7 +67,7 @@ function buildUserProfile(){
     req.send(`{"token" : "${GetState("token")}"}`);
 }
 
-function buildProductPage(maker_id, order_id, search_text)
+function buildProductPage(maker_id, order_id, search_text, limit)
 {
     var productlist = [];
     var req = new XMLHttpRequest();
@@ -93,9 +93,12 @@ function buildProductPage(maker_id, order_id, search_text)
         order_id = 0;
     if (!search_text)
         search_text = "";
+    if (!limit)
+        limit = 10;
     ret.order_id = order_id;
     ret.maker_id = maker_id;
     ret.search_text = search_text;
+    ret.limit = limit;
     req.send(JSON.stringify(ret));
 
     //get the manufacturers
