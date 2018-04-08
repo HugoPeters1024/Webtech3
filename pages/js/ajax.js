@@ -328,7 +328,7 @@ function buildProductConfirmPage(product_id)
 
             postreq.open("POST", "post_comment", true);
             postreq.setRequestHeader("Content-Type", "application/json");
-            postreq.send(res);
+            postreq.send(JSON.stringify(res));
         })
     }
     else {
