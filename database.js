@@ -375,7 +375,7 @@ CreateSession = (user_id, callback) =>  {
    var token = sha256(Math.random().toString() + new Date());
    var db = openDB();
    var statement = db.prepare("INSERT INTO Sessions (user_id, session_token, expired) VALUES (?, ?, ?)");
-   statement.run(user_id, token, new Date() + 1000 * 60 * 10, function(err) {
+   statement.run(user_id, token, new Date() + 1000 * 60 * 100, function(err) {
       if (err) console.log(err);
    });
    statement.finalize();
@@ -416,7 +416,7 @@ ValidateSession = (token, callback) => {
         if (err | !user_id) {return}
         var extendSession = db.prepare("UPDATE Sessions SET expired = ? WHERE session_token = ?");
         console.log("Valided but not yet extended... user_id: " + user_id);
-        extendSession.run( + new Date() + 1000 * 60 * 10, token, function(err) {
+        extendSession.run( + new Date() + 1000 * 60 * 100, token, function(err) {
           if (err) {
             console.log("Could not extend session! " + err);
           }
