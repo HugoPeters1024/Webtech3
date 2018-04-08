@@ -60,6 +60,10 @@ table.std_table tr td {
     color: white;
 }
 
+#products_table tr:first-child td {
+    font-weight: bold;
+}
+
 #history tr:hover:not(:first-child) td {
     background-color: #393d3f;
     color: white;
