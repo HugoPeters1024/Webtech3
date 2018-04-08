@@ -305,7 +305,7 @@ exports.dbUserEdit = (req, res) => {
   ValidateSession(req.body.token, function(err, user_id) {
     if (err) {
       ret.err = err;
-      res.send(err);
+      res.send(ret);
       return;
     }
     var db = openDB();
