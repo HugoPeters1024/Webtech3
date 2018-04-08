@@ -70,12 +70,11 @@ function buildUserProfile(){
     var edit = document.getElementById("edit");
     edit.addEventListener("click", function() {
         var table = document.getElementById("profile");
-        var nodes = [].slice.call(table.getElementsByTagName("TD"))
-            .filter((val) => val.id)
-            .map((val) => document.getElementById(val.id));
+        var nodes = [].slice.call(table.getElementsByTagName("TD")).filter(x => x.id).map(x => document.getElementById(x.id));
+        //var oldvals = nodes.map(x => x.innerHTML);
         if (this.innerHTML == "Edit") {
             nodes.forEach((element) => {
-                element.innerHTML = `<input type="text" id="${element.id}">`
+                element.innerHTML = `<input type="text" id="${element.id}">${element.innerHTML}</input>`
             });
             this.innerHTML = "Send";
         }
