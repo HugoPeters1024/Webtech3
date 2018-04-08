@@ -320,6 +320,7 @@ exports.dbUserEdit = (req, res) => {
     statement.finalize();
     closeDB(db);
   });
+}
 
 exports.dbBuy = (req, res) => {
    var ret = {};
