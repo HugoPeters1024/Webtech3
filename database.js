@@ -317,6 +317,7 @@ exports.dbUserEdit = (req, res) => {
     var last_name = xss(req.body.last_name);
     statement.run(username, address, email, first_name, last_name, user_id, function(err) {
       if (err) {
+        console.log(err);
         ret.err = "Username already taken!";
         res.send(ret);
         return;
