@@ -121,7 +121,22 @@ exports.dbProductInfo = (req, res) => {
 }
 
 exports.dbComments = (req, res) => {
-  res.send("hello");
+  var ret = {};
+  if (!product_id) {
+    ret.err = "No product_id provided";
+    res.send(ret)
+    return;
+  }
+  var db = openDB();
+  var statement = db.prepare("SELECT * FROM Comments, Users WHERE Comments.product_id = ? AND Users.user_id = Comments.user_id");
+  statement.all(function(err, rows) {
+    if (err) {
+      console.log(err);
+      ret.err = "Could not retrieve comments";
+      res.send(ret);
+    }
+    res.send(rows);
+  });
 }
 
 exports.dbMakers = (req, res) => {
