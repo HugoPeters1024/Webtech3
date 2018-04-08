@@ -120,6 +120,10 @@ exports.dbProductInfo = (req, res) => {
   closeDB(db);
 }
 
+exports.dbComments = (req, res) => {
+  req.send("hello");
+}
+
 exports.dbMakers = (req, res) => {
   var db = openDB();
   db.all("SELECT * FROM Manufactures WHERE 1", function(err, rows) {
