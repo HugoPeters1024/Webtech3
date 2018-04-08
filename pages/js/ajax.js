@@ -71,7 +71,6 @@ function buildUserProfile(){
     edit.addEventListener("click", function() {
         var table = document.getElementById("profile");
         var nodes = [].slice.call(table.getElementsByTagName("TD")).filter(x => x.id).map(x => document.getElementById(x.id));
-        //var oldvals = nodes.map(x => x.innerHTML);
         if (this.innerHTML == "Edit") {
             nodes.forEach((element) => {
                 element.innerHTML = `<input type="text" name="${element.id}" value="${element.innerHTML}">`;
@@ -92,6 +91,7 @@ function buildUserProfile(){
                 if (obj.err) {
                     document.getElementById("warning").innerHTML = obj.err;
                     return; }
+                this.innerHTML = "Edit";
             })
             creq.open("POST", "edit_user", true);
             creq.setRequestHeader("Content-Type", "application/json");
@@ -100,7 +100,6 @@ function buildUserProfile(){
                 element.innerHTML = "";
             })
             console.log(ret);
-            this.innerHTML = "Edit";
 
             creq.send(JSON.stringify(ret));
 

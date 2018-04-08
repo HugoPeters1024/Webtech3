@@ -312,8 +312,8 @@ exports.dbUserEdit = (req, res) => {
     var statement = db.prepare("UPDATE Users SET 'username' = ?, 'address' = ?, 'email' = ?, 'first_name' = ?, 'last_name' = ? WHERE user_id = ?");
     statement.run(req.body.username, req.body.address, req.body.email, req.body.first_name, req.body.last_name, user_id, function(err) {
       if (err) {
-        ret.err = "Could not update user info!";
-        ret.send(err);
+        ret.err = "Username already taken!";
+        res.send(err);
         return;
       }
     });
