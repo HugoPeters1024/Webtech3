@@ -92,10 +92,7 @@ function buildUserProfile(){
                     document.getElementById("warning").innerHTML = obj.err;
                     return; 
                 }
-                document.getElementById("edit").innerHTML = "Edit";
-                nodes.forEach((element) => {
-                    element.innerHTML = "";
-                })
+                build("profile.html");
             })
             creq.open("POST", "edit_user", true);
             creq.setRequestHeader("Content-Type", "application/json");
