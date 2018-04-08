@@ -171,14 +171,16 @@ function buildHistoryPage() {
             return;
         }
 
+
         var table = document.getElementById("history");
         
-        response.forEach(element => {
-            product_list.push(new Product(element.name, element.image, element.price, null, element.product_id));
+        for(var i=0; i<response.length; i++) {
+            var obj = response[i];
+            product_list.push(new Product(obj.name, obj.image, obj.price, null, obj.product_id));
             var product = product_list[product_list.length - 1];
-            var row = product.GetHistoryRowEntry(element.date);
+            var row = product.GetHistoryRowEntry(obj.date);
             table.appendChild(row);
-        });
+        }
     })
     req.open("POST", "history", true);
     req.setRequestHeader("Content-Type", "application/json");
