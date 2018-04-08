@@ -7,7 +7,7 @@ function config_buttons() {
     var but_profile = document.getElementById("but_profile");
     but_profile.addEventListener("click", 
     function() {
-        build("profile.html", buildUserProfile)
+        build("profile.html")
     });
     AddStateListener("LoggedIn", function(value) {
         var but = document.getElementById("but_profile");
@@ -43,7 +43,7 @@ function config_buttons() {
     //PRODUCTS BUTTON
     var but_products = document.getElementById("but_products");
     but_products.addEventListener("click", function() {
-        build("products.html", buildProductPage); 
+        build("products.html"); 
     });
 
     //REGISTER BUTTON
@@ -62,7 +62,7 @@ function config_buttons() {
     //HISTORY BUTTON
     var but_history = document.getElementById("but_history");
     but_history.addEventListener("click", function() {
-        build("history.html", buildHistoryPage);
+        build("history.html");
     });
     AddStateListener("LoggedIn", function(value) {
         var but = document.getElementById("but_history");
