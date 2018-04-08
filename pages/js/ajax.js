@@ -341,6 +341,8 @@ function buildProductConfirmPage(product_id)
                 var response = JSON.parse(this.responseText);
                 if (response.err)
                     console.log(response.err);
+                    if (response.errcode == 32)
+                        build("login.html");
                 else
                     build("confirm_product.html");
             })

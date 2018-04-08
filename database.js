@@ -138,6 +138,7 @@ exports.dbComments = (req, res) => {
     if (err) {
       console.log(err);
       ret.err = "Could not retrieve comments";
+      ret.errcode = 32;
       res.send(ret);
     }
     res.send(rows);
