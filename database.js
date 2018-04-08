@@ -247,6 +247,7 @@ exports.dbBuy = (req, res) => {
    var ret = {};
    if (!req.body.token) {
       ret.err = "No session token provided!";
+      ret.errcode = 32;
       res.send(ret);
       return;
    }
