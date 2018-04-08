@@ -156,6 +156,7 @@ exports.dbPostComment = (req, res) => {
     if (err) {
       console.log(err);
       ret.err = err;
+      reet.errcode = 32;
       res.send(ret);
       return;
     }
