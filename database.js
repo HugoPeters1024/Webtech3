@@ -317,7 +317,10 @@ exports.dbUserEdit = (req, res) => {
         return;
       }
     });
-    statement.finalize();
+    statement.finalize(function() {
+      ret.message = "Succesfully updated user info!";
+      res.send(ret);
+    });
     closeDB(db);
   });
 }
