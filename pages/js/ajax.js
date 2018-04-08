@@ -180,7 +180,7 @@ function buildHistoryPage() {
         response.forEach(element => {
             var row = document.createElement("TR");
             var product = new Product(element.name, element.image, element.price, element.maker, element.product_id);
-            row.setAttribute("onclick", `build("confirm_product.html", buildProductConfirmPage, ${product.product_id})`)
+            row.setAttribute("onclick", `build("confirm_product.html", buildProductConfirmPage, `+product.product_id)
 
             row.innerHTML = `
             <td>${product.name}</td>
