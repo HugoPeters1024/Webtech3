@@ -63,6 +63,10 @@ app.post('/history', function(req, res) {
    data.dbHistory(req, res);
 })
 
+app.post('/comments', function(req, res) {
+  data.dbComments(req, res);
+});
+
 // Listen on the port
 app.listen(8003, function() {
   console.log('Express listening to port 8003');

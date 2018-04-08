@@ -262,6 +262,8 @@ function buildProductConfirmPage(product_id)
         product_id = GetState("ViewProduct");
     SetState("ViewProduct", product_id);
     if (product_id) {
+
+        //Product Info
         var req = new XMLHttpRequest();
         req.addEventListener("loadend", function() {
             var obj;
@@ -288,6 +290,15 @@ function buildProductConfirmPage(product_id)
         req.open("POST", "product_info", true);
         req.setRequestHeader("Content-Type", "application/json");
         req.send(`{ "product_id" : "${product_id}"}`);
+
+        //Comments
+        var comreq = new XMLHttpRequest();
+        comreq.addEventListener("loadend", function() {
+            alert(this.responseText);
+        })
+        comreq.open("POST", "product_info", true);
+        comreq.setRequestHeader("Content-Type", "application/json");
+        comreq.send(`{ "product_id" : "${product_id}"}`);
     }
     else {
         document.getElementById("product_name").innerHTML = `This seems to be the wrong page, click <a onclick="build('home.html')">here</a> to return to the home page.`;
