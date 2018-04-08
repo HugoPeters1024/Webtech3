@@ -56,9 +56,8 @@ class Product {
 
         row.appendChild(tdname);
         row.appendChild(tdimage);
-        row.appendChild(tdmaker);
         row.appendChild(tdprice);
-        row.appendChild(tdbutton);
+        row.appendChild(tddate);
         return row;
     }
 }
