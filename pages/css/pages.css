@@ -60,6 +60,11 @@ table.std_table tr td {
     color: white;
 }
 
+#history tr:hover:not(:first-child) td {
+    background-color: #393d3f;
+    color: white;
+}
+
 /* CONFIRM PRODUCT PAGE */
 
 table.confirm_product {
