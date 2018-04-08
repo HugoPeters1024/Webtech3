@@ -282,7 +282,7 @@ function buildProductConfirmPage(product_id)
             current_product = new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id);
             var p = current_product;
             
-            document.getElementById("product_name").innerHTML = p.name;
+            document.getElementById("product_name").innerHTML = `<h1>${p.name}</h1>`;
             document.getElementById("product_image").innerHTML = `<img class="large_image" src="${p.image}">`;
             document.getElementById("product_price").innerHTML = p.price;
             document.getElementById("product_maker").innerHTML = p.maker;
