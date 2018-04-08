@@ -88,7 +88,7 @@ exports.dbProducts = (req, res) => {
     }
    else
    {
-     var statement = db.prepare("SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Products.name LIKE ? AND Manufactures.maker_id = '%' || ? || '%' " + orderClausule + " LIMIT ?");
+     var statement = db.prepare("SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Products.name LIKE '%' || ? || '%' AND Manufactures.maker_id = ? " + orderClausule + " LIMIT ?");
      statement.all(search_text, req.body.maker_id, limit, function(err, rows) {
        if(err) {
          console.log(err)
