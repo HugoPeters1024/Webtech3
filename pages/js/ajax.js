@@ -170,10 +170,10 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         var nav_next = document.getElementById("nav_next");
         alert(offset + parseInt(limit.value));
         if (offset + parseInt(limit.value) >= meta.COUNT) {
-            nav_next.dislay.dislay = "none"
+            nav_next.style.display = "none"
         }
         else {
-            nav_next.dislay.dislay = "block";
+            nav_next.style.display = "block";
         } 
 
         
