@@ -90,7 +90,7 @@ class Category {
             var root = document.createElement("LI");
             root.innerHTML = this.name + "(" + this.GetSum() + ")";
             var el = document.createElement("UL");
-            el.setAttribute("class", "cat_list");
+            el.setAttribute("class", "cat_list_sub");
             this.children.forEach(child => {
                 var c = child.GetTree()
                 if (c)
