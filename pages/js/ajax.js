@@ -257,6 +257,7 @@ function buildProductPage(maker_id, order_id, search_text, limit, cat_id)
             first.addEventListener("click", function() {
                 build("profile.html");
             });
+            cat_list.appendChild(first);
             cat_list.setAttribute("class", "cat_list");
             document.getElementById("side").appendChild(cat_list);
             for(var cat in categories) {
