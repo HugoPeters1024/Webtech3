@@ -90,9 +90,9 @@ class Category {
     GetTree() {
         var root = document.createElement("LI");
         root.innerHTML = this.name;
-        this.children.forEach(child => {
-            root.appendChild(child.GetTree());
-        });
+        //this.children.forEach(child => {
+         //   root.appendChild(child.GetTree());
+      //  });
         return root;
     }
 }
