@@ -97,10 +97,9 @@ exports.dbProducts = (req, res) => {
            return;
          }
          result.unshift(row);
-       });
-       statement.finalize(function() {
          res.send(result);
        });
+       statement.finalize();
      });
    closeDB(db);
 }
