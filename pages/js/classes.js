@@ -47,7 +47,7 @@ class Product {
         var tddate = document.createElement("TD");
 
         var options = {  
-            weekday: "numeric", year: "numeric", month: "numeric",  
+            year: "numeric", month: "2-digit",  
             day: "numeric", hour: "2-digit", minute: "2-digit"  
         }; 
         tddate.innerHTML = new Date(date).toLocaleTimeString("en-us", options);
