@@ -179,13 +179,13 @@ function buildProductPage(maker_id, order_id, search_text, limit)
 
         var offset = GetState("offset");
         if (!offset)
-            offset = 0;
+            parseInt(offset) = 0;
 
         var nav_prev = document.getElementById("nav_prev");
 
         var nav_next = document.getElementById("nav_next");
-        alert(offset + limit.value);
-        if (offset + limit.value >= meta.COUNT) {
+        alert(offset + parseInt(limit.value));
+        if (offset + parseInt(limit.value) >= meta.COUNT) {
             nav_next.dislay.dislay = "none"
         }
         else {
