@@ -91,7 +91,7 @@ class Category {
         var root = document.createElement("LI");
         root.innerHTML = this.name;
         this.children.forEach(child => {
-            root.innerHTML += child.GetHTML();
+            root.appendChild(child.GetTree());
         });
         return root;
     }
