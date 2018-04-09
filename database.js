@@ -87,8 +87,8 @@ exports.dbProducts = (req, res) => {
       }
     });
     statement.finalize(function() {
-      var statement = db.prepare("SELECT COUNT(Products.product_id) as COUNT FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND Products.name LIKE '%' || ? || '%' " + orderClausule + " LIMIT ?, ?")
-      statement.get(maker_id, maker_id, search_text, offset, limit, function(err, row) {
+      var statement = db.prepare("SELECT COUNT(Products.product_id) as COUNT FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND Products.name LIKE '%' || ? || '%' " + orderClausule);
+      statement.get(maker_id, maker_id, search_text, function(err, row) {
         if (err) {
           console.log(err)
           return;
