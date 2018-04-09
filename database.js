@@ -1,3 +1,5 @@
+import { stat } from 'fs';
+
 var sqlite3 = require('sqlite3').verbose();
 var sqls = require('sqlstring');
 var xss = require('striptags');
@@ -94,8 +96,9 @@ exports.dbProducts = (req, res) => {
            console.log(err)
            return;
          }
-         console.log("Count: " + row);
+         console.log("Count: " + JSON.stringify(row));
        })
+       statement.finalize();
      });
    closeDB(db);
 }
