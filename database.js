@@ -188,6 +188,19 @@ exports.dbMakers = (req, res) => {
   closeDB(db);
 }
 
+exports.dbCategories = (req, res) => {
+  var db = openDB();
+  db.all("SELECT * FROM Categories WHERE 1", function(err, rows) {
+    if (err) {
+      console.log(err);
+      res.send("An error occured");
+      return;
+    }
+    res.send(rows);
+  });
+  closeDB(db);
+}
+
 exports.dbRegister = (req, res) => {
    var ret = {};
    console.log("Got a request for a registration.");

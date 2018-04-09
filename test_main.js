@@ -41,6 +41,10 @@ app.post('/makers', function(req, res) {
   data.dbMakers(req, res);
 });
 
+app.post('/categories', function(req, res) {
+  data.dbCategories(req, res);
+});
+
 app.post('/register', function(req, res) {
    data.dbRegister(req, res);
 });
