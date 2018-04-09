@@ -78,7 +78,8 @@ button.std_button {
 }
 
 #products_table tr td {
-    border: 1px solid #d3d3d3;
+    border-bottom: 2px solid #d3d3d3;
+    border-top: 2px solid #d3d3d3;
 }
 
 #products_table tr:first-child td {
