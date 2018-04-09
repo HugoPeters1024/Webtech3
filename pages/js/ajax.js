@@ -246,7 +246,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
 
 
             cat_list = document.createElement("UL");
-            cat_list.setAttribute("class", "cat_list");
+            cat_list.setAttribute("class", "cat_list_sub");
             document.getElementById("side").appendChild(cat_list);
             for(var cat in categories) {
                 var b = categories[cat].GetTree();
