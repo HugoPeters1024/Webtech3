@@ -238,10 +238,10 @@ function buildProductPage(maker_id, order_id, search_text, limit)
                 } else {
                     categories[categorie.cat_id] = categorie;
                 }
-                cats.forEach(p => {
-                    if (p == categorie.cat_id)
-                        categorie.items.push(p);
-                });
+                for(var c=0; c<cats.length; c++) {
+                    if (cats[c] == categorie.cat_id)
+                        categorie.items.push(new Object());
+                };
             };
 
 
