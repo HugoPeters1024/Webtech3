@@ -1,6 +1,6 @@
 var sqlite3 = require('sqlite3').verbose();
 var sqls = require('sqlstring');
-var xss = require('xss');
+var xss = require('scriptags');
 var sha256 = require("js-sha256");
 
 function openDB() {
