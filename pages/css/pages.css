@@ -89,12 +89,14 @@ button.std_button {
     font-size: 10pt;
     list-style-type: none;
     padding-left: 3px;
+    cursor: pointer;
 }
 
 .cat_list_sub {
     font-size: 10pt;
     list-style-type: none;
     padding-left: 15px;
+    cursor: pointer;
 }
 
 /* CONFIRM PRODUCT PAGE */
