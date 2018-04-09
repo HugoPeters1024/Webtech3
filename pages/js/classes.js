@@ -36,10 +36,12 @@ class Product {
         return row;
     };
 
-    GetHistoryRowEntry(date) {
+    GetHistoryRowEntry(date, amount) {
         var row = document.createElement("TR");
         var tdname = document.createElement("TD");
         tdname.innerHTML = this.name;
+        var tdamount = document.createElement("TD");
+        tdamount.innerHTML = amount;
         var tdimage = document.createElement("TD");
         tdimage.innerHTML = `<img class="image" src="${this.image}" alt="Image not found">`
         var tdprice = document.createElement("TD");
