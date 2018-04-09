@@ -96,7 +96,7 @@ exports.dbProducts = (req, res) => {
            console.log(err)
            return;
          }
-         result.unshift(rows);
+         result.unshift(row);
        });
        statement.finalize(function() {
          res.send(result);
