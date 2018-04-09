@@ -11,7 +11,8 @@ var StateWrapper = JSON.parse(window.localStorage.getItem("StateWrapper"));
 function SaveState() {
     for(item in StateWrapper)
     {
-        item.actions = [];
+        if (item)
+            item.actions = [];
     }
     window.localStorage.setItem("StateWrapper", JSON.stringify(StateWrapper));
 }
@@ -22,6 +23,11 @@ function GetState(state) {
         return StateWrapper[state].value;
     else
         return null;
+}
+
+function RemoveState(state) {
+    if (StateWrapper[state])
+        StateWrapper[state] = null;
 }
 
 function SetState(state, value) {

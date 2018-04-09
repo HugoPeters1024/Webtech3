@@ -99,7 +99,7 @@ class Category {
             if (el.firstChild)
                 root.appendChild(el);
             root.addEventListener("click", function() {
-                alert(this.innerHTML);
+                SetState("cat_id", this.cat_id);
             });
             return root;
         }
