@@ -80,7 +80,7 @@ class Category {
             return this.items.length;
         else {
             var sum = 0;
-            items.forEach(element => {
+            this.items.forEach(element => {
                 sum += element.GetSum();
             });
             return sum + this.items.length;
@@ -90,7 +90,7 @@ class Category {
     GetTree() {
         var root = document.createElement("LI");
         root.innerHTML = this.name;
-        children.forEach(child => {
+        this.children.forEach(child => {
             root.innerHTML += child.GetHTML();
         });
         return root;
