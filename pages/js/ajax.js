@@ -255,7 +255,7 @@ function buildProductPage(maker_id, order_id, search_text, limit, cat_id)
             var first = document.createElement("LI");
             first.innerHTML = "All";
             first.addEventListener("click", function() {
-                build("profile.html");
+                build("products.html");
             });
             cat_list.appendChild(first);
             cat_list.setAttribute("class", "cat_list");
