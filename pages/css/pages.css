@@ -88,6 +88,7 @@ button.std_button {
 #cat_list {
     font-size: 10pt;
     list-style-type: none;
+    padding-left: 0px;
 }
 
 /* CONFIRM PRODUCT PAGE */
