@@ -226,7 +226,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
             var obj = JSON.parse(this.responseText);
             for(var i=0; i<obj.length; i++) {
                 element = obj[i];
-                console.log(JSON.stringify(element));
+                console.log(element.parent);
                 var categorie = new Category(element.name, element.cat_id)
                 if (categorie.parent != null) {
                     categories[categorie.parent].AddSubCategory(element);
