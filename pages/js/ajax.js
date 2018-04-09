@@ -240,7 +240,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
                 }
                 for(var c=0; c<cats.length; c++) {
                     if (cats[c] == categorie.cat_id)
-                        categorie.items.push(new Object());
+                        categorie.items.push(new Object( { "null" : "null" }));
                 };
             };
 
