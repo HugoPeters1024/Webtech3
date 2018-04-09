@@ -248,7 +248,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
             for(var cat in categories) {
                 var b = categories[cat].GetTree();
                 if (b)
-                    cat_list.appendChild(categories[cat].GetTree());
+                    cat_list.appendChild(b);
             };
 
             console.log(JSON.stringify(categories));
