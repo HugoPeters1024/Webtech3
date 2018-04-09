@@ -86,12 +86,11 @@ exports.dbProducts = (req, res) => {
         res.send({}.err = 'An error has occured, check the logs.');
         }
         else {
-          console.log(rows);
           result.concat(rows);
         }
      });
      statement.finalize(function() {
-       var statement = db.prepare("SELECT COUNT(Products.product_id) FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND Products.name LIKE '%' || ? || '%' " + orderClausule + " LIMIT ?")
+       var statement = db.prepare("SELECT COUNT(Products.product_id) as COUNT FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND Products.name LIKE '%' || ? || '%' " + orderClausule + " LIMIT ?")
        statement.get(maker_id, maker_id, search_text, limit, function(err, row) {
          if (err) {
            console.log(err)
