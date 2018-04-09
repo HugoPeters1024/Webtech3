@@ -19,7 +19,7 @@ body {
     grid-column-gap: 25px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-areas:
-      "side header header header"
+      "header header header header"
       "side main main main"
       "footer footer footer footer";
     justify-content: center;
