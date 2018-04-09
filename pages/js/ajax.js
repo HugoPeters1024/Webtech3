@@ -109,7 +109,6 @@ function buildUserProfile(){
 function buildProductPage(maker_id, order_id, search_text, limit)
 {
     var productlist = [];
-    var categories = {};
     var meta = {};
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() {
@@ -221,13 +220,14 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         manu_req.send()
 
         //Get the categories
+        var categories = {};
         cat_req = new XMLHttpRequest();
         cat_req.addEventListener("loadend", function() {
             var obj = JSON.parse(this.responseText);
 
             //Build categorie tree (only supports 1 deep)
             for(var i=0; i<obj.length; i++) {
-                var categorie = new Category(obj[i].name, obj[i].cat_id, obj[i].parent)
+                var categorie = new Category(obj[i].cat_name, obj[i].cat_id, obj[i].parent)
                 if (categorie.parent) {
                     categories[categorie.parent].AddSubCategory(categorie);
                 } else {
