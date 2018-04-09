@@ -239,7 +239,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
                     categories[categorie.cat_id] = categorie;
                 }
                 cats.forEach(p => {
-                    if (p.cat_id == categorie.cat_id)
+                    if (p == categorie.cat_id)
                         categorie.items.push(p);
                 });
                 console.log(JSON.stringify(categorie.items));
