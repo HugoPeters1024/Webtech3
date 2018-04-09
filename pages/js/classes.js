@@ -75,6 +75,7 @@ class Category {
         this.children = [];
         this.clicker = function(event) {
             event.stopPropagation();
+            SetState("offset", 0);
             var con = this.GetCategoryArray().join(",");
             SetState("cat_id", con);
             build("products.html");
