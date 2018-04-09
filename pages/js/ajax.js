@@ -5,7 +5,9 @@ function build(file, callback, arg1, arg2, arg3, arg4) {
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() {
         var page= document.getElementById("page");
+        var side = document.getElementById("side");
         page.innerHTML = this.responseText;
+        side.innerHTML = "";
         if (callback) { callback(arg1, arg2, arg3, arg4); return; };
         if (file == "profile.html") buildUserProfile();
         if (file == "products.html") { 
