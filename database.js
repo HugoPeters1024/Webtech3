@@ -1,3 +1,5 @@
+import { stat } from 'fs';
+
 var sqlite3 = require('sqlite3').verbose();
 var sqls = require('sqlstring');
 var xss = require('striptags');
@@ -94,9 +96,24 @@ exports.dbProducts = (req, res) => {
           return;
         }
         result.unshift(row);
-        res.send(result);
+        //res.send(result);
       });
-      statement.finalize();
+      statement.finalize(function() {
+        var statement = db.prepare("SELECT Products.cat_id, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND (Products.name LIKE ('%' || ? || '%') OR  Manufactures.name LIKE ('%' || ? || '%')) " + orderClausule + " LIMIT ?, ?");
+        statement.all(maker_id, maker_id, search_text, search_text, offset, limit, function(err, rows) {
+          if(err) {
+          console.log(err);
+          res.send({}.err = 'An error has occured, check the logs.');
+          }
+          else {
+            var obj = {};
+            obj.cats = rows;
+            result.unshift(obj);
+            res.send(result);
+          }
+        });
+        statement.finalize();
+      });
     });
     closeDB(db);
 }

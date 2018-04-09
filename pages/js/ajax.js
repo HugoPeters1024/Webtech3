@@ -112,13 +112,16 @@ function buildProductPage(maker_id, order_id, search_text, limit)
 {
     var productlist = [];
     var meta = {};
+    var cats = {};
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() {
         var list = JSON.parse(this.responseText);
         var table = document.getElementById("products_table")
         meta = list[0]; //Meta object
+        cats = list[1];
+        console.log(cats);
         var maker_search = GetState("SearchMaker");
-        for(var i=1; i<list.length; ++i)
+        for(var i=2; i<list.length; ++i)
         {
             var obj = list[i];
             productlist.push(new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id, obj.cat_id));
