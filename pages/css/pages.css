@@ -92,6 +92,10 @@ button.std_button {
     cursor: pointer;
 }
 
+.cat_list > li {
+    color: red;
+}
+
 .cat_list_sub {
     font-size: 10pt;
     list-style-type: none;
