@@ -174,7 +174,8 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         
         var nav_next = document.getElementById("nav_next");
         nav_next.addEventListener("click", function() {
-            SetState("offset", offset+limit);
+            SetState("offset", offset.value+limit);
+            build("products.html");
         });
         if (offset + parseInt(limit.value) >= meta.COUNT) {
             nav_next.style.display = "none"
