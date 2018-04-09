@@ -52,6 +52,10 @@ table.std_table tr td {
     width: auto;
 }
 
+table#navigation_table tr td:not(:first-child) {
+    float: right;
+}
+
 button.std_button {
     /*background-color: darkgrey; */
     padding: 10px;
