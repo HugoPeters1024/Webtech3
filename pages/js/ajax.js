@@ -253,7 +253,7 @@ function buildProductPage(maker_id, order_id, search_text, limit, cat_id)
 
             cat_list = document.createElement("UL");
             var first = document.createElement("LI");
-            first.innerHTML = "<span>All</span>";
+            first.innerHTML = "<span><--All--></span>";
             first.addEventListener("click", function() {
                 build("products.html");
             });
