@@ -77,15 +77,11 @@ class Category {
     }
 
     GetSum() {
-        if (this.children.length === 0)
-            return this.items.length;
-        else {
-            var sum = 0;
-            this.children.forEach(child => {
-                sum += child.GetSum();
-            });
-            return sum + this.items.length;
-        }
+        var sum = 0;
+        this.children.forEach(child => {
+            sum += child.GetSum();
+        });
+        return sum + this.items.length;
     }
 
     GetTree() {
