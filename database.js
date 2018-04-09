@@ -86,7 +86,7 @@ exports.dbProducts = (req, res) => {
         res.send({}.err = 'An error has occured, check the logs.');
         }
         else {
-          result.concat(rows);
+          result = rows;
         }
      });
      statement.finalize(function() {
@@ -96,7 +96,7 @@ exports.dbProducts = (req, res) => {
            console.log(err)
            return;
          }
-         result.unshift(row);
+         //result.unshift(row);
          res.send(result);
        });
        statement.finalize();
