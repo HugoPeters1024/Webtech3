@@ -112,7 +112,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
 {
     var productlist = [];
     var meta = {};
-    var cats = {};
+    var cats = [];
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() {
         var list = JSON.parse(this.responseText);
