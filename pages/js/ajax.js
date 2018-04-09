@@ -164,6 +164,7 @@ function buildProductPage(maker_id, order_id, search_text, limit, cat_id)
             else
                 order.value = 0;
 
+            //Recover the limit option
             var limit = document.getElementById("limit");
             state = GetState("limit");
             if (state)
@@ -171,9 +172,18 @@ function buildProductPage(maker_id, order_id, search_text, limit, cat_id)
             else
                 limit.value = 10;
 
+            //recover the offset option
             var offset = parseInt(GetState("offset"));
             if (!offset)
                 offset = 0;
+
+            var page_counter = document.getElementById("page_counter");
+            if (offset > 0) {
+                page_counter.innerHTML = "MORE THAN 1 page";
+            }
+            else {
+                page_counter.innerHTML = "";
+            }
 
             var nav_prev = document.getElementById("nav_prev");
             nav_prev.addEventListener("click", function() {
@@ -253,8 +263,9 @@ function buildProductPage(maker_id, order_id, search_text, limit, cat_id)
 
             cat_list = document.createElement("UL");
             var first = document.createElement("LI");
-            first.innerHTML = "<span><--All--></span>";
+            first.innerHTML = "<span><h3><-- All --></h3></span>";
             first.addEventListener("click", function() {
+                SetState("offset", 0);
                 build("products.html");
             });
             cat_list.appendChild(first);
