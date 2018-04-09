@@ -117,8 +117,8 @@ function buildProductPage(maker_id, order_id, search_text, limit)
     req.addEventListener("loadend", function() {
         var list = JSON.parse(this.responseText);
         var table = document.getElementById("products_table")
-        meta = list[0]; //Meta object
-        cats = list[1];
+        cats = list[0];
+        meta = list[1]; //Meta object
         console.log(cats);
         var maker_search = GetState("SearchMaker");
         for(var i=2; i<list.length; ++i)
