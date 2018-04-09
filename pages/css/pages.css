@@ -160,4 +160,5 @@ p#comment {
 p#page_counter {
     margin: 0px;
     padding: 0px;
+    display: inline;
 }
