@@ -71,10 +71,7 @@ class Category {
         this.items = [];
         this.children = [];
         this.clicker = function(event) {
-            var con = "" + this.cat_id;
-            this.children.forEach(c => {
-                con += c.cat_id;
-            })
+            con = this.GetCategoryArray().join(",");
             SetState("cat_id", con);
             build("products.html");
         }
@@ -82,6 +79,15 @@ class Category {
 
     AddSubCategory(cat) {
         this.children.push(cat);
+    }
+
+    GetCategoryArray() {
+        var sum = [];
+        sum.push(this.cat_id);
+        this.children.forEach(c => {
+            sum.concat(c.GetCategoryString());
+        })
+        return sum;
     }
 
     GetSum() {
