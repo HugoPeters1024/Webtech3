@@ -184,8 +184,8 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         var nav_prev = document.getElementById("nav_prev");
 
         var nav_next = document.getElementById("nav_next");
-        alert(offset + limit);
-        if (offset + limit >= meta.COUNT) {
+        alert(offset + limit.value);
+        if (offset + limit.value >= meta.COUNT) {
             nav_next.dislay.dislay = "none"
         }
         else {
