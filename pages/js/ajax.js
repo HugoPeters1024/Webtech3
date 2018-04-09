@@ -380,6 +380,7 @@ function buyProduct(productId) {
           }
           catch(err) {
               console.log("Invalid server response, not a JSON object: " + this.responseText);
+              return;
           }
           if (res.err) {
               console.log(res.err);
