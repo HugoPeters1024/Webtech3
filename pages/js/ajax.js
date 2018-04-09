@@ -224,7 +224,8 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         cat_req = new XMLHttpRequest();
         cat_req.addEventListener("loadend", function() {
             var obj = JSON.parse(this.responseText);
-            obj.forEach(element => {
+            for(var i=0; i<obj.length; i++) {
+                element = obj[i];
                 console.log(JSON.stringify(element));
                 var categorie = new Category(element.name, element.cat_id)
                 if (categorie.parent != null) {
@@ -233,8 +234,8 @@ function buildProductPage(maker_id, order_id, search_text, limit)
                     var id = element.cat_id;
                     categories.id = element;
                 }
+            };
             console.log(JSON.stringify(categories));
-            });
         });
         cat_req.open("POST", "categories", true);
         cat_req.send()
