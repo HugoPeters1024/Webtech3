@@ -95,7 +95,7 @@ button.std_button {
     cursor: pointer;
 }
 
-.cat_list > li:hover {
+.cat_list > span:hover {
     text-decoration: underline;
 }
 

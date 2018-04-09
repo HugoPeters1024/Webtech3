@@ -104,7 +104,7 @@ class Category {
         if (this.GetSum() > 0)
         {
             var root = document.createElement("LI");
-            root.innerHTML = this.name + "(" + this.GetSum() + ")";
+            root.innerHTML = "<span>" + this.name + "(" + this.GetSum() + ")" + "</span>";
             var el = document.createElement("UL");
             el.setAttribute("class", "cat_list_sub");
             this.children.forEach(child => {
