@@ -1,4 +1,4 @@
-function build(file, callback, arg1, arg2, arg3, arg4) {
+function build(file, callback, arg1, arg2, arg3, arg4, arg5) {
     if (!file)
         file = GetState("CurrentPage");
     SetState("CurrentPage", file);
@@ -8,12 +8,18 @@ function build(file, callback, arg1, arg2, arg3, arg4) {
         var side = document.getElementById("side");
         page.innerHTML = this.responseText;
         side.innerHTML = "";
-        if (callback) { callback(arg1, arg2, arg3, arg4); return; };
+        if (callback) { callback(arg1, arg2, arg3, arg4, arg5); return; };
         if (file == "profile.html") buildUserProfile();
         if (file == "products.html") { 
             var search_text = document.getElementById("search_text").value;
+            var cat_id = GetState("cat_id");
+            if (!cat_id)
+                cat_id = -1;
+            else
+                RemoveState("cat_id");
+                
             var limit = GetState("limit");
-            buildProductPage(GetState("SearchMaker"), GetState("OrderProducts"), search_text, limit); 
+            buildProductPage(GetState("SearchMaker"), GetState("OrderProducts"), search_text, limit, cat_id); 
         }
         if (file == "history.html") buildHistoryPage();
         if (file == "confirm_product.html") buildProductConfirmPage();
