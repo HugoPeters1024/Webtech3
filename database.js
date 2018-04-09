@@ -190,7 +190,7 @@ exports.dbMakers = (req, res) => {
 
 exports.dbCategories = (req, res) => {
   var db = openDB();
-  db.all("SELECT * FROM Categories WHERE 1", function(err, rows) {
+  db.all("SELECT * FROM Categories WHERE 1 ORDER BY Parent", function(err, rows) {
     if (err) {
       console.log(err);
       res.send("An error occured");

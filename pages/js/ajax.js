@@ -125,7 +125,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
             table.appendChild(row);
         }
 
-                //get the manufacturers
+        //get the manufacturers
         var manu_req = new XMLHttpRequest();
         manu_req.addEventListener("loadend", function() {
             var ret = JSON.parse(this.responseText);
@@ -218,6 +218,14 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         });
         manu_req.open("POST", "makers", true);
         manu_req.send()
+
+        //Get the categories
+        cat_req = new XMLHttpRequest();
+        cat_req.addEventListener("loadend", function() {
+            alert(this.responseText);
+        });
+        cat_req.open("POST", "makers", true);
+        cat_req.send()
     });
     req.open("POST", "products", true);
     req.setRequestHeader("Content-Type", "application/json");
