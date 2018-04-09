@@ -179,7 +179,7 @@ function buildProductPage(maker_id, order_id, search_text, limit, cat_id)
 
             var page_counter = document.getElementById("page_counter");
             if (offset + parseInt(limit.value) < meta.COUNT) {
-                page_counter.innerHTML = `  <b>Page (${parseInt(offset / parseInt(limit.value)+1)}/)`;
+                page_counter.innerHTML = `  <i>Page (${parseInt(offset / parseInt(limit.value)+1)}/${parseInt(meta.COUNT / parseInt(limit.value))})</i>`;
             }
             else {
                 page_counter.innerHTML = "";
