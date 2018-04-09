@@ -87,6 +87,7 @@ class Category {
         this.children.forEach(c => {
             sum.concat(c.GetCategoryArray());
         })
+        console.log(JSON.stringify(sum));
         return sum;
     }
 
