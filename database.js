@@ -389,8 +389,8 @@ exports.dbBuy = (req, res) => {
       }
       var date = new Date();
       var db = openDB();
-      var statement = db.prepare("INSERT INTO Transactions (product_id, user_id, date) VALUES(?, ?, ?)");
-      statement.run(req.body.product_id, user_id, date, function(err) {
+      var statement = db.prepare("INSERT INTO Transactions (product_id, user_id, amount, date) VALUES(?, ?, ?, ?)");
+      statement.run(req.body.product_id, user_id, req.body.amount, date, function(err) {
          if (err) {
           console.log(err);
           ret.err = "Could not buy product " + req.body.product_id;

@@ -371,6 +371,7 @@ function sendLoginRequest() {
 
 function buyProduct(productId) {
     if (productId) {
+      var amount = document.getElementById("amount").value;
       var req = new XMLHttpRequest();
       req.addEventListener("loadend", function() {
           var res;
@@ -394,6 +395,7 @@ function buyProduct(productId) {
       var obj = {};
       obj.product_id = productId;
       obj.token = GetState("token");
+      obj.amount = amount;
       req.setRequestHeader("Content-Type", "application/json");
       req.send(JSON.stringify(obj));
     }
