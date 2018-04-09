@@ -1,29 +1,40 @@
 <article>
     <table class="std_table">
         <tr>
-            <td>Manufacturer: </td>
             <td>
-                <select id="search_maker">
-                    <option value="-1">All</option>
-                </select>
+            <table class="std_table">
+            <tr>
+                <td>Manufacturer: </td>
+                <td>
+                    <select id="search_maker">
+                        <option value="-1">All</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Sort by: </td>
+                <td>
+                    <select id="search_order">
+                        <option value="0">Manufacturer</option>
+                        <option value="1">Name</option>
+                        <option value="2">Price (increasing)</option>
+                        <option value="3">Price (decreasing)</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Search for: </td>
+                <td>
+                    <input type="text" id="search_text">
+                    <button id = "go_search_text" autofocus>Go</button>
+                </td>
             </td>
-        </tr>
-        <tr>
-            <td>Sort by: </td>
-            <td>
-                <select id="search_order">
-                    <option value="0">Manufacturer</option>
-                    <option value="1">Name</option>
-                    <option value="2">Price (increasing)</option>
-                    <option value="3">Price (decreasing)</option>
-                </select>
+            </tr>
+            </table>
             </td>
-        </tr>
-        <tr>
-            <td>Search for: </td>
             <td>
-                <input type="text" id="search_text">
-                <button id = "go_search_text" autofocus>Go</button>
+                <ul id="categories">
+                </ul>
             </td>
         </tr>
     </table>

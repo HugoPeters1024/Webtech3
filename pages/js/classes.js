@@ -61,3 +61,29 @@ class Product {
         return row;
     }
 }
+
+class Category {
+    constructor(name, cat_id) {
+        this.name = name;
+        this.cat_id = cat_id;
+        this.parent = parent;
+        this.items = [];
+        this.children = [];
+    }
+
+    AddSubCategory(cat) {
+        this.children.appendChild(cat);
+    }
+
+    GetSum() {
+        if (this.children.length === 0)
+            return this.items.length;
+        else {
+            var sum = 0;
+            items.array.forEach(element => {
+                sum += element.GetSum();
+            });
+            return sum + this.items.length;
+        }
+    }
+}

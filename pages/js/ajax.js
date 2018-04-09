@@ -220,9 +220,20 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         manu_req.send()
 
         //Get the categories
+        var categories = {};
         cat_req = new XMLHttpRequest();
         cat_req.addEventListener("loadend", function() {
-            alert(this.responseText);
+            var obj = JSON.parse(this.responseText);
+            obj.forEach(element => {
+                var categorie = new Category(element.name, element.cat_id)
+                if (categorie.parent) {
+                    categories[categorie.parent].AddSubCategory(element);
+                } else {
+                    var id = element.cat_id;
+                    categories.id = element;
+                }
+            console.log(JSON.stringify(categories));
+            });
         });
         cat_req.open("POST", "categories", true);
         cat_req.send()
