@@ -95,7 +95,7 @@ exports.dbProducts = (req, res) => {
     });
     statement.finalize(function() {
       console.log("Collecting COUNT meta data...");
-      var statement = db.prepare("SELECT COUNT(Products.product_id) as COUNT FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND ((? IS NULL) OR (Products.cat_id IN ?)) AND (Products.name LIKE ('%' || ? || '%') OR Manufactures.name LIKE ('%' || ? || '%')) " + orderClausule);
+      var statement = db.prepare("SELECT COUNT(Products.product_id) as COUNT FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND ((? IS NULL) OR (Products.cat_id IN (?))) AND (Products.name LIKE ('%' || ? || '%') OR Manufactures.name LIKE ('%' || ? || '%')) " + orderClausule);
       statement.get(maker_id, maker_id, cat_id, cat_id, search_text, search_text, function(err, row) {
         if (err) {
           console.log(err)
@@ -106,7 +106,7 @@ exports.dbProducts = (req, res) => {
       });
       statement.finalize(function() {
         console.log("Collecting category meta data...");
-        var statement = db.prepare("SELECT Products.cat_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = (?))) AND ((? IS NULL) OR (Products.cat_id IN (?))) AND (Products.name LIKE ('%' || ? || '%') OR  Manufactures.name LIKE ('%' || ? || '%')) " + orderClausule);
+        var statement = db.prepare("SELECT Products.cat_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND ((? IS NULL) OR (Products.cat_id IN (?))) AND (Products.name LIKE ('%' || ? || '%') OR  Manufactures.name LIKE ('%' || ? || '%')) " + orderClausule);
         statement.all(maker_id, maker_id, cat_id, cat_id, search_text, search_text, function(err, rows) {
           if(err) {
           console.log(err);
