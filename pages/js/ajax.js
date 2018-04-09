@@ -225,6 +225,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         cat_req.addEventListener("loadend", function() {
             var obj = JSON.parse(this.responseText);
             obj.forEach(element => {
+                console.log(JSON.stringify(element));
                 var categorie = new Category(element.name, element.cat_id)
                 if (categorie.parent) {
                     categories[categorie.parent].AddSubCategory(element);
