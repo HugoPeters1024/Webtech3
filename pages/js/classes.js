@@ -86,4 +86,13 @@ class Category {
             return sum + this.items.length;
         }
     }
+
+    GetTree() {
+        var root = document.createElement("LI");
+        root.innerHTML = this.name;
+        children.forEach(child => {
+            root.innerHTML += child.GetHTML();
+        });
+        return root;
+    }
 }

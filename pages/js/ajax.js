@@ -224,6 +224,8 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         cat_req = new XMLHttpRequest();
         cat_req.addEventListener("loadend", function() {
             var obj = JSON.parse(this.responseText);
+
+            //Build categorie tree (only supports 1 deep)
             for(var i=0; i<obj.length; i++) {
                 var categorie = new Category(obj[i].name, obj[i].cat_id, obj[i].parent)
                 if (categorie.parent) {
@@ -232,6 +234,12 @@ function buildProductPage(maker_id, order_id, search_text, limit)
                     categories[categorie.cat_id] = categorie;
                 }
             };
+
+            cat_list = document.getElementById("cat_list");
+            categories.forEach(cat => {
+                cat_list.appendChild(cat.GetTree());
+            });
+
             console.log(JSON.stringify(categories));
         });
         cat_req.open("POST", "categories", true);
