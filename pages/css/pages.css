@@ -73,6 +73,10 @@ button.std_button {
     color: white;
 }
 
+#products_table tr td:nth-child(even) {
+    background-color: #9e9e9e;
+}
+
 #products_table tr:first-child td {
     font-weight: bold;
 }
