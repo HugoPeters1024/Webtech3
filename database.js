@@ -69,8 +69,10 @@ exports.dbProducts = (req, res) => {
         maker_id = null; 
     if (!cat_id || cat_id == "-1")
         cat_id = null
-    else
+    else {
         cat_id = cat_id.split("");
+        console.log(cat_id);
+    }
 
     var orderClausule = "";
     switch(order_id)
