@@ -70,7 +70,7 @@ exports.dbProducts = (req, res) => {
     if (!cat_id || cat_id == "-1")
         cat_id = null
     else {
-        cat_id = cat_id.split("");
+        cat_id = "5"
         console.log(cat_id);
     }
 
