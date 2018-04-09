@@ -63,7 +63,7 @@ class Product {
 }
 
 class Category {
-    constructor(name, cat_id) {
+    constructor(name, cat_id, parent) {
         this.name = name;
         this.cat_id = cat_id;
         this.parent = parent;

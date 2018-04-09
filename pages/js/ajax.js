@@ -227,8 +227,8 @@ function buildProductPage(maker_id, order_id, search_text, limit)
             for(var i=0; i<obj.length; i++) {
                 element = obj[i];
                 console.log(element.parent);
-                var categorie = new Category(element.name, element.cat_id)
-                if (categorie.parent != null) {
+                var categorie = new Category(element.name, element.cat_id, element.parent)
+                if (categorie.parent) {
                     categories[categorie.parent].AddSubCategory(element);
                 } else {
                     var id = element.cat_id;
