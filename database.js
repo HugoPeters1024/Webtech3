@@ -73,8 +73,6 @@ exports.dbProducts = (req, res) => {
         cat_id_list = cat_id;
     }
 
-    var cat_id_list = "1";
-
     var orderClausule = "";
     switch(order_id)
     {
