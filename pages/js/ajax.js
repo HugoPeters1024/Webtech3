@@ -7,7 +7,7 @@ function build(file, callback, arg1, arg2, arg3, arg4, arg5) {
         var page= document.getElementById("page");
         var side = document.getElementById("side");
         page.innerHTML = this.responseText;
-        //while(side.firstChild) { side.removeChild(side.firstChild); }
+        while(side.firstChild) { side.removeChild(side.firstChild); }
         if (callback) { callback(arg1, arg2, arg3, arg4, arg5); return; };
         if (file == "profile.html") buildUserProfile();
         if (file == "products.html") { 
