@@ -81,8 +81,8 @@ class Category {
             return this.items.length;
         else {
             var sum = 0;
-            this.items.forEach(element => {
-                sum += element.GetSum();
+            this.children.forEach(child => {
+                sum += child.GetSum();
             });
             return sum + this.items.length;
         }
