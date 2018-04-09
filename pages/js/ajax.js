@@ -236,7 +236,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
             };
 
             cat_list = document.getElementById("cat_list");
-            for(cat in categories) {
+            for(var cat in categories) {
                 alert(JSON.stringify(cat));
                 cat_list.appendChild(cat_list[cat].GetTree());
             };
