@@ -77,7 +77,7 @@ exports.dbProducts = (req, res) => {
     }
     var result = [];
     var statement = db.prepare("SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND (Products.name LIKE ('%' || ? || '%') OR  Manufactures.name LIKE ('%' || ? || '%')) " + orderClausule + " LIMIT ?, ?");
-    statement.all(maker_id, maker_id, search_text, offset, limit, function(err, rows) {
+    statement.all(maker_id, maker_id, search_text, search_text, offset, limit, function(err, rows) {
       if(err) {
       console.log(err);
       res.send({}.err = 'An error has occured, check the logs.');
