@@ -72,7 +72,7 @@ exports.dbProducts = (req, res) => {
     else {
         cat_id = cat_id.split("");
         console.log(cat_id);
-        cat_id = "1, 2, 3";
+        cat_id = "1";
     }
 
     var orderClausule = "";
