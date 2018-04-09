@@ -178,7 +178,7 @@ function buildProductPage(maker_id, order_id, search_text, limit, cat_id)
                 offset = 0;
 
             var page_counter = document.getElementById("page_counter");
-            if (offset > 0) {
+            if (offset + parseInt(limit.value) < meta.COUNT) {
                 page_counter.innerHTML = "MORE THAN 1 page";
             }
             else {
