@@ -92,6 +92,7 @@ section.side {
     margin-bottom: 15px;
     padding: 10px;
     border: 1px solid #e7e7e7;
+    width: 90%; 
 }
 
 section.side img {
