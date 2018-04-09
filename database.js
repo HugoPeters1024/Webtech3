@@ -97,8 +97,8 @@ exports.dbProducts = (req, res) => {
         //res.send(result);
       });
       statement.finalize(function() {
-        var statement = db.prepare("SELECT Products.cat_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND (Products.name LIKE ('%' || ? || '%') OR  Manufactures.name LIKE ('%' || ? || '%')) " + orderClausule + " LIMIT ?, ?");
-        statement.all(maker_id, maker_id, search_text, search_text, offset, limit, function(err, rows) {
+        var statement = db.prepare("SELECT Products.cat_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND (Products.name LIKE ('%' || ? || '%') OR  Manufactures.name LIKE ('%' || ? || '%')) " + orderClausule);
+        statement.all(maker_id, maker_id, search_text, search_text, function(err, rows) {
           if(err) {
           console.log(err);
           res.send({}.err = 'An error has occured, check the logs.');
