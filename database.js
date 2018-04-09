@@ -147,7 +147,7 @@ exports.dbComments = (req, res) => {
 
 exports.dbPostComment = (req, res) => {
   var ret = {};
-  if (!req.body.token || !req.body.product_id || !req.body.comment) {
+  if (!req.body.product_id || !req.body.comment) {
     ret.err = "Invalid request!";
     res.send(ret);
     return;
