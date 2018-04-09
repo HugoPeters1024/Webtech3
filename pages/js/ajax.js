@@ -237,7 +237,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
                 }
                 productlist.forEach(p => {
                     if (p.cat_id == categorie.cat_id)
-                        categorie.children.push(p);
+                        categorie.items.push(p);
                 });
             };
 
