@@ -47,10 +47,10 @@ class Product {
         var tddate = document.createElement("TD");
 
         var options = {  
-            weekday: "long", year: "numeric", month: "short",  
+            weekday: "narrow", year: "numeric", month: "short",  
             day: "numeric", hour: "2-digit", minute: "2-digit"  
         }; 
-        tddate.innerHTML = new Date(date).toLocaleTimeString();
+        tddate.innerHTML = new Date(date).toLocaleTimeString("en-us", options);
         //Just make the entire row clickable
         row.addEventListener("click", this.clicker.bind(this), false);
 
