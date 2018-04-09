@@ -73,6 +73,8 @@ exports.dbProducts = (req, res) => {
     }
     console.log("order clausule: " + orderClausule);
 
+    var result = [];
+
     var maker_id = req.body.maker_id;
     if (!maker_id || maker_id == "-1") {
        maker_id = null; 
@@ -84,7 +86,7 @@ exports.dbProducts = (req, res) => {
         res.send({}.err = 'An error has occured, check the logs.');
         }
         else {
-          res.send(rows);
+          result.concat(rows);
         }
      });
      statement.finalize(function() {
@@ -94,9 +96,11 @@ exports.dbProducts = (req, res) => {
            console.log(err)
            return;
          }
-         console.log("Count: " + JSON.stringify(row));
+         result.unshift(rows);
        });
-       statement.finalize();
+       statement.finalize(function() {
+         res.send(result);
+       });
      });
    closeDB(db);
 }
