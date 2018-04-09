@@ -119,7 +119,6 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         var table = document.getElementById("products_table")
         cats = list[0];
         meta = list[1]; //Meta object
-        console.log(cats);
         var maker_search = GetState("SearchMaker");
         for(var i=2; i<list.length; ++i)
         {
@@ -238,8 +237,8 @@ function buildProductPage(maker_id, order_id, search_text, limit)
                 } else {
                     categories[categorie.cat_id] = categorie;
                 }
-                productlist.forEach(p => {
-                    if (p.cat_id == categorie.cat_id)
+                cats.forEach(p => {
+                    if (p == categorie.cat_id)
                         categorie.items.push(p);
                 });
             };
@@ -250,11 +249,8 @@ function buildProductPage(maker_id, order_id, search_text, limit)
             document.getElementById("side").appendChild(cat_list);
             for(var cat in categories) {
                 var b = categories[cat].GetTree();
-                if (b)
-                    cat_list.appendChild(b);
+                if (b) cat_list.appendChild(b);
             };
-
-            console.log(JSON.stringify(categories));
         });
         cat_req.open("POST", "categories", true);
         cat_req.send()
