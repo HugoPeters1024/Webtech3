@@ -67,6 +67,8 @@ exports.dbProducts = (req, res) => {
       offset = 0;
     if (!maker_id || maker_id == "-1")
         maker_id = null; 
+
+    cat_id_list = "";
     if (!cat_id || cat_id == "-1")
         cat_id = null
     else {
