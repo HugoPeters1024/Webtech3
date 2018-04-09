@@ -114,7 +114,8 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         var list = JSON.parse(this.responseText);
         var table = document.getElementById("products_table")
         var maker_search = GetState("SearchMaker");
-        for(var i=0; i<list.length; ++i)
+        var meta = list[0];
+        for(var i=1; i<list.length; ++i)
         {
             var obj = list[i];
             productlist.push(new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id));
