@@ -132,7 +132,7 @@ exports.dbProductInfo = (req, res) => {
     return;
   }
   var db = openDB();
-  var statement = db.prepare("SELECT Products.product_id, Product.cat_id, Products.name, Manufactures.name as maker, Products.image, Products.price FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Products.product_id = ?");
+  var statement = db.prepare("SELECT Products.product_id, Products.cat_id, Products.name, Manufactures.name as maker, Products.image, Products.price FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Products.product_id = ?");
   statement.get(req.body.product_id, function(err, row) {
     if (err) {
       console.write(err);
