@@ -97,6 +97,7 @@ class Category {
                     el.appendChild(c);
             });
             root.appendChild(el);
+            root.addEventListener("click", alert(this.innerHTML));
             return root;
         }
         return null;
