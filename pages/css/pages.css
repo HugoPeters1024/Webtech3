@@ -95,6 +95,10 @@ button.std_button {
     cursor: pointer;
 }
 
+.cat_list > li:hover {
+    text-decoration: underline;
+}
+
 .cat_list_sub {
     font-size: 10pt;
     list-style-type: none;
