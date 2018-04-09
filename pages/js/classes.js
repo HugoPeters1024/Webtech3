@@ -70,6 +70,10 @@ class Category {
         this.parent = parent;
         this.items = [];
         this.children = [];
+        this.clicker = function(event) {
+            alert(this.cat_id);
+            SetState("cat_id", this.cat_id);
+        }
     }
 
     AddSubCategory(cat) {
@@ -98,10 +102,7 @@ class Category {
             });
             if (el.firstChild)
                 root.appendChild(el);
-            root.addEventListener("click", function() {
-                alert(this.cat_id);
-                SetState("cat_id", this.cat_id);
-            });
+            root.addEventListener("click", this.clicker.bind(this));
             return root;
         }
         return null;
