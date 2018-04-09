@@ -247,6 +247,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
 
 
             cat_list = document.createElement("UL");
+            cat_list.id = "cat_list";
             document.getElementById("side").appendChild(cat_list);
             for(var cat in categories) {
                 var b = categories[cat].GetTree();
