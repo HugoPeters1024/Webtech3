@@ -58,6 +58,7 @@ class Product {
         row.addEventListener("click", this.clicker.bind(this), false);
 
         row.appendChild(tdname);
+        row.appendChild(tdamount);
         row.appendChild(tdimage);
         row.appendChild(tdprice);
         row.appendChild(tddate);
