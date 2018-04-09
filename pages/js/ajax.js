@@ -17,7 +17,7 @@ function build(file, callback, arg1, arg2, arg3, arg4, arg5) {
                 cat_id = -1;
             else
                 RemoveState("cat_id");
-                
+
             var limit = GetState("limit");
             buildProductPage(GetState("SearchMaker"), GetState("OrderProducts"), search_text, limit, cat_id); 
         }
@@ -114,7 +114,7 @@ function buildUserProfile(){
     });
 }
 
-function buildProductPage(maker_id, order_id, search_text, limit)
+function buildProductPage(maker_id, order_id, search_text, limit, cat_id)
 {
     var productlist = [];
     var meta = {};
@@ -277,10 +277,14 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         ret.offset = 0;
     else
         ret.offset = GetState("offset");
+
+    if (!cat_id)
+        cat_id = -1;
     ret.order_id = order_id;
     ret.maker_id = maker_id;
     ret.search_text = search_text;
     ret.limit = limit;
+    ret.cat_id = cat_id;
     req.send(JSON.stringify(ret));
 }
 

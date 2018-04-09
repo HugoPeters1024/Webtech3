@@ -71,8 +71,8 @@ class Category {
         this.items = [];
         this.children = [];
         this.clicker = function(event) {
-            alert(this.cat_id);
             SetState("cat_id", this.cat_id);
+            build("products.html");
         }
     }
 
