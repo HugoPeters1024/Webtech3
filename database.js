@@ -76,7 +76,7 @@ exports.dbProducts = (req, res) => {
     var maker_id = req.body.maker_id;
     if (!maker_id || maker_id == "-1") {
        maker_id = null; 
-      }
+    }
       var statement = db.prepare("SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND Products.name LIKE '%' || ? || '%' " + orderClausule + " LIMIT ?");
       statement.all(maker_id, maker_id, search_text, limit, function(err, rows) {
         if(err) {
@@ -87,7 +87,16 @@ exports.dbProducts = (req, res) => {
           res.send(rows);
         }
      });
-     statement.finalize();
+     statement.finalize(function() {
+       var statement = db.prepare("SELECT COUNT(Products.product_id) FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND Products.name LIKE '%' || ? || '%' " + orderClausule + " LIMIT ?")
+       statement.get(maker_id, maker_id, search_text, limit, function(err, row) {
+         if (err) {
+           console.log(err)
+           return;
+         }
+         console.log("Count: " + row);
+       })
+     });
    closeDB(db);
 }
 
