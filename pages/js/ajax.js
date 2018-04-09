@@ -239,7 +239,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
                     categories[categorie.cat_id] = categorie;
                 }
                 for(var c=0; c<cats.length; c++) {
-                    if (cats[c] == categorie.cat_id)
+                    //if (cats[c] == categorie.cat_id)
                         categorie.items.push(new Object( { "null" : "null" }));
                 };
             };
@@ -250,7 +250,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
             document.getElementById("side").appendChild(cat_list);
             for(var cat in categories) {
                 var b = categories[cat].GetTree();
-                if (b) cat_list.appendChild(b);
+                if (b) { cat_list.appendChild(b) };
             };
         });
         cat_req.open("POST", "categories", true);
