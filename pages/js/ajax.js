@@ -181,14 +181,14 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         if (!offset)
             offset = 0;
 
-        var nav_left = document.getElementById("nav_left");
+        var nav_prev = document.getElementById("nav_prev");
 
-        var nav_right = document.getElementById("nav_right");
+        var nav_next = document.getElementById("nav_next");
         if (offset + limit >= meta.COUNT) {
-            nav_right.dislay.dislay = "none"
+            nav_next.dislay.dislay = "none"
         }
         else {
-            nav_right.dislay.dislay = "block";
+            nav_next.dislay.dislay = "block";
         }
 
         
