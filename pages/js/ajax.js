@@ -109,6 +109,7 @@ function buildUserProfile(){
 function buildProductPage(maker_id, order_id, search_text, limit)
 {
     var productlist = [];
+    var categories = {};
     var meta = {};
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() {
@@ -220,7 +221,6 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         manu_req.send()
 
         //Get the categories
-        var categories = {};
         cat_req = new XMLHttpRequest();
         cat_req.addEventListener("loadend", function() {
             var obj = JSON.parse(this.responseText);
