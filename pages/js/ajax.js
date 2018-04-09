@@ -224,7 +224,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         cat_req.addEventListener("loadend", function() {
             alert(this.responseText);
         });
-        cat_req.open("POST", "makers", true);
+        cat_req.open("POST", "categories", true);
         cat_req.send()
     });
     req.open("POST", "products", true);
