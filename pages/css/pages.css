@@ -85,7 +85,7 @@ button.std_button {
     font-weight: bold;
 }
 
-#cat_list > ul {
+.cat_list {
     font-size: 10pt;
     list-style-type: none;
     padding-left: 3px;
