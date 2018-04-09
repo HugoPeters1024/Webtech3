@@ -165,10 +165,14 @@ function buildProductPage(maker_id, order_id, search_text, limit)
             offset = 0;
 
         var nav_prev = document.getElementById("nav_prev");
+        if (offset > 0) {
+            nav_prev.style.display = "block";
+        } else {
+            nav_prev.style.display = "none";
+        }
 
         
         var nav_next = document.getElementById("nav_next");
-        alert(offset + parseInt(limit.value));
         if (offset + parseInt(limit.value) >= meta.COUNT) {
             nav_next.style.display = "none"
         }
