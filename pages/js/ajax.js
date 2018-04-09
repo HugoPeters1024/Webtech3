@@ -114,7 +114,6 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         var list = JSON.parse(this.responseText);
         var table = document.getElementById("products_table")
         var maker_search = GetState("SearchMaker");
-        var meta = list[0]; //First object is the meta object;
         for(var i=1; i<list.length; ++i)
         {
             var obj = list[i];
@@ -123,25 +122,8 @@ function buildProductPage(maker_id, order_id, search_text, limit)
             var row = product.GetRowEntry()
             table.appendChild(row);
         }
-    });
-    req.open("POST", "products", true);
-    req.setRequestHeader("Content-Type", "application/json");
-    var ret = {};
-    if (!maker_id)
-        maker_id = -1;
-    if (!order_id)
-        order_id = 0;
-    if (!search_text)
-        search_text = "";
-    if (!limit)
-        limit = 10;
-    ret.order_id = order_id;
-    ret.maker_id = maker_id;
-    ret.search_text = search_text;
-    ret.limit = limit;
-    req.send(JSON.stringify(ret));
 
-    //get the manufacturers
+            //get the manufacturers
     var manu_req = new XMLHttpRequest();
     manu_req.addEventListener("loadend", function() {
         var ret = JSON.parse(this.responseText);
@@ -214,9 +196,26 @@ function buildProductPage(maker_id, order_id, search_text, limit)
             SetState("OrderProducts", this.value);
             build("products.html")
         })
-    });
+        });
     manu_req.open("POST", "makers", true);
     manu_req.send()
+    });
+    req.open("POST", "products", true);
+    req.setRequestHeader("Content-Type", "application/json");
+    var ret = {};
+    if (!maker_id)
+        maker_id = -1;
+    if (!order_id)
+        order_id = 0;
+    if (!search_text)
+        search_text = "";
+    if (!limit)
+        limit = 10;
+    ret.order_id = order_id;
+    ret.maker_id = maker_id;
+    ret.search_text = search_text;
+    ret.limit = limit;
+    req.send(JSON.stringify(ret));
 }
 
 function buildHistoryPage() {
