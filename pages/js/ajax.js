@@ -227,7 +227,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
             obj.forEach(element => {
                 console.log(JSON.stringify(element));
                 var categorie = new Category(element.name, element.cat_id)
-                if (categorie.parent) {
+                if (categorie.parent != null) {
                     categories[categorie.parent].AddSubCategory(element);
                 } else {
                     var id = element.cat_id;
