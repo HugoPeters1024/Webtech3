@@ -86,6 +86,7 @@ exports.dbProducts = (req, res) => {
         res.send({}.err = 'An error has occured, check the logs.');
         }
         else {
+          console.log(rows);
           result.concat(rows);
         }
      });
