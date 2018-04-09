@@ -71,7 +71,7 @@ exports.dbProducts = (req, res) => {
         cat_id = null
     else {
         console.log(cat_id.split("").join(","));
-        cat_id = "9999999"
+        cat_id = null;
     }
 
     var cat_id_list = "1";
