@@ -54,14 +54,15 @@ exports.dbProducts = (req, res) => {
     var order_id = req.body.order_id;
     var search_text = req.body.search_text;
     var limit = req.body.limit;
+    var maker_id = req.body.maker_id;
     if (!order_id)
       order_id = "0";
     if (!search_text)
       search_text = "";
     if (!limit)
       limit = 10;
-
-    console.log("order_id: " + order_id);
+    if (!maker_id || maker_id == "-1")
+        maker_id = null; 
 
     var orderClausule = "";
     switch(order_id)
@@ -71,37 +72,30 @@ exports.dbProducts = (req, res) => {
       case "2": orderClausule = "ORDER BY Products.price ASC"; break;
       case "3": orderClausule = "ORDER BY Products.price DESC"; break;
     }
-    console.log("order clausule: " + orderClausule);
-
     var result = [];
-
-    var maker_id = req.body.maker_id;
-    if (!maker_id || maker_id == "-1") {
-       maker_id = null; 
-    }
-      var statement = db.prepare("SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND Products.name LIKE '%' || ? || '%' " + orderClausule + " LIMIT ?");
-      statement.all(maker_id, maker_id, search_text, limit, function(err, rows) {
-        if(err) {
-        console.log(err);
-        res.send({}.err = 'An error has occured, check the logs.');
+    var statement = db.prepare("SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND Products.name LIKE '%' || ? || '%' " + orderClausule + " LIMIT ?");
+    statement.all(maker_id, maker_id, search_text, limit, function(err, rows) {
+      if(err) {
+      console.log(err);
+      res.send({}.err = 'An error has occured, check the logs.');
+      }
+      else {
+        result = rows;
+      }
+    });
+    statement.finalize(function() {
+      var statement = db.prepare("SELECT COUNT(Products.product_id) as COUNT FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND Products.name LIKE '%' || ? || '%' " + orderClausule + " LIMIT ?")
+      statement.get(maker_id, maker_id, search_text, limit, function(err, row) {
+        if (err) {
+          console.log(err)
+          return;
         }
-        else {
-          result = rows;
-        }
-     });
-     statement.finalize(function() {
-       var statement = db.prepare("SELECT COUNT(Products.product_id) as COUNT FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND Products.name LIKE '%' || ? || '%' " + orderClausule + " LIMIT ?")
-       statement.get(maker_id, maker_id, search_text, limit, function(err, row) {
-         if (err) {
-           console.log(err)
-           return;
-         }
-         result.unshift(row);
-         res.send(result);
-       });
-       statement.finalize();
-     });
-   closeDB(db);
+        result.unshift(row);
+        res.send(result);
+      });
+      statement.finalize();
+    });
+    closeDB(db);
 }
 
 exports.dbProductInfo = (req, res) => {

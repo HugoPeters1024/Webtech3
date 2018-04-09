@@ -114,7 +114,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         var list = JSON.parse(this.responseText);
         var table = document.getElementById("products_table")
         var maker_search = GetState("SearchMaker");
-        var meta = list[0];
+        var meta = list[0]; //First object is the meta object;
         for(var i=1; i<list.length; ++i)
         {
             var obj = list[i];
@@ -177,6 +177,9 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         else
             limit.value = 10;
 
+        var nav_left = document.getElementById("nav_left");
+        var nav_right = document.getElementById("nav_right");
+
         
         var go_search = document.getElementById("go_search_text");
         go_search.addEventListener("click", function() {
@@ -191,8 +194,8 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         })
 
         search.addEventListener("change", function() {
-           SetState("SearchMaker", this.value);
-           build("products.html");
+            SetState("SearchMaker", this.value);
+            build("products.html");
         });
 
         order.addEventListener("change", function() {
@@ -316,7 +319,6 @@ function buildProductConfirmPage(product_id)
         product_id = GetState("ViewProduct");
     SetState("ViewProduct", product_id);
     if (product_id) {
-
         //Product Info
         var req = new XMLHttpRequest();
         req.addEventListener("loadend", function() {
