@@ -83,7 +83,7 @@ exports.dbProducts = (req, res) => {
       case "3": orderClausule = "ORDER BY Products.price DESC"; break;
     }
     var result = [];
-    var statement = db.prepare("SELECT Products.product_id, Products.cat_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id IN ?)) AND ((? IS NULL) OR (Products.cat_id = ?)) AND (Products.name LIKE ('%' || ? || '%') OR  Manufactures.name LIKE ('%' || ? || '%')) " + orderClausule + " LIMIT ?, ?");
+    var statement = db.prepare("SELECT Products.product_id, Products.cat_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id IN (?))) AND ((? IS NULL) OR (Products.cat_id = ?)) AND (Products.name LIKE ('%' || ? || '%') OR  Manufactures.name LIKE ('%' || ? || '%')) " + orderClausule + " LIMIT ?, ?");
     statement.all(maker_id, maker_id, cat_id, cat_id, search_text, search_text, offset, limit, function(err, rows) {
       if(err) {
       console.log(err);
@@ -106,7 +106,7 @@ exports.dbProducts = (req, res) => {
       });
       statement.finalize(function() {
         console.log("Collecting category meta data...");
-        var statement = db.prepare("SELECT Products.cat_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND ((? IS NULL) OR (Products.cat_id IN ?)) AND (Products.name LIKE ('%' || ? || '%') OR  Manufactures.name LIKE ('%' || ? || '%')) " + orderClausule);
+        var statement = db.prepare("SELECT Products.cat_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = (?))) AND ((? IS NULL) OR (Products.cat_id IN (?))) AND (Products.name LIKE ('%' || ? || '%') OR  Manufactures.name LIKE ('%' || ? || '%')) " + orderClausule);
         statement.all(maker_id, maker_id, cat_id, cat_id, search_text, search_text, function(err, rows) {
           if(err) {
           console.log(err);
