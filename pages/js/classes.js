@@ -72,7 +72,7 @@ class Category {
     }
 
     AddSubCategory(cat) {
-        this.children.appendChild(cat);
+        this.children.push(cat);
     }
 
     GetSum() {
