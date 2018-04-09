@@ -121,7 +121,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         for(var i=1; i<list.length; ++i)
         {
             var obj = list[i];
-            productlist.push(new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id));
+            productlist.push(new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id, obj.cat_id));
             var product = productlist[productlist.length-1];
             var row = product.GetRowEntry()
             table.appendChild(row);
@@ -235,7 +235,12 @@ function buildProductPage(maker_id, order_id, search_text, limit)
                 } else {
                     categories[categorie.cat_id] = categorie;
                 }
+                productlist.forEach(p => {
+                    if (p.cat_id == categorie.cat_id)
+                        categorie.children.push(p);
+                });
             };
+
 
 
             cat_list = document.createElement("UL");
@@ -398,7 +403,7 @@ function buildProductConfirmPage(product_id)
                 console.log(obj.err)
                 return;
             }
-            current_product = new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id);
+            current_product = new Product(obj.name, obj.image, obj.price, obj.maker, obj.product_id, obj.cat_id);
             var p = current_product;
             
             document.getElementById("product_name").innerHTML = `<h1>${p.name}</h1>`;

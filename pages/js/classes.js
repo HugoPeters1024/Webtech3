@@ -1,10 +1,11 @@
 class Product {
-    constructor(name, image, price, maker, pid) {
+    constructor(name, image, price, maker, pid, cid) {
         this.name = name;
         this.price = `<span class="dollars">${Number(price).toLocaleString('en')}</span>`;
         this.image = image;
         this.maker = maker;
         this.product_id = pid;
+        this.cat_id = cid;
         this.clicker = function(event) {
             build("confirm_product.html", buildProductConfirmPage, this.product_id);
         };
