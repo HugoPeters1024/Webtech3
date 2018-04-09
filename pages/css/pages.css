@@ -77,6 +77,10 @@ button.std_button {
     background-color: #e3e3e3;
 }
 
+#products_table tr td {
+    border-bottom: 1px solid #d3d3d3;
+}
+
 #products_table tr:first-child td {
     font-weight: bold;
 }
