@@ -113,6 +113,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
     req.addEventListener("loadend", function() {
         var list = JSON.parse(this.responseText);
         var table = document.getElementById("products_table")
+        var meta = list[0]; //Meta object
         var maker_search = GetState("SearchMaker");
         for(var i=1; i<list.length; ++i)
         {
@@ -165,7 +166,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
 
         var nav_prev = document.getElementById("nav_prev");
 
-        /*
+        
         var nav_next = document.getElementById("nav_next");
         alert(offset + parseInt(limit.value));
         if (offset + parseInt(limit.value) >= meta.COUNT) {
@@ -173,7 +174,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         }
         else {
             nav_next.dislay.dislay = "block";
-        } */
+        } 
 
         
         var go_search = document.getElementById("go_search_text");
