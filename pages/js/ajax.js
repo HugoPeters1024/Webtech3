@@ -191,22 +191,26 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         
         var go_search = document.getElementById("go_search_text");
         go_search.addEventListener("click", function() {
+            SetState("offset", 0);
             var val = document.getElementById("search_text").value.toString();
             build("products.html", buildProductPage, GetState("SearchMaker"), GetState("OrderProducts"), val, GetState("limit"));
         });
 
         var limit = document.getElementById("limit");
         limit.addEventListener("change", function() {
+            SetState("offset", 0);
             SetState("limit", this.value);
             build("products.html");
         })
 
         search.addEventListener("change", function() {
+            SetState("offset", 0)
             SetState("SearchMaker", this.value);
             build("products.html");
         });
 
         order.addEventListener("change", function() {
+            SetState("offset", 0);
             SetState("OrderProducts", this.value);
             build("products.html")
         })
