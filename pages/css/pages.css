@@ -67,6 +67,10 @@ button.std_button {
 
 .dollars:before { content:'$'; }
 
+td#line { 
+    border-bottom: 1px solid #d3d3d3;
+}
+
 /* PRODUCTS PAGE */
 .products_table tr:hover:not(:first-child) td {
     background-color: #393d3f;
