@@ -72,10 +72,14 @@ exports.dbProducts = (req, res) => {
       case "3": orderClausule = "ORDER BY Products.price DESC"; break;
     }
     console.log("order clausule: " + orderClausule);
-    if (!req.body.maker_id || req.body.maker_id == "-1")
+
+    var maker_id = req.body.maker_id;
+    if (!maker_id || maker_id != "-1")
     {
-      var statement = db.prepare("SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Products.name LIKE '%' || ? || '%' " + orderClausule + " LIMIT ?");
-      statement.all(search_text, limit, function(err, rows) {
+       maker_id = "*";
+    }
+      var statement = db.prepare("SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Manufactures.maker_id = ? Products.name LIKE '%' || ? || '%' " + orderClausule + " LIMIT ?");
+      statement.all(maker_id, search_text, limit, function(err, rows) {
         if(err) {
         console.log(err);
         res.send({}.err = 'An error has occured, check the logs.');
@@ -85,21 +89,6 @@ exports.dbProducts = (req, res) => {
         }
      });
      statement.finalize();
-    }
-   else
-   {
-     var statement = db.prepare("SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND Products.name LIKE '%' || ? || '%' AND Manufactures.maker_id = ? " + orderClausule + " LIMIT ?");
-     statement.all(search_text, req.body.maker_id, limit, function(err, rows) {
-       if(err) {
-         console.log(err)
-         res.send({}.err = "An error has occured");
-       }
-       else {
-         res.send(rows);
-       }
-     });
-     statement.finalize();
-   }
    closeDB(db);
 }
 
