@@ -238,6 +238,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
                 } else {
                     categories[categorie.cat_id] = categorie;
                 }
+                alert(cats);
                 cats.forEach(p => {
                     if (p.cat_id == categorie.cat_id)
                         categorie.items.push(new Object( { "null" : "null" }));

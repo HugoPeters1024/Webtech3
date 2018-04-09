@@ -105,7 +105,7 @@ exports.dbProducts = (req, res) => {
           }
           else {
             var obj = {};
-            obj.cats = rows;
+            obj.cats = rows.map(x => x.cat_id);
             result.unshift(obj);
             res.send(result);
           }
