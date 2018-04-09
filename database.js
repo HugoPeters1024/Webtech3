@@ -54,6 +54,7 @@ exports.dbProducts = (req, res) => {
     var order_id = req.body.order_id;
     var search_text = req.body.search_text;
     var limit = req.body.limit;
+    var offset = req.body.offset;
     var maker_id = req.body.maker_id;
     if (!order_id)
       order_id = "0";
@@ -61,6 +62,8 @@ exports.dbProducts = (req, res) => {
       search_text = "";
     if (!limit)
       limit = 10;
+    if (!offset)
+      offset = 0;
     if (!maker_id || maker_id == "-1")
         maker_id = null; 
 
@@ -73,8 +76,8 @@ exports.dbProducts = (req, res) => {
       case "3": orderClausule = "ORDER BY Products.price DESC"; break;
     }
     var result = [];
-    var statement = db.prepare("SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND Products.name LIKE '%' || ? || '%' " + orderClausule + " LIMIT ?");
-    statement.all(maker_id, maker_id, search_text, limit, function(err, rows) {
+    var statement = db.prepare("SELECT Products.product_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND Products.name LIKE '%' || ? || '%' " + orderClausule + " LIMIT ?, ?");
+    statement.all(maker_id, maker_id, search_text, offset, limit, function(err, rows) {
       if(err) {
       console.log(err);
       res.send({}.err = 'An error has occured, check the logs.');
@@ -84,8 +87,8 @@ exports.dbProducts = (req, res) => {
       }
     });
     statement.finalize(function() {
-      var statement = db.prepare("SELECT COUNT(Products.product_id) as COUNT FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND Products.name LIKE '%' || ? || '%' " + orderClausule + " LIMIT ?")
-      statement.get(maker_id, maker_id, search_text, limit, function(err, row) {
+      var statement = db.prepare("SELECT COUNT(Products.product_id) as COUNT FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND Products.name LIKE '%' || ? || '%' " + orderClausule + " LIMIT ?, ?")
+      statement.get(maker_id, maker_id, search_text, offset, limit, function(err, row) {
         if (err) {
           console.log(err)
           return;
