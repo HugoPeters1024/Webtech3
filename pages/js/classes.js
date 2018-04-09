@@ -71,7 +71,7 @@ class Category {
         this.items = [];
         this.children = [];
         this.clicker = function(event) {
-            con = this.GetCategoryArray().join(",");
+            var con = this.GetCategoryArray().join(",");
             SetState("cat_id", con);
             build("products.html");
         }
