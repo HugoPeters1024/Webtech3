@@ -165,6 +165,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
 
         var nav_prev = document.getElementById("nav_prev");
 
+        /*
         var nav_next = document.getElementById("nav_next");
         alert(offset + parseInt(limit.value));
         if (offset + parseInt(limit.value) >= meta.COUNT) {
@@ -172,7 +173,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         }
         else {
             nav_next.dislay.dislay = "block";
-        }
+        } */
 
         
         var go_search = document.getElementById("go_search_text");
