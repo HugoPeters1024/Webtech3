@@ -177,9 +177,9 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         else
             limit.value = 10;
 
-        var offset = GetState("offset");
+        var offset = parseInt(GetState("offset"));
         if (!offset)
-            parseInt(offset) = 0;
+            offset = 0;
 
         var nav_prev = document.getElementById("nav_prev");
 
