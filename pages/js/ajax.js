@@ -225,13 +225,11 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         cat_req.addEventListener("loadend", function() {
             var obj = JSON.parse(this.responseText);
             for(var i=0; i<obj.length; i++) {
-                element = obj[i];
-                var categorie = new Category(element.name, element.cat_id, element.parent)
+                var categorie = new Category(obj[i].name, obj[i].cat_id, obj[i].parent)
                 if (categorie.parent) {
-                    categories[categorie.parent].AddSubCategory(element);
+                    categories[categorie.parent].AddSubCategory(categorie);
                 } else {
-                    var id = element.cat_id;
-                    categories.id = element;
+                    categories[categorie.cat_id] = categorie;
                     console.log(JSON.stringify(categories));
                 }
             };
