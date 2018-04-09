@@ -74,7 +74,7 @@ exports.dbProducts = (req, res) => {
     console.log("order clausule: " + orderClausule);
 
     var maker_id = req.body.maker_id;
-    if (!maker_id || maker_id != "-1")
+    if (!maker_id || maker_id == "-1")
     {
        maker_id = "'*'";
     }
