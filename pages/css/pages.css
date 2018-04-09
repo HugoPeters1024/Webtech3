@@ -85,6 +85,10 @@ button.std_button {
     font-weight: bold;
 }
 
+#cat_list {
+    font-size: 10pt;
+}
+
 /* CONFIRM PRODUCT PAGE */
 
 #buy_button {
