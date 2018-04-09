@@ -232,17 +232,16 @@ function buildProductPage(maker_id, order_id, search_text, limit)
 
             //Build categorie tree (only supports 1 deep)
             for(var i=0; i<obj.length; i++) {
-                var categorie = new Category(obj[i].cat_name, obj[i].cat_id, obj[i].parent)
-                if (categorie.parent) {
-                    categories[categorie.parent].AddSubCategory(categorie);
+                var category = new Category(obj[i].cat_name, obj[i].cat_id, obj[i].parent)
+                if (category.parent) {
+                    categories[category.parent].AddSubCategory(category);
                 } else {
-                    categories[categorie.cat_id] = categorie;
+                    categories[category.cat_id] = category;
                 }
                 cats.forEach(p => {
-                    if (p == categorie.cat_id)
-                        categorie.items.push(p);
+                    if (p == category.cat_id)
+                        category.items.push(p);
                 });
-                console.log(JSON.stringify(categorie.items));
             };
 
 
