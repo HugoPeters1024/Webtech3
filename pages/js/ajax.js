@@ -118,6 +118,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         var list = JSON.parse(this.responseText);
         var table = document.getElementById("products_table")
         cats = list[0];
+        console.log(cats);
         meta = list[1]; //Meta object
         var maker_search = GetState("SearchMaker");
         for(var i=2; i<list.length; ++i)
