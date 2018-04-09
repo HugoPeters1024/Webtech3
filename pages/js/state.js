@@ -1,7 +1,7 @@
 if (!window.localStorage.getItem("StateWrapper") || window.localStorage.getItem("StateWrapper") == "undefined") {
     window.localStorage.setItem("StateWrapper",
     `{
-      "LoggedIn" : { "value" : "false", "actions" : [] },
+      "LoggedIn" : { "value" : false, "actions" : [] },
       "CurrentPage" : { "value" : "home.html", "actions" : [] }
      }`)  
 }
