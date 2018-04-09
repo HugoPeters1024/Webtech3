@@ -230,7 +230,6 @@ function buildProductPage(maker_id, order_id, search_text, limit)
                     categories[categorie.parent].AddSubCategory(categorie);
                 } else {
                     categories[categorie.cat_id] = categorie;
-                    console.log(JSON.stringify(categories));
                 }
             };
             console.log(JSON.stringify(categories));
