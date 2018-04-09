@@ -166,7 +166,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
 
         var nav_prev = document.getElementById("nav_prev");
         nav_prev.addEventListener("click", function() {
-            SetState("offset", offset - limit.value);
+            SetState("offset", offset - parseInt(limit.value));
             build("products.html");
         })
         if (offset > 0) {
@@ -178,7 +178,7 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         
         var nav_next = document.getElementById("nav_next");
         nav_next.addEventListener("click", function() {
-            SetState("offset", offset + limit.value);
+            SetState("offset", offset + parseInt(limit.value));
             build("products.html");
         });
         if (offset + parseInt(limit.value) >= meta.COUNT) {
