@@ -429,6 +429,7 @@ function buildProductConfirmPage(product_id)
             document.getElementById("product_price").innerHTML = p.price;
             document.getElementById("product_maker").innerHTML = p.maker;
             document.getElementById("product_button").innerHTML = `<button onclick="buyProduct(${p.product_id})" id="buy_button">buy</button>`;
+            document.getElementById("product_cat").innerHTML = `Category: '<i>${p.cat_name}</i>'`;
         });
 
         req.open("POST", "product_info", true);
