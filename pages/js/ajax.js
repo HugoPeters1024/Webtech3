@@ -225,6 +225,10 @@ function buildProductPage(maker_id, order_id, search_text, limit)
         search_text = "";
     if (!limit)
         limit = 10;
+    if (!parseInt(GetState("offset")))
+        ret.offset = 0;
+    else
+        ret.offset = parseInt(GetState("offset"));
     ret.order_id = order_id;
     ret.maker_id = maker_id;
     ret.search_text = search_text;
