@@ -74,7 +74,7 @@ exports.dbProducts = (req, res) => {
         console.log(cat_id);
     }
 
-    var cat_id_list = "1,2,3,4,5,6";
+    var cat_id_list = "1";
 
     var orderClausule = "";
     switch(order_id)
