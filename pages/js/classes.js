@@ -80,7 +80,7 @@ class Category {
             return this.items.length;
         else {
             var sum = 0;
-            items.array.forEach(element => {
+            items.forEach(element => {
                 sum += element.GetSum();
             });
             return sum + this.items.length;
