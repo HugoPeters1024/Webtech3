@@ -89,7 +89,7 @@ class Category {
 
     GetTree() {
         var root = document.createElement("LI");
-        root.innerHTML = this.name;
+        root.innerHTML = this.name + "(" + this.GetSum() + ")";
         var el = document.createElement("UL");
         this.children.forEach(child => {
            el.appendChild(child.GetTree());
