@@ -71,7 +71,11 @@ class Category {
         this.items = [];
         this.children = [];
         this.clicker = function(event) {
-            SetState("cat_id", this.cat_id);
+            var con = "" + this.cat_id;
+            this.children.forEach(c => {
+                con += c.cat_id;
+            })
+            SetState("cat_id", con);
             build("products.html");
         }
     }
