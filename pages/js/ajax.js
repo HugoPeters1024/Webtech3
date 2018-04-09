@@ -109,11 +109,12 @@ function buildUserProfile(){
 function buildProductPage(maker_id, order_id, search_text, limit)
 {
     var productlist = [];
+    var meta = {};
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() {
         var list = JSON.parse(this.responseText);
         var table = document.getElementById("products_table")
-        var meta = list[0]; //Meta object
+        meta = list[0]; //Meta object
         var maker_search = GetState("SearchMaker");
         for(var i=1; i<list.length; ++i)
         {
@@ -124,99 +125,99 @@ function buildProductPage(maker_id, order_id, search_text, limit)
             table.appendChild(row);
         }
 
-            //get the manufacturers
-    var manu_req = new XMLHttpRequest();
-    manu_req.addEventListener("loadend", function() {
-        var ret = JSON.parse(this.responseText);
-        var search = document.getElementById("search_maker");
-        if (search) {
-            ret.forEach(element => {
-                var node = document.createElement("OPTION");
-                node.setAttribute("value", element.maker_id);
-                node.innerHTML = element.name;
-                search.appendChild(node);
+                //get the manufacturers
+        var manu_req = new XMLHttpRequest();
+        manu_req.addEventListener("loadend", function() {
+            var ret = JSON.parse(this.responseText);
+            var search = document.getElementById("search_maker");
+            if (search) {
+                ret.forEach(element => {
+                    var node = document.createElement("OPTION");
+                    node.setAttribute("value", element.maker_id);
+                    node.innerHTML = element.name;
+                    search.appendChild(node);
+                });
+            }
+
+            //Recover the search for manufacturer option
+            var state = GetState("SearchMaker");
+            if (state)
+                search.value = state;
+            else
+                search.value = -1;
+
+            //Recover the order option
+            var order = document.getElementById("search_order");
+            state = GetState("OrderProducts");
+            if (state)
+                order.value = state;
+            else
+                order.value = 0;
+
+            var limit = document.getElementById("limit");
+            state = GetState("limit");
+            if (state)
+                limit.value = state;
+            else
+                limit.value = 10;
+
+            var offset = parseInt(GetState("offset"));
+            if (!offset)
+                offset = 0;
+
+            var nav_prev = document.getElementById("nav_prev");
+            nav_prev.addEventListener("click", function() {
+                SetState("offset", offset - parseInt(limit.value));
+                build("products.html");
+            })
+            if (offset > 0) {
+                nav_prev.style.display = "block";
+            } else {
+                nav_prev.style.display = "none";
+            }
+
+            
+            var nav_next = document.getElementById("nav_next");
+            nav_next.addEventListener("click", function() {
+                SetState("offset", offset + parseInt(limit.value));
+                build("products.html");
             });
-        }
+            if (offset + parseInt(limit.value) >= meta.COUNT) {
+                nav_next.style.display = "none"
+            }
+            else {
+                nav_next.style.display = "block";
+            } 
 
-        //Recover the search for manufacturer option
-        var state = GetState("SearchMaker");
-        if (state)
-            search.value = state;
-        else
-            search.value = -1;
+            
+            var go_search = document.getElementById("go_search_text");
+            go_search.addEventListener("click", function() {
+                SetState("offset", 0);
+                var val = document.getElementById("search_text").value.toString();
+                build("products.html", buildProductPage, GetState("SearchMaker"), GetState("OrderProducts"), val, GetState("limit"));
+            });
 
-        //Recover the order option
-        var order = document.getElementById("search_order");
-        state = GetState("OrderProducts");
-        if (state)
-            order.value = state;
-        else
-            order.value = 0;
+            var limit = document.getElementById("limit");
+            limit.addEventListener("change", function() {
+                SetState("offset", 0);
+                SetState("limit", this.value);
+                build("products.html");
+            })
 
-        var limit = document.getElementById("limit");
-        state = GetState("limit");
-        if (state)
-            limit.value = state;
-        else
-            limit.value = 10;
+            search.addEventListener("change", function() {
+                SetState("offset", 0)
+                SetState("SearchMaker", this.value);
+                build("products.html");
+            });
 
-        var offset = parseInt(GetState("offset"));
-        if (!offset)
-            offset = 0;
-
-        var nav_prev = document.getElementById("nav_prev");
-        nav_prev.addEventListener("click", function() {
-            SetState("offset", offset - parseInt(limit.value));
-            build("products.html");
-        })
-        if (offset > 0) {
-            nav_prev.style.display = "block";
-        } else {
-            nav_prev.style.display = "none";
-        }
-
-        
-        var nav_next = document.getElementById("nav_next");
-        nav_next.addEventListener("click", function() {
-            SetState("offset", offset + parseInt(limit.value));
-            build("products.html");
+            order.addEventListener("change", function() {
+                SetState("offset", 0);
+                SetState("OrderProducts", this.value);
+                build("products.html")
+            })
         });
-        if (offset + parseInt(limit.value) >= meta.COUNT) {
-            nav_next.style.display = "none"
-        }
-        else {
-            nav_next.style.display = "block";
-        } 
-
-        
-        var go_search = document.getElementById("go_search_text");
-        go_search.addEventListener("click", function() {
-            SetState("offset", 0);
-            var val = document.getElementById("search_text").value.toString();
-            build("products.html", buildProductPage, GetState("SearchMaker"), GetState("OrderProducts"), val, GetState("limit"));
-        });
-
-        var limit = document.getElementById("limit");
-        limit.addEventListener("change", function() {
-            SetState("offset", 0);
-            SetState("limit", this.value);
-            build("products.html");
-        })
-
-        search.addEventListener("change", function() {
-            SetState("offset", 0)
-            SetState("SearchMaker", this.value);
-            build("products.html");
-        });
-
-        order.addEventListener("change", function() {
-            SetState("offset", 0);
-            SetState("OrderProducts", this.value);
-            build("products.html")
-        })
-        });
-    manu_req.open("POST", "makers", true);
-    manu_req.send()
+        manu_req.open("POST", "makers", true);
+        manu_req.send()
     });
     req.open("POST", "products", true);
     req.setRequestHeader("Content-Type", "application/json");
