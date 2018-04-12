@@ -16,15 +16,19 @@ app.use('/', express.static(rootdir));
 //sanitize user input
 app.use(san.middleware);
 
+
 // Make sure we can parse the post body-data
 //app.use(bodyParser.urlencoded({ extended: rue }))
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.set('json spaces', 40);
 
-//app.get('/', function(req, res) {
-//  res.send("Boem jo");
-//});
+//Log all incoming request
+app.use((req, res, next) => {
+   console.log("<--- incoming request to " + req.url + " with body " + JSON.stringify(req.body)+ "--->");
+   return next();
+});
+
 app.post('/post', function(req, res) {
   databaseQuery(req, res)
 });
@@ -50,7 +54,6 @@ app.post('/register', function(req, res) {
 });
 
 app.post('/login', function(req, res) {
-   //res.redirect('/profile');
    data.dbLogin(req, res);
 });
 
@@ -84,21 +87,3 @@ app.listen(8003, function() {
   console.log('Express listening to port 8003');
 });
 
-// Database methods
-function databaseQuery(req, res) {
-	  switch(req.body.method.toLowerCase()){
-		case 'insert':
- 		  if(req.body.table && req.body.values) {
-		    var statement = db.prepare('INSERT INTO ? VALUES (?)');
-		    statement.run(req.body.table, req.body.values);
-		    statement.finalize();
-		    res.send('OK');
-		  }
-                  else
-                    res.send('Insert statement needs the following data: table, values');
-     		  break;
-		case 'select':
-                  data.dbSelect(req, res, req.body.table, req.body.username);
-                  break;
-	  }
-}
