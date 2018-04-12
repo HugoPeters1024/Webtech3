@@ -82,8 +82,8 @@ exports.dbProducts = (req, res) => {
       case "1": orderClausule = "ORDER BY Products.name ASC"; break;
       case "2": orderClausule = "ORDER BY Products.price ASC"; break;
       case "3": orderClausule = "ORDER BY Products.price DESC"; break;
-    }
-    var result = [];
+1    }
+ 1111111111111111111   var result = [];
     var statement = db.prepare("SELECT Products.product_id, Products.cat_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND ((? IS NULL) OR (Products.cat_id IN ("+cat_id_list+"))) AND (Products.name LIKE ('%' || ? || '%') OR  Manufactures.name LIKE ('%' || ? || '%')) " + orderClausule + " LIMIT ?, ?");
     statement.all(maker_id, maker_id, cat_id, search_text, search_text, offset, limit, function(err, rows) {
       if(err) {
@@ -244,8 +244,7 @@ exports.dbRegister = (req, res) => {
    var salt = sha256(Math.random().toString());
    var password = sha256(req.body.password + salt);
    var db = openDB();
-   var statement = db.prepare("INSERT INTO Users (username, first_name, last_name, address, email, password, salt) VALUES (?, ?, ?, ?, ?, ?, ?)");
-   statement.run(username, first_name, last_name, address, email, password, salt, function(err) {
+   db.run("INSERT INTO Users (username, first_name, last_name, address, email, password, salt) VALUES ('"+username+"',' "+first_name+"','"+last_name+"','"+address+"', '"+email+"', '"+password+"', '"+salt+"')", err => {
           if (err) {
                 console.log(err); 
                 ret.err = "Username is already taken"
