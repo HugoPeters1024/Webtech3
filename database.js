@@ -438,7 +438,7 @@ exports.dbHistory = (req, res) => {
 
 exports.dbLogout = (req, res) => {
   console.log("attempting to logout user with token " + req.token);
-  ValidateSession(token, (err, user_id) => {
+  ValidateSession(req.body.token, (err, user_id) => {
     console.log("Logging out user " + user_id);
     let db = openDB();
     let statement = db.prepare("DELETE FROM Sessions WHERE user_id = ?")
