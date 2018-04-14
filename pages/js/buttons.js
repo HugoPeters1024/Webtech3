@@ -30,7 +30,7 @@ function config_buttons() {
             req.open("POST", "logout", true);
             var obj = {};
             obj.token = GetState("token");
-            req.send(obj);
+            req.send(JSON.stringify(obj));
         }
         else
             build("login.html");
