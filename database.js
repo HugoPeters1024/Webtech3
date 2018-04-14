@@ -447,12 +447,12 @@ exports.dbLogout = (req, res) => {
     console.log("Logging out user " + user_id);
     let db = openDB();
     let statement = db.prepare("DELETE FROM Sessions WHERE user_id = ?")
-    statement.all(user_id, function(err,rows) {
+    statement.all(user_id, function(err) {
       if (err) {
         console.log("error");
         return;
       }
-      console.log("removed " + rows.length + " sessions.");      
+      console.log("removed " + rows.affectedRows + " sessions.");      
     });
     statement.finalize(() => res.send("logout succesful"));
   });
