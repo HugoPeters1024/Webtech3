@@ -1,5 +1,3 @@
-import { stat } from 'fs';
-
 var sqlite3 = require('sqlite3').verbose();
 var sqls = require('sqlstring');
 var xss = require('striptags');
