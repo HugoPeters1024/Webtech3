@@ -28,6 +28,7 @@ function config_buttons() {
                 build();
             });
             req.open("POST", "logout", true);
+            req.setRequestHeader("Content-Type", "application/json");
             var obj = {};
             obj.token = GetState("token");
             req.send(JSON.stringify(obj));
