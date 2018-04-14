@@ -57,6 +57,10 @@ app.post('/login', function(req, res) {
    data.dbLogin(req, res);
 });
 
+app.post("/logout", function(req, res) {
+  data.dbLogout(req, res);
+})
+
 app.post('/user', function(req, res) {
    data.dbUserInfo(req, res);
 });

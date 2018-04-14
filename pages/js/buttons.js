@@ -21,9 +21,16 @@ function config_buttons() {
     var but_login = document.getElementById("but_login");
     but_login.addEventListener("click", function() { 
         if (GetState("LoggedIn")) {
-            SetState("LoggedIn", false);
-            SetState("CurrentPage", "home.html");
-            build();
+            var req = new XMLHttpRequest();
+            req.addEventListener("loadend", function() {
+                SetState("LoggedIn", false);
+                SetState("CurrentPage", "home.html");
+                build();
+            });
+            req.open("POST", "logout", true);
+            var obj = {};
+            obj.token = GetState("token");
+            req.send(obj);
         }
         else
             build("login.html");
