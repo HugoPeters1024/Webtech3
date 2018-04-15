@@ -29,6 +29,9 @@ app.use((req, res, next) => {
    return next();
 });
 
+//The following routines are all are easily readable, hence not commented
+//Their respective subroutines are described in database.js
+
 app.post('/post', function(req, res) {
   databaseQuery(req, res)
 });

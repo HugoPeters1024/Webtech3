@@ -1,3 +1,4 @@
+//Gets run after every body onload and binds functionality to the buttons in the navigation bar.
 function config_buttons() {
     //HOME BUTTON
     var but_home = document.getElementById("but_home");

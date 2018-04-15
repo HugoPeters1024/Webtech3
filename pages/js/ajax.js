@@ -1,3 +1,8 @@
+//The main build function that replaces the main-content of the page with
+//the result of an ajax call. It also takes a callback function that populates certain items
+//with ajax calls to the API.
+//Certain filenames are also associated with fallback standard callback functions in order to restore
+//the page after a refresh.
 function build(file, callback, arg1, arg2, arg3, arg4, arg5) {
     if (!file)
         file = GetState("CurrentPage");
@@ -33,14 +38,7 @@ function build(file, callback, arg1, arg2, arg3, arg4, arg5) {
     req.send(null);
 }
 
-function test() {
-    var req = new XMLHttpRequest();
-    req.addEventListener("loadend", function() { alert(this.responseText) });
-    req.open("POST", "post", true);
-    req.setRequestHeader("Content-Type", "application/json");
-    req.send(`{"method": "SELECT", "username" : "admin"}`);
-}
-
+//Subroutine for building the userprofile
 function buildUserProfile(){
     var req = new XMLHttpRequest();
     req.addEventListener("loadend", function() {
@@ -114,6 +112,7 @@ function buildUserProfile(){
     });
 }
 
+//Subroutine for constructing the product page.
 function buildProductPage(maker_id, order_id, search_text, limit, cat_id)
 {
     var productlist = [];
@@ -306,6 +305,7 @@ function buildProductPage(maker_id, order_id, search_text, limit, cat_id)
     req.send(JSON.stringify(ret));
 }
 
+//Subroutine for population the purchase history page.
 function buildHistoryPage() {
     var product_list = [];
     var req = new XMLHttpRequest();
@@ -344,6 +344,7 @@ function buildHistoryPage() {
     req.send(JSON.stringify(obj));
 }
 
+//Handles a login request and save the response session token in the state of the page.
 function sendLoginRequest() {
     var username = document.getElementById("username");
     var password = document.getElementById("password")
@@ -381,6 +382,7 @@ function sendLoginRequest() {
     }
 }
 
+//routine that requests the purchase of a product.
 function buyProduct(productId) {
     if (productId) {
       var amount = document.getElementById("amount").value;
@@ -414,6 +416,7 @@ function buyProduct(productId) {
     }
 }
 
+//Build the information page of a single product.
 function buildProductConfirmPage(product_id) 
 {
     var current_product;
@@ -501,6 +504,8 @@ function buildProductConfirmPage(product_id)
     }
 }
 
+//Client side validation is here merely a warning.
+//If you are dumb enough to curl yourself a register request with no password you deserve it.
 function sendRegisterRequest() {
     var username = document.getElementById("username");
     var email = document.getElementById("email")

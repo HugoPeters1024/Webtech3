@@ -1,3 +1,4 @@
+//First time visitors are served a default state.
 if (!window.localStorage.getItem("StateWrapper") || window.localStorage.getItem("StateWrapper") == "undefined") {
     window.localStorage.setItem("StateWrapper",
     `{
@@ -6,6 +7,7 @@ if (!window.localStorage.getItem("StateWrapper") || window.localStorage.getItem(
      }`)  
 }
 
+//Recover that state from local storage into the DOM.
 var StateWrapper = JSON.parse(window.localStorage.getItem("StateWrapper")); 
 
 function SaveState() {
@@ -41,6 +43,7 @@ function SetState(state, value) {
         StateWrapper[state].actions.forEach(element => { if (element) element(value);});
 }
 
+//Executes a given callback upon when the given state changes.
 //InitUpdate flag will run the callback with current value right away if it is supplied.
 function AddStateListener(state, action, initUpdate) {
     if (!StateWrapper[state]) {

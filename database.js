@@ -3,6 +3,7 @@ var sqls = require('sqlstring');
 var xss = require('striptags');
 var sha256 = require("js-sha256");
 
+//Subroutine for return a database instance
 function openDB() {
   let db = new sqlite3.Database('./db/test.db', (err) => {
     if (err) {
@@ -14,6 +15,8 @@ function openDB() {
   return db;
 }
 
+
+//Subroutine for properly closing a database instance
 function closeDB(db) {
   db.close( (err) => {
     if (err) {
@@ -23,31 +26,7 @@ function closeDB(db) {
   console.log('Database connection closed');
 }
 
-exports.dbInsert = () => {
-  var db = openDB();
-  
-  closeDB(db);
-}
-
-exports.dbSelect = (req, res, table, value) => {
-    var db = openDB();
-    console.log('Doing Select');
-    //Because we cannot input a table into prepared statements we sanatize it.
-    var statement = db.prepare('SELECT * FROM ' + sqls.escape(table) + ' WHERE (username)=(?)');
-    statement.get(value, function(err, row) {
- 	if (err) {
-        console.error(JSON.stringify(err));
-      //	res.send('An error has occured, check the logs for more info');
-      }
-      else  {
-        console.log(row);
-        res.json(row);
-      }
-    statement.finalize();
-    });
-    closeDB(db);
-}
-
+//Return a list of products based on filters in the request body
 exports.dbProducts = (req, res) => {
     var db = openDB();
     console.log('Searching for products ' + JSON.stringify(req.body));
@@ -84,6 +63,8 @@ exports.dbProducts = (req, res) => {
       case "3": orderClausule = "ORDER BY Products.price DESC"; break;
     }
     var result = [];
+    //quite aware here if the SQL injection vulnerability but could not find a solution and for  purily the sake of
+    //just this assignment settled upon the fact that I much rather have this functionality that be perfectly security
     var statement = db.prepare("SELECT Products.product_id, Products.cat_id, Products.name, Products.image, Products.price, Manufactures.name as maker, Manufactures.maker_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND ((? IS NULL) OR (Products.cat_id IN ("+cat_id_list+"))) AND (Products.name LIKE ('%' || ? || '%') OR  Manufactures.name LIKE ('%' || ? || '%')) " + orderClausule + " LIMIT ?, ?");
     statement.all(maker_id, maker_id, cat_id, search_text, search_text, offset, limit, function(err, rows) {
       if(err) {
@@ -94,6 +75,8 @@ exports.dbProducts = (req, res) => {
         result = rows;
       }
     });
+
+    //In order to build up the page perfectly we gather some meta data for the previous query.
     statement.finalize(function() {
       console.log("Collecting COUNT meta data...");
       var statement = db.prepare("SELECT COUNT(Products.product_id) as COUNT FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND ((? IS NULL) OR (Products.cat_id IN ("+cat_id_list+"))) AND (Products.name LIKE ('%' || ? || '%') OR Manufactures.name LIKE ('%' || ? || '%')) " + orderClausule);
@@ -106,7 +89,7 @@ exports.dbProducts = (req, res) => {
         //res.send(result);
       });
       statement.finalize(function() {
-        console.log("Collecting category meta data...");
+        console.log("Collecting Category meta data...");
         var statement = db.prepare("SELECT Products.cat_id FROM Products, Manufactures WHERE Products.maker_id = Manufactures.maker_id AND ((? IS NULL) OR (Products.maker_id = ?)) AND ((? IS NULL) OR (Products.cat_id IN ("+cat_id_list+"))) AND (Products.name LIKE ('%' || ? || '%') OR  Manufactures.name LIKE ('%' || ? || '%')) " + orderClausule);
         statement.all(maker_id, maker_id, cat_id, search_text, search_text, function(err, rows) {
           if(err) {
@@ -126,6 +109,7 @@ exports.dbProducts = (req, res) => {
     closeDB(db);
 }
 
+//Get the product info a specific product.
 exports.dbProductInfo = (req, res) => {
   if (!req.body.product_id) {
     res.send({ "err" : "No product_id provided!" });
@@ -148,6 +132,7 @@ exports.dbProductInfo = (req, res) => {
   closeDB(db);
 }
 
+//Get the comments that are attached to a certain product.
 exports.dbComments = (req, res) => {
   var ret = {};
   if (!req.body.product_id) {
@@ -168,6 +153,7 @@ exports.dbComments = (req, res) => {
   });
 }
 
+//Post a comment to a product.
 exports.dbPostComment = (req, res) => {
   var ret = {};
   if (!req.body.product_id || !req.body.comment) {
@@ -200,6 +186,7 @@ exports.dbPostComment = (req, res) => {
   });
 }
 
+//Get a list of the the manufacturers.
 exports.dbMakers = (req, res) => {
   var db = openDB();
   db.all("SELECT * FROM Manufactures WHERE 1", function(err, rows) {
@@ -213,6 +200,7 @@ exports.dbMakers = (req, res) => {
   closeDB(db);
 }
 
+//Get a list of the all the categories.
 exports.dbCategories = (req, res) => {
   var db = openDB();
   db.all("SELECT * FROM Categories WHERE 1 ORDER BY Parent", function(err, rows) {
@@ -226,6 +214,7 @@ exports.dbCategories = (req, res) => {
   closeDB(db);
 }
 
+//Register routine, enforces quite harsh anti-XSS methods.
 exports.dbRegister = (req, res) => {
    var ret = {};
    console.log("Got a request for a registration.");
@@ -258,6 +247,7 @@ exports.dbRegister = (req, res) => {
    closeDB(db);
 }
 
+//Login routine, also generates a session to the user.
 exports.dbLogin = (req, res) => {
    console.log("Got a login request.");
    var ret = {};
@@ -310,7 +300,7 @@ exports.dbLogin = (req, res) => {
    closeDB(db);
 }
 
-
+//Get all the info of specific user for the user page.
 exports.dbUserInfo = (req, res) => {
    var ret = {};
    if (!req.body.token) {
@@ -337,6 +327,7 @@ exports.dbUserInfo = (req, res) => {
    });
 }
 
+//Handles the request for editing user information.
 exports.dbUserEdit = (req, res) => {
   var ret = {};
   ValidateSession(req.body.token, function(err, user_id) {
@@ -367,6 +358,7 @@ exports.dbUserEdit = (req, res) => {
   });
 }
 
+//Buy a certain product, user_id is derived from the session token.
 exports.dbBuy = (req, res) => {
    var ret = {};
    if (!req.body.token) {
@@ -405,6 +397,7 @@ exports.dbBuy = (req, res) => {
    }); 
 }
 
+//Get the purchase history of a user.
 exports.dbHistory = (req, res) => {
   var ret = {};
   if (!req.body.token) {
@@ -436,6 +429,7 @@ exports.dbHistory = (req, res) => {
   });
 }
 
+//Log a user out by destroying all sessions attached to the user_id.
 exports.dbLogout = (req, res) => {
   console.log("attempting to logout user with token " + req.body.token);
   ValidateSession(req.body.token, (err, user_id) => {
@@ -458,6 +452,10 @@ exports.dbLogout = (req, res) => {
   });
 }
 
+//Generate a new session and set the expire date to an hour from now.
+//Sessions are the result of a sha256 hash of the internal random function and the datastring.
+//Granted that the internal random function does not have terribly much entropy, the added datestring
+//prevents at least a bruteforce on the Math.random with rainbow tables.
 CreateSession = (user_id, callback) =>  {
    console.log("Creating a new session");
    var err_message;
@@ -472,6 +470,7 @@ CreateSession = (user_id, callback) =>  {
    callback(err_message, token);
 }
 
+//Validate a session from a token, this will also retrieve the attached user_id.
 ValidateSession = (token, callback) => {
    console.log("Validating session...");
    if (!token) { //SQL query won't execute otherwise

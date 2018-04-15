@@ -1,3 +1,5 @@
+//A blueprint for the a product. Has the added functionality to generate html entries
+//for different purposes.
 class Product {
     constructor(name, image, price, maker, pid, cid) {
         this.name = name;
@@ -66,6 +68,7 @@ class Product {
     }
 }
 
+//A tree node like structure that is able to build the structure of categories.
 class Category {
     constructor(name, cat_id, parent) {
         this.name = name;
