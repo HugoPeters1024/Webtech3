@@ -44,3 +44,7 @@ Please follow up with us if you would like to comment on that.
 
 EXTRA FEATURES:
 Any user can post comments on products and they will be displayed with the corresponding username.
+
+F.A.Q.
+Why did you implement your own session management?
+  I couldn't get any library to work, so we decided to do it ourselves. I believe this method to be quite waterproof, I'm curious if you can prove us otherwise :)
